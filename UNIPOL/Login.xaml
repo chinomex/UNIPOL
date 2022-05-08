@@ -1,0 +1,86 @@
+﻿<Window x:Class="UNIPOL.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:UNIPOL"
+        mc:Ignorable="d"
+        Title="Inicio de Sesión" 
+        Height="425" 
+        Width="315"
+        
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize"
+        
+        Loaded="Window_Loaded"
+        Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <materialDesign:PackIcon Kind="AccountCircle" 
+                                     Width="80"
+                                     Height="80"
+                                     Foreground="Blue"
+                                     />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    VerticalAlignment="Center"
+                    Margin="40,0">
+            <TextBox materialDesign:HintAssist.Hint="Usuario" 
+                     materialDesign:HintAssist.Foreground="Blue"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Blue"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Center" 
+                     Padding="0,5,0,5"
+                     FontSize="18"
+                     x:Name="txtUsuario"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="2"
+                    VerticalAlignment="Center"
+                    Margin="40,0">
+            <PasswordBox x:Name="FloatingPasswordBox"
+                         materialDesign:HintAssist.Hint="Contraseña"
+                         materialDesign:HintAssist.Foreground="Blue"
+                         materialDesign:TextFieldAssist.UnderlineBrush="Blue"
+                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
+                         VerticalAlignment="Center" 
+                         Padding="0,5,0,5"
+                         FontSize="18"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3"
+                    VerticalAlignment="Center"
+                    Margin="40,0">
+            <!--<Button Name="btnIniciarSesion" 
+                    Style="{StaticResource MaterialDesignPaperDarkButton}"
+                    ToolTip=""
+                    Content="Iniciar Sesión"
+                    Foreground="Blue"
+                    BorderBrush="Blue"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
+                    Click="BtnIniciarSesion_Click"/>-->
+
+            <Button Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                    ToolTip=""
+                    Content="Iniciar Sesión"
+                    Foreground="Blue"
+                    BorderBrush="Blue"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
+                    Click="BtnIniciarSesion_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
