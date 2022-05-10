@@ -3,17 +3,124 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:UNIPOL.Configuracion"
         mc:Ignorable="d"
         Title="Usuarios" 
         Height="450" 
-        Width="800"
+        Width="450"
         
         WindowStartupLocation="CenterScreen"
         WindowState="Normal"
         WindowStyle="SingleBorderWindow"
-        ResizeMode="NoResize">
-    <Grid>
+        ResizeMode="NoResize"
         
+        Loaded="Window_Loaded">
+    <Grid>
+        <StackPanel Orientation="Vertical"
+                    Margin="20,10,20,20">
+            <TextBox materialDesign:HintAssist.Hint="Codigo"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Center" 
+                     HorizontalAlignment="Left"
+                     x:Name="txtCodigo"
+                     Width="150"
+                     Padding="0,5,0,5"
+                     KeyUp="TxtCodigo_KeyUp"
+                     FontSize="16"/>
+
+
+
+            <TextBox materialDesign:HintAssist.Hint="Nombre"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     x:Name="txtNombre"
+                     Width="400"
+                     Padding="0,5,0,5"
+                     Margin="0,5,0,0"
+                     FontSize="16"
+                     KeyUp="TxtNombre_KeyUp"/>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,5,0,0">
+                <PasswordBox x:Name="txtPass"
+                             materialDesign:HintAssist.Hint="Contraseña"
+                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
+                             VerticalAlignment="Center" 
+                             Padding="0,5,0,5"
+                             FontSize="16"
+                             Width="175"
+                             KeyUp="TxtPass_KeyUp"/>
+
+                <PasswordBox x:Name="txtPassConfirmacion"
+                             materialDesign:HintAssist.Hint="Confirmacion"
+                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
+                             VerticalAlignment="Center" 
+                             Padding="0,5,0,5"
+                             FontSize="16"
+                             Margin="50,0,0,0"
+                             Width="175"
+                             KeyUp="TxtPassConfirmacion_KeyUp"/>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,40,0,0">
+                <CheckBox IsChecked="False"
+                          Content="Medico"
+                          
+                          FontSize="16"
+                          materialDesign:CheckBoxAssist.CheckBoxSize="20"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Bottom"
+                          Style="{StaticResource MaterialDesignDarkCheckBox}" />
+
+                <ComboBox materialDesign:HintAssist.Hint="Tipo"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          Margin="150,0,0,0"
+                          FontSize="16"
+                          Width="175">
+                    <ComboBoxItem Content="Dr." />
+                    <ComboBoxItem Content="Dra." />
+                </ComboBox>
+
+            </StackPanel>
+
+            <TextBox materialDesign:HintAssist.Hint="Universidad"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     x:Name="txtUniversidad"
+                     Width="400"
+                     Padding="0,5,0,5"
+                     Margin="0,5,0,0"
+                     FontSize="16"
+                     />
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,5,0,0">
+                <TextBox materialDesign:HintAssist.Hint="Cedula Profecional"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     x:Name="txtCedula"
+                     Width="175"
+                     Padding="0,5,0,5"
+                     Margin="0,5,0,0"
+                     FontSize="16"/>
+
+                <TextBox materialDesign:HintAssist.Hint="Registro S.S.A."
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     x:Name="txtSSA"
+                     Width="175"
+                     Padding="0,5,0,5"
+                     Margin="50,5,0,0"
+                     FontSize="16"/>
+            </StackPanel>
+
+        </StackPanel>
     </Grid>
 </Window>

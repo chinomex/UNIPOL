@@ -28,12 +28,19 @@ namespace UNIPOL
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Login login = new Login();
-            //login.Owner = this;
+            login.Owner = this;
             login.ShowDialog();
             if (!login.usuarioValido)
             {
-                this.Close();
+                //this.Close();
             }
+        }
+
+        private void MnConfigUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            Configuracion.Usuarios usuarios = new Configuracion.Usuarios();
+            usuarios.Owner = this;
+            usuarios.ShowDialog();
         }
     }
 }

@@ -28,7 +28,7 @@
                         <MenuItem Name="mnRepExistencias" Header="Existencias"></MenuItem>
                     </MenuItem>
                     <MenuItem Name="mnConfig" Header="Configuracion">
-                        <MenuItem Name="mnConfigUsuarios" Header="Usuarios"></MenuItem>
+                        <MenuItem Name="mnConfigUsuarios" Header="Usuarios" Click="MnConfigUsuarios_Click"></MenuItem>
                     </MenuItem>
                 </Menu>
             </materialDesign:Card>

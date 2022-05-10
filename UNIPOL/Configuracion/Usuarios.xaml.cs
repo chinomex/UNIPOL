@@ -23,5 +23,42 @@ namespace UNIPOL.Configuracion
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtCodigo.Focus();
+        }
+
+        private void TxtCodigo_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtNombre.Focus();
+            }
+        }
+
+        private void TxtNombre_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtPass.Focus();
+            }
+        }
+
+        private void TxtPass_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtPassConfirmacion.Focus();
+            }
+        }
+
+        private void TxtPassConfirmacion_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtCodigo.Focus();
+            }
+        }
     }
 }

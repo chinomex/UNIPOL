@@ -25,9 +25,10 @@ namespace UNIPOL
         public Login()
         {
             _vm = new LoginVM();
-            this.DataContext = _vm;
-
+            
             InitializeComponent();
+
+            this.DataContext = _vm;
         }
 
         private void BtnIniciarSesion_Click(object sender, RoutedEventArgs e)
