@@ -67,7 +67,7 @@
 
             <StackPanel Orientation="Horizontal"
                         Margin="0,40,0,0">
-                <CheckBox IsChecked="False"
+                <CheckBox IsChecked="{Binding esMedico, UpdateSourceTrigger=PropertyChanged}"
                           Content="Medico"
                           
                           FontSize="16"
@@ -80,7 +80,8 @@
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                           Margin="150,0,0,0"
                           FontSize="16"
-                          Width="175">
+                          Width="175"
+                          IsEnabled="{Binding esMedico, UpdateSourceTrigger=PropertyChanged}">
                     <ComboBoxItem Content="Dr." />
                     <ComboBoxItem Content="Dra." />
                 </ComboBox>

@@ -19,9 +19,12 @@ namespace UNIPOL.Configuracion
     /// </summary>
     public partial class Usuarios : Window
     {
+        LoginVM _vm = null;
         public Usuarios()
         {
             InitializeComponent();
+            _vm = new LoginVM();
+            this.DataContext = _vm;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
