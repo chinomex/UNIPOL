@@ -43,19 +43,21 @@
                      VerticalAlignment="Center" 
                      Padding="0,5,0,5"
                      FontSize="18"
-                     x:Name="txtUsuario"/>
+                     x:Name="txtUsuario"
+                     KeyUp="txtUsuario_KeyUp"/>
         </StackPanel>
 
 
         <StackPanel Grid.Row="2"
                     VerticalAlignment="Center"
                     Margin="40,0">
-            <PasswordBox x:Name="FloatingPasswordBox"
+            <PasswordBox x:Name="txtPass"
                          materialDesign:HintAssist.Hint="Contraseña"
                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
                          VerticalAlignment="Center" 
                          Padding="0,5,0,5"
-                         FontSize="18"/>
+                         FontSize="18"
+                         KeyUp="txtPass_KeyUp"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3"
@@ -73,8 +75,8 @@
             <Button Style="{StaticResource MaterialDesignOutlinedDarkButton}"
                     ToolTip=""
                     Content="Iniciar Sesión"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
-                    Click="BtnIniciarSesion_Click"/>
+                    Click="btnIniciarSesion_Click"
+                    x:Name="btnIniciarSesion"/>
         </StackPanel>
     </Grid>
 </Window>

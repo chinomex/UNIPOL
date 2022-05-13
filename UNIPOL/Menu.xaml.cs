@@ -32,7 +32,7 @@ namespace UNIPOL
             login.ShowDialog();
             if (!login.usuarioValido)
             {
-                //this.Close();
+                this.Close();
             }
         }
 
@@ -41,6 +41,20 @@ namespace UNIPOL
             Configuracion.Usuarios usuarios = new Configuracion.Usuarios();
             usuarios.Owner = this;
             usuarios.ShowDialog();
+        }
+
+        private void mnInvExistencias_Click(object sender, RoutedEventArgs e)
+        {
+            Inventarios.Existencias existencias = new Inventarios.Existencias();
+            existencias.Owner = this;
+            existencias.ShowDialog();
+        }
+
+        private void mnMedicoAltaPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            Medicos.AltaPaciente altaPaciente = new Medicos.AltaPaciente();
+            altaPaciente.Owner = this;
+            altaPaciente.ShowDialog();
         }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:UNIPOL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="UNIPOL" Height="450" Width="800"
         
         WindowStartupLocation="CenterScreen"
         WindowState="Normal"
@@ -19,15 +19,16 @@
             <materialDesign:Card Height="80">
                 <Menu VerticalAlignment="Center">
                     <MenuItem Name="mnInventario" Header="Inventario">
-                        <MenuItem Name="mnInvExistencias" Header="Existencias"></MenuItem>
+                        <MenuItem Name="mnInvExistencias" Header="Existencias" Click="mnInvExistencias_Click"></MenuItem>
                     </MenuItem>
                     <MenuItem Name="mnMedico" Header="Medicos">
+                        <MenuItem Name="mnMedicoAltaPaciente" Header="Alta de paciente" Click="mnMedicoAltaPaciente_Click"></MenuItem>
                         <MenuItem Name="mnMedicoConsultar" Header="Consulta Medica"></MenuItem>
                     </MenuItem>
                     <MenuItem Name="mnReportes" Header="Reportes">
                         <MenuItem Name="mnRepExistencias" Header="Existencias"></MenuItem>
                     </MenuItem>
-                    <MenuItem Name="mnConfig" Header="Configuracion">
+                    <MenuItem Name="mnConfig" Header="Configuración">
                         <MenuItem Name="mnConfigUsuarios" Header="Usuarios" Click="MnConfigUsuarios_Click"></MenuItem>
                     </MenuItem>
                 </Menu>

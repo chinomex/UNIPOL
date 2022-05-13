@@ -19,33 +19,38 @@ namespace UNIPOL
     /// </summary>
     public partial class Login : Window
     {
-        LoginVM _vm = null;
         public bool usuarioValido { get; set; }
 
         public Login()
         {
-            _vm = new LoginVM();
-            
             InitializeComponent();
-
-            this.DataContext = _vm;
+            usuarioValido = false;
         }
 
-        private void BtnIniciarSesion_Click(object sender, RoutedEventArgs e)
+        private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
-            usuarioValido = true;
+            this.usuarioValido = true;
             this.Close();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            usuarioValido = false;
             this.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             txtUsuario.Focus();
+        }
+
+        private void txtUsuario_KeyUp(object sender, KeyEventArgs e)
+        {
+            txtPass.Focus();
+        }
+
+        private void txtPass_KeyUp(object sender, KeyEventArgs e)
+        {
+            btnIniciarSesion.Focus();
         }
     }
 }

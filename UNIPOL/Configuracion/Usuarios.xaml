@@ -18,7 +18,7 @@
         Loaded="Window_Loaded">
     <Grid>
         <StackPanel Orientation="Vertical"
-                    Margin="20,10,20,20">
+                    Margin="20,10,20,5">
             <TextBox materialDesign:HintAssist.Hint="Codigo"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      VerticalAlignment="Center" 
@@ -66,22 +66,24 @@
 
 
             <StackPanel Orientation="Horizontal"
-                        Margin="0,40,0,0">
-                <CheckBox IsChecked="{Binding esMedico, UpdateSourceTrigger=PropertyChanged}"
-                          Content="Medico"
-                          
+                        Margin="0,10,0,0">
+                <CheckBox Content="Medico"
                           FontSize="16"
                           materialDesign:CheckBoxAssist.CheckBoxSize="20"
                           HorizontalAlignment="Left"
                           VerticalAlignment="Bottom"
-                          Style="{StaticResource MaterialDesignDarkCheckBox}" />
+                          Style="{StaticResource MaterialDesignDarkCheckBox}" 
+                          x:Name="ckMedico"
+                          Checked="ckMedico_Checked"
+                          Unchecked="ckMedico_Checked"/>
 
                 <ComboBox materialDesign:HintAssist.Hint="Tipo"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                           Margin="150,0,0,0"
                           FontSize="16"
                           Width="175"
-                          IsEnabled="{Binding esMedico, UpdateSourceTrigger=PropertyChanged}">
+                          x:Name="cmbTipoMedico"
+                          KeyUp="cmbTipoMedico_KeyUp">
                     <ComboBoxItem Content="Dr." />
                     <ComboBoxItem Content="Dra." />
                 </ComboBox>
@@ -97,31 +99,54 @@
                      Padding="0,5,0,5"
                      Margin="0,5,0,0"
                      FontSize="16"
+                     KeyUp="txtUniversidad_KeyUp"
                      />
 
             <StackPanel Orientation="Horizontal"
                         Margin="0,5,0,0">
                 <TextBox materialDesign:HintAssist.Hint="Cedula Profecional"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     VerticalAlignment="Center"
-                     HorizontalAlignment="Left"
-                     x:Name="txtCedula"
-                     Width="175"
-                     Padding="0,5,0,5"
-                     Margin="0,5,0,0"
-                     FontSize="16"/>
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"
+                         x:Name="txtCedula"
+                         Width="175"
+                         Padding="0,5,0,5"
+                         Margin="0,5,0,0"
+                         FontSize="16"
+                         KeyUp="txtCedula_KeyUp"/>
 
                 <TextBox materialDesign:HintAssist.Hint="Registro S.S.A."
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     VerticalAlignment="Center"
-                     HorizontalAlignment="Left"
-                     x:Name="txtSSA"
-                     Width="175"
-                     Padding="0,5,0,5"
-                     Margin="50,5,0,0"
-                     FontSize="16"/>
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"
+                         x:Name="txtSSA"
+                         Width="175"
+                         Padding="0,5,0,5"
+                         Margin="50,5,0,0"
+                         FontSize="16"
+                         KeyUp="txtSSA_KeyUp"/>
             </StackPanel>
 
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,30,0,0">
+                <Button Style="{StaticResource MaterialDesignFlatLightButton}"
+                        Width="100"
+                        ToolTip="Cancelar"
+                        Content="Cancelar"
+                        Margin="0,0,20,0"
+                        x:Name="btnCancelar"
+                        Foreground="Black"
+                        Background="Silver"
+                        Click="btnCancelar_Click"/>
+
+                <Button Style="{StaticResource MaterialDesignRaisedSecondaryDarkButton}"
+                        Width="100"
+                        ToolTip="Guardar cambios"
+                        Content="Guardar"
+                        x:Name="btnGuardar"
+                        Click="btnGuardar_Click"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

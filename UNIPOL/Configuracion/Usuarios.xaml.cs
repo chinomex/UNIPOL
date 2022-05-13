@@ -19,17 +19,16 @@ namespace UNIPOL.Configuracion
     /// </summary>
     public partial class Usuarios : Window
     {
-        LoginVM _vm = null;
         public Usuarios()
         {
             InitializeComponent();
-            _vm = new LoginVM();
-            this.DataContext = _vm;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             txtCodigo.Focus();
+            ckMedico.IsChecked = false;
+            HabilitaDatosMedico(false);
         }
 
         private void TxtCodigo_KeyUp(object sender, KeyEventArgs e)
@@ -60,8 +59,76 @@ namespace UNIPOL.Configuracion
         {
             if (e.Key == Key.Enter)
             {
-                txtCodigo.Focus();
+                if (ckMedico.IsChecked.Value)
+                {
+                    cmbTipoMedico.Focus();
+                }
+                else
+                {
+                    btnGuardar.Focus();
+                }
             }
+        }
+
+        private void cmbTipoMedico_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtUniversidad.Focus();
+            }
+        }
+
+        private void txtUniversidad_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtCedula.Focus();
+            }
+        }
+
+        private void txtCedula_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtSSA.Focus();
+            }
+        }
+
+        private void txtSSA_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnGuardar.Focus();
+            }
+        }
+
+
+
+
+
+
+
+        private void HabilitaDatosMedico(bool valor)
+        {
+            cmbTipoMedico.IsEnabled = valor;
+            txtUniversidad.IsEnabled = valor;
+            txtCedula.IsEnabled = valor;
+            txtSSA.IsEnabled = valor;
+        }
+
+        private void ckMedico_Checked(object sender, RoutedEventArgs e)
+        {
+            HabilitaDatosMedico(ckMedico.IsChecked.Value);
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Guardar");
         }
     }
 }
