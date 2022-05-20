@@ -56,5 +56,12 @@ namespace UNIPOL
             altaPaciente.Owner = this;
             altaPaciente.ShowDialog();
         }
+
+        private void mnMedicoConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            Medicos.ConsultasMedicas consultasMedicas = new Medicos.ConsultasMedicas();
+            consultasMedicas.Owner = this;
+            consultasMedicas.ShowDialog();
+        }
     }
 }
