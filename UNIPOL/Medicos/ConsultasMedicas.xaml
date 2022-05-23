@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:UNIPOL.Medicos"
         mc:Ignorable="d"
         Title="ConsultasMedicas" 
-        Height="450" 
+        Height="530" 
         Width="700"
         
         WindowStartupLocation="CenterScreen"
@@ -89,20 +89,58 @@
             </StackPanel>
 
             <DataGrid ItemsSource="{Binding lstArticulos, UpdateSourceTrigger=PropertyChanged}"
-                      Height="200"
+                      Height="230"
                       Margin="0,10,0,0"
-                      Name="dg"
+                      Name="dg"              
                       AutoGenerateColumns="False"
                       CanUserResizeColumns="False"
                       CanUserReorderColumns="False"
                       CanUserResizeRows="False"
                       CanUserAddRows="False"
                       CanUserDeleteRows="False"
-                      CanUserSortColumns="False">
+                      CanUserSortColumns="False" 
+                      >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Codigo"  Binding="{Binding CodArticulo}"/>
+                    <DataGridTextColumn Binding="{Binding CodArticulo}"
+                                        Header="Codigo">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Descripcion}"
+                                        Header="Descripcion">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Cantidad}"
+                                        Header="Cantidad">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Observacion}"
+                                        Header="Observacion"
+                                        Width="210">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Eliminar"
+                                        Width="100">
+                    </DataGridTextColumn>                    
                 </DataGrid.Columns>
             </DataGrid>
+
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,20,0,0">
+                <Button Style="{StaticResource MaterialDesignFlatLightButton}"
+                        Width="100"
+                        ToolTip="Cancelar"
+                        Content="Cancelar"
+                        Margin="0,0,20,0"
+                        x:Name="btnCancelar"
+                        Foreground="Black"
+                        Background="Silver"
+                        Click="btnCancelar_Click"/>
+
+                <Button Style="{StaticResource MaterialDesignRaisedSecondaryDarkButton}"
+                        Width="100"
+                        ToolTip="Guardar cambios"
+                        Content="Guardar"
+                        x:Name="btnGuardar"
+                        Click="btnGuardar_Click"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

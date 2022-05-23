@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using UNIPOL.EN;
+
 
 namespace UNIPOL.Medicos
 {
@@ -22,18 +22,13 @@ namespace UNIPOL.Medicos
     public partial class ConsultasMedicas : Window
     {
         //List<ArticulosReceta> lstArticulos = null;
-        public ObservableCollection<ArticulosReceta> lstArticulos { get; set; }
+
+        ConsultasMedicasVM _vm = null;
         public ConsultasMedicas()
         {
-            lstArticulos = new ObservableCollection<ArticulosReceta>();
-            ArticulosReceta a = new ArticulosReceta();
-            a.CodArticulo = 10;
-            a.Descripcion = "Descripcion de articulo";
-            a.Cantidad = 1;
-            a.Observacion = "Despues de los alimentos";
-            lstArticulos.Add(a);
-
+            _vm = new ConsultasMedicasVM();
             InitializeComponent();
+            this.DataContext = _vm;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -46,6 +41,16 @@ namespace UNIPOL.Medicos
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Guardar");
         }
     }
 }

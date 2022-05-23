@@ -1,15 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1831
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNIPOL", "UNIPOL\UNIPOL.csproj", "{20A9C9B5-F245-42FF-8468-91AEAEF273EE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNIPOL.EN", "..\UNIPOL.EN\UNIPOL.EN.csproj", "{6223820D-E656-41E5-9093-C8A65EB31FBC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{26A1EA75-BAA2-4CE2-9B58-0974CB937927} = {26A1EA75-BAA2-4CE2-9B58-0974CB937927}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNIPOL.BO", "UNIPOL.BO\UNIPOL.BO.csproj", "{CF87FBAA-6B67-4A9C-8A31-C7589BB3FFBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNIPOL.DA", "UNIPOL.DA\UNIPOL.DA.csproj", "{706F9BBB-1AD7-49C6-AD6E-A467C77A65BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNIPOL.EN", "UNIPOL.EN\UNIPOL.EN.csproj", "{26A1EA75-BAA2-4CE2-9B58-0974CB937927}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +24,6 @@ Global
 		{20A9C9B5-F245-42FF-8468-91AEAEF273EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20A9C9B5-F245-42FF-8468-91AEAEF273EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20A9C9B5-F245-42FF-8468-91AEAEF273EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6223820D-E656-41E5-9093-C8A65EB31FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6223820D-E656-41E5-9093-C8A65EB31FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6223820D-E656-41E5-9093-C8A65EB31FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6223820D-E656-41E5-9093-C8A65EB31FBC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CF87FBAA-6B67-4A9C-8A31-C7589BB3FFBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF87FBAA-6B67-4A9C-8A31-C7589BB3FFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF87FBAA-6B67-4A9C-8A31-C7589BB3FFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +32,10 @@ Global
 		{706F9BBB-1AD7-49C6-AD6E-A467C77A65BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{706F9BBB-1AD7-49C6-AD6E-A467C77A65BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{706F9BBB-1AD7-49C6-AD6E-A467C77A65BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26A1EA75-BAA2-4CE2-9B58-0974CB937927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26A1EA75-BAA2-4CE2-9B58-0974CB937927}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26A1EA75-BAA2-4CE2-9B58-0974CB937927}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26A1EA75-BAA2-4CE2-9B58-0974CB937927}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
