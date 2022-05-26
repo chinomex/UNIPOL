@@ -1,0 +1,70 @@
+﻿<Window x:Class="UNIPOL.General.Buscador"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:UNIPOL.General"
+        mc:Ignorable="d"
+        Title="Buscador" 
+        Height="350" 
+        Width="600"
+        
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize"        
+        Loaded="Window_Loaded"
+        >
+    <Grid>
+        <StackPanel Orientation="Vertical"
+                    Margin="20,10,20,5">
+
+            <StackPanel Orientation="Horizontal">
+                <TextBox materialDesign:HintAssist.Hint="{Binding TipoBusqueda, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         VerticalAlignment="Center"
+                         x:Name="txtBuscador"
+                         Padding="0,5,0,5"
+                         Margin="0,8,0,0"
+                         Width="485"
+                         FontSize="16"/>
+                <Button Content="{materialDesign:PackIcon AccountSearch}"
+                        ToolTip="Buscar"
+                        VerticalAlignment="Bottom"
+                        FontSize="34"
+                        Foreground="#fff"
+                        Margin="10,0,0,0"
+                        x:Name="btnBuscar"
+                        />
+            </StackPanel>
+
+
+            <DataGrid ItemsSource="{Binding lstArticulos, UpdateSourceTrigger=PropertyChanged}"
+                      Height="230"
+                      Margin="0,10,0,0"
+                      Name="dg"              
+                      AutoGenerateColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserReorderColumns="False"
+                      CanUserResizeRows="False"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserSortColumns="False" 
+                      >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding CodArticulo}"
+                                        Header="Codigo"
+                                        IsReadOnly="True">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Descripcion}"
+                                        Header="Descripcion"
+                                        IsReadOnly="True">
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            
+            
+        </StackPanel>        
+    </Grid>
+</Window>

@@ -27,6 +27,7 @@
                          Margin="0,8,0,0"
                          Width="585"
                          FontSize="16"
+                         Text="{Binding pacienteNombre, UpdateSourceTrigger=PropertyChanged}"
                          IsEnabled="False"/>
                 <Button Content="{materialDesign:PackIcon AccountSearch}"
                         ToolTip="Buscar"
@@ -34,7 +35,8 @@
                         FontSize="34"
                         Foreground="#fff"
                         Margin="10,0,0,0"
-                        x:Name="btnBuscarPaciente"/>
+                        x:Name="btnBuscarPaciente"
+                        Click="btnBuscarPaciente_Click"/>
 
             </StackPanel>
 
@@ -47,6 +49,7 @@
                          Margin="0,8,0,0"
                          Width="585"
                          FontSize="16"
+                         Text="{Binding medicamentoDescripcion, UpdateSourceTrigger=PropertyChanged}"
                          IsEnabled="False"/>
                 <Button Content="{materialDesign:PackIcon Magnify}"
                         ToolTip="Buscar"
@@ -54,7 +57,8 @@
                         FontSize="34"
                         Foreground="#fff"
                         Margin="10,0,0,0"
-                        x:Name="btnBuscarMedicamento"/>
+                        x:Name="btnBuscarMedicamento"
+                        Click="btnBuscarMedicamento_Click"/>
 
             </StackPanel>
             <StackPanel Orientation="Horizontal"
@@ -64,6 +68,7 @@
                          VerticalAlignment="Center" 
                          HorizontalAlignment="Left"
                          x:Name="txtCantidad"
+                         Text="{Binding medicamentoCantidad, UpdateSourceTrigger=PropertyChanged}"
                          Width="150"
                          Padding="0,5,0,5"
                          FontSize="16"/>
@@ -73,6 +78,7 @@
                          VerticalAlignment="Center" 
                          HorizontalAlignment="Left"
                          x:Name="txtObservaciones"
+                         Text="{Binding medicamentoObservacion, UpdateSourceTrigger=PropertyChanged}"
                          Width="370"
                          Padding="0,5,0,5"
                          Margin="20,0,0,0"
@@ -91,7 +97,7 @@
             <DataGrid ItemsSource="{Binding lstArticulos, UpdateSourceTrigger=PropertyChanged}"
                       Height="230"
                       Margin="0,10,0,0"
-                      Name="dg"              
+                      x:Name="dgMedicamentos"              
                       AutoGenerateColumns="False"
                       CanUserResizeColumns="False"
                       CanUserReorderColumns="False"
@@ -99,20 +105,25 @@
                       CanUserAddRows="False"
                       CanUserDeleteRows="False"
                       CanUserSortColumns="False" 
+                      MouseDoubleClick="dgMedicamentos_MouseDoubleClick"
                       >
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding CodArticulo}"
-                                        Header="Codigo">
+                                        Header="Codigo"
+                                        IsReadOnly="True">
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Descripcion}"
-                                        Header="Descripcion">
+                                        Header="Descripcion"
+                                        IsReadOnly="True">
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Cantidad}"
-                                        Header="Cantidad">
+                                        Header="Cantidad"
+                                        IsReadOnly="True">
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Observacion}"
                                         Header="Observacion"
-                                        Width="210">
+                                        Width="210"
+                                        IsReadOnly="True">
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Eliminar"
                                         Width="100">

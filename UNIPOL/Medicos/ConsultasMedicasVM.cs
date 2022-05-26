@@ -13,44 +13,33 @@ namespace UNIPOL.Medicos
         public event PropertyChangedEventHandler PropertyChanged;
 
         public List<ArticulosReceta> lstArticulos { get; set; }
+        public int pacienteCodigo { get; set; }
+        public string pacienteNombre { get; set; }
+        public int medicamentoCodigo { get; set; }
+        public string medicamentoDescripcion { get; set; }
+        public int medicamentoCantidad { get; set; }
+        public string medicamentoObservacion { get; set; }
 
         public ConsultasMedicasVM()
         {
-            lstArticulos = new List<ArticulosReceta>();
-            ArticulosReceta a = new ArticulosReceta();
-            a.CodArticulo = 10;
-            a.Descripcion = "Descripcion de articulo";
-            a.Cantidad = 1;
-            a.Observacion = "Despues de los alimentos";
-            lstArticulos.Add(a);
+            this.lstArticulos = new List<ArticulosReceta>();
+            this.pacienteCodigo = 1;
+            this.pacienteNombre = "Paciente de prueba";
+            this.medicamentoCodigo = 10;
+            this.medicamentoDescripcion = "Medicamento de prueba";
+            this.medicamentoCantidad = 1;
+            this.medicamentoObservacion = "";
+        }
 
-            a = new ArticulosReceta();
-            a.CodArticulo = 20;
-            a.Descripcion = "Descripcion de articulo";
-            a.Cantidad = 1;
-            a.Observacion = "Despues de los alimentos";
-            lstArticulos.Add(a);
-
-            a = new ArticulosReceta();
-            a.CodArticulo = 30;
-            a.Descripcion = "Descripcion de articulo";
-            a.Cantidad = 1;
-            a.Observacion = "Despues de los alimentos";
-            lstArticulos.Add(a);
-
-            a = new ArticulosReceta();
-            a.CodArticulo = 40;
-            a.Descripcion = "Descripcion de articulo";
-            a.Cantidad = 1;
-            a.Observacion = "Despues de los alimentos";
-            lstArticulos.Add(a);
-
-            a = new ArticulosReceta();
-            a.CodArticulo = 50;
-            a.Descripcion = "Descripcion de articulo";
-            a.Cantidad = 1;
-            a.Observacion = "Despues de los alimentos";
-            lstArticulos.Add(a);
+        public void AgregarMedicamento()
+        {
+            var a = new ArticulosReceta();
+            a.CodArticulo = this.medicamentoCodigo;
+            a.Cantidad = this.medicamentoCantidad;
+            a.Descripcion = this.medicamentoDescripcion;
+            a.Observacion = this.medicamentoObservacion;
+            this.lstArticulos.Add(a);
+            
         }
     }
 }

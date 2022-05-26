@@ -61,6 +61,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="General\Buscador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Inventarios\Existencias.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,6 +88,10 @@
     <Compile Include="Configuracion\Usuarios.xaml.cs">
       <DependentUpon>Usuarios.xaml</DependentUpon>
     </Compile>
+    <Compile Include="General\Buscador.xaml.cs">
+      <DependentUpon>Buscador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="General\BuscadorVM.cs" />
     <Compile Include="Inventarios\Existencias.xaml.cs">
       <DependentUpon>Existencias.xaml</DependentUpon>
     </Compile>
