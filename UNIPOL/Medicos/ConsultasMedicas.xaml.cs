@@ -26,16 +26,16 @@ namespace UNIPOL.Medicos
         ConsultasMedicasVM _vm = null;
         public ConsultasMedicas()
         {
+
             _vm = new ConsultasMedicasVM();
-            InitializeComponent();
             this.DataContext = _vm;
+            InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-
-            
+           
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
@@ -65,12 +65,6 @@ namespace UNIPOL.Medicos
             Buscador buscador = new Buscador(2);
             buscador.Owner = this;
             buscador.ShowDialog();
-        }
-
-        private void dgMedicamentos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-            MessageBox.Show("Articulo seleccionado");
         }
     }
 }
