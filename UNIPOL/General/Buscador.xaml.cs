@@ -23,8 +23,8 @@ namespace UNIPOL.General
         public Buscador(int tipoBusqueda)
         {
             _vm = new BuscadorVM(tipoBusqueda);
-            InitializeComponent();
             this.DataContext = _vm;
+            InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

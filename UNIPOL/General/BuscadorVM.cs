@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UNIPOL.EN;
 
 namespace UNIPOL.General
 {
@@ -11,7 +13,9 @@ namespace UNIPOL.General
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public ObservableCollection<DatoBusqueda> DatosBusqueda { get; set; }
         public string TipoBusqueda { get; set; }
+
         public BuscadorVM(int tipoBusqueda)
         {
             switch(tipoBusqueda)
