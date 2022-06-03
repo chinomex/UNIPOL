@@ -27,6 +27,7 @@
                      Width="150"
                      Padding="0,5,0,5"
                      KeyUp="TxtCodigo_KeyUp"
+                     MaxLength="25"
                      FontSize="16"/>
 
 
@@ -40,6 +41,7 @@
                      Padding="0,5,0,5"
                      Margin="0,5,0,0"
                      FontSize="16"
+                     MaxLength="500"
                      KeyUp="TxtNombre_KeyUp"/>
 
             <StackPanel Orientation="Horizontal"
@@ -51,6 +53,7 @@
                              Padding="0,5,0,5"
                              FontSize="16"
                              Width="175"
+                             MaxLength="100"
                              KeyUp="TxtPass_KeyUp"/>
 
                 <PasswordBox x:Name="txtPassConfirmacion"
@@ -61,6 +64,7 @@
                              FontSize="16"
                              Margin="50,0,0,0"
                              Width="175"
+                             MaxLength="100"
                              KeyUp="TxtPassConfirmacion_KeyUp"/>
             </StackPanel>
 
@@ -99,6 +103,7 @@
                      Padding="0,5,0,5"
                      Margin="0,5,0,0"
                      FontSize="16"
+                     MaxLength="500"
                      KeyUp="txtUniversidad_KeyUp"
                      />
 
@@ -113,6 +118,7 @@
                          Padding="0,5,0,5"
                          Margin="0,5,0,0"
                          FontSize="16"
+                         MaxLength="50"
                          KeyUp="txtCedula_KeyUp"/>
 
                 <TextBox materialDesign:HintAssist.Hint="Registro S.S.A."
@@ -124,6 +130,7 @@
                          Padding="0,5,0,5"
                          Margin="50,5,0,0"
                          FontSize="16"
+                         MaxLength="50"
                          KeyUp="txtSSA_KeyUp"/>
             </StackPanel>
 
