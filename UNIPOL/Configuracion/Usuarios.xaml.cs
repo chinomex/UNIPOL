@@ -26,18 +26,12 @@ namespace UNIPOL.Configuracion
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            txtCodigo.Focus();
+            txtUsuario.Focus();
             ckMedico.IsChecked = false;
             HabilitaDatosMedico(false);
         }
 
-        private void TxtCodigo_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                txtNombre.Focus();
-            }
-        }
+
 
         private void TxtNombre_KeyUp(object sender, KeyEventArgs e)
         {
@@ -129,6 +123,14 @@ namespace UNIPOL.Configuracion
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Guardar");
+        }
+
+        private void txtUsuario_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtNombre.Focus();
+            }
         }
     }
 }
