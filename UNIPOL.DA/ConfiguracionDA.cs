@@ -32,11 +32,11 @@ namespace UNIPOL.DA
             try
             {
                 var parametros = new ConexionParameters();
-                parametros.Add("@pBuscar", ConexionDbType.Int, idUsuario);
-                parametros.Add("@pBusquedaGenerico", ConexionDbType.VarChar, contra);
+                parametros.Add("@pIdUsuario", ConexionDbType.Int, idUsuario);
+                parametros.Add("@pContra", ConexionDbType.VarChar, contra);
                 parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
                 parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
-                resultado = _conexion.ExecuteWithResults<DatosUsuario>("", parametros);
+                resultado = _conexion.ExecuteWithResults<DatosUsuario>("sp_ValidaUsario", parametros);
 
             }
             catch (Exception ex)

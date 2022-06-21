@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WarmPack.Classes;
+using UNIPOL.BO;
+
 
 namespace UNIPOL.Configuracion
 {
@@ -31,6 +34,13 @@ namespace UNIPOL.Configuracion
             HabilitaDatosMedico(false);
         }
 
+        private void txtUsuario_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {                
+                txtNombre.Focus();
+            }
+        }
 
 
         private void TxtNombre_KeyUp(object sender, KeyEventArgs e)
@@ -125,12 +135,6 @@ namespace UNIPOL.Configuracion
             MessageBox.Show("Guardar");
         }
 
-        private void txtUsuario_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                txtNombre.Focus();
-            }
-        }
+
     }
 }

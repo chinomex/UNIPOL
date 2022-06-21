@@ -39,6 +39,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WarmPack.Core">
+      <HintPath>..\UNIPOL\dlls\WarmPack.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfiguracionBO.cs" />
@@ -51,6 +54,10 @@
     <ProjectReference Include="..\UNIPOL.DA\UNIPOL.DA.csproj">
       <Project>{706f9bbb-1ad7-49c6-ad6e-a467c77a65bc}</Project>
       <Name>UNIPOL.DA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UNIPOL.EN\UNIPOL.EN.csproj">
+      <Project>{26a1ea75-baa2-4ce2-9b58-0974cb937927}</Project>
+      <Name>UNIPOL.EN</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WarmPack.Classes;
+using UNIPOL.BO;
+using UNIPOL.EN.Configuracion;
 
 namespace UNIPOL
 {
@@ -19,18 +22,15 @@ namespace UNIPOL
     /// </summary>
     public partial class Login : Window
     {
+        ConfiguracionBO _bo = null;
+
         public bool usuarioValido { get; set; }
 
         public Login()
         {
+            _bo = new ConfiguracionBO();
             InitializeComponent();
             usuarioValido = false;
-        }
-
-        private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
-        {
-            this.usuarioValido = true;
-            this.Close();
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -45,12 +45,54 @@ namespace UNIPOL
 
         private void txtUsuario_KeyUp(object sender, KeyEventArgs e)
         {
-            txtPass.Focus();
+            if (e.Key == Key.Enter)
+            {
+                txtPass.Focus();
+            }
         }
 
         private void txtPass_KeyUp(object sender, KeyEventArgs e)
         {
-            btnIniciarSesion.Focus();
+            if (e.Key == Key.Enter)
+            {
+                btnIniciarSesion.Focus();
+            }
+        }
+
+        private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtUsuario.Text))
+            {
+                MessageBox.Show("Proporcione un usuario", "UNIPOL", MessageBoxButton.OK,MessageBoxImage.Information);
+                txtUsuario.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtPass.Password.ToString()))
+            {
+                MessageBox.Show("Proporcione una Contraseña", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                txtPass.Focus();
+                return;
+            }
+
+            var r = _bo.ValidaUsuaario(Convert.ToInt32(txtUsuario.Text), txtPass.Password.ToString());
+
+            if (r.Value)
+            {
+                if (r.Data.Count > 0)
+                {
+                    this.usuarioValido = true;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Credenciales incorrectas", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show(r.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }
