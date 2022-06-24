@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WarmPack.Classes;
 using UNIPOL.BO;
-using UNIPOL.EN.Configuracion;
+using UNIPOL.EN.Catalogos;
 
 namespace UNIPOL
 {
@@ -22,13 +22,13 @@ namespace UNIPOL
     /// </summary>
     public partial class Login : Window
     {
-        ConfiguracionBO _bo = null;
+        CatalogosBO _bo = null;
 
         public bool usuarioValido { get; set; }
 
         public Login()
         {
-            _bo = new ConfiguracionBO();
+            _bo = new CatalogosBO();
             InitializeComponent();
             usuarioValido = false;
         }
@@ -75,7 +75,7 @@ namespace UNIPOL
                 return;
             }
 
-            var r = _bo.ValidaUsuaario(Convert.ToInt32(txtUsuario.Text), txtPass.Password.ToString());
+            var r = _bo.ValidaUsuario(Convert.ToInt32(txtUsuario.Text), txtPass.Password.ToString());
 
             if (r.Value)
             {

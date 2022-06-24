@@ -90,15 +90,6 @@
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Margin="0,30,0,0">
-                <Button Style="{StaticResource MaterialDesignFlatLightButton}"
-                        Width="100"
-                        ToolTip="Cancelar"
-                        Content="Cancelar"
-                        Margin="0,0,20,0"
-                        x:Name="btnCancelar"
-                        Foreground="Black"
-                        Background="Silver"
-                        Click="btnCancelar_Click"/>
 
                 <Button Style="{StaticResource MaterialDesignRaisedSecondaryDarkButton}"
                         Width="100"
@@ -106,6 +97,16 @@
                         Content="Guardar"
                         x:Name="btnGuardar"
                         Click="btnGuardar_Click"/>
+                
+                <Button Style="{StaticResource MaterialDesignFlatLightButton}"
+                        Width="100"
+                        ToolTip="Cancelar"
+                        Content="Cancelar"
+                        Margin="20,0,0,0"
+                        x:Name="btnCancelar"
+                        Foreground="Black"
+                        Background="Silver"
+                        Click="btnCancelar_Click"/>
             </StackPanel>
         </StackPanel>        
     </Grid>

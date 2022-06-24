@@ -1,24 +1,25 @@
-﻿<Window x:Class="UNIPOL.Inventarios.Existencias"
+﻿<Window x:Class="UNIPOL.Catalogos.Articulos"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:UNIPOL.Inventarios"
+        xmlns:local="clr-namespace:UNIPOL.Catalogos"
         mc:Ignorable="d"
-        Title="Existencias" 
-        Height="300" 
-        Width="500"
+        Title="Articulos" 
+        Height="230" 
+        Width="600"
         
         WindowStartupLocation="CenterScreen"
         WindowState="Normal"
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
+        
         Loaded="Window_Loaded">
     <Grid>
         <StackPanel Orientation="Vertical"
                     Margin="20,10,20,5">
-
+            
             <TextBox materialDesign:HintAssist.Hint="Codigo"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      VerticalAlignment="Center" 
@@ -27,7 +28,7 @@
                      Width="150"
                      Padding="0,5,0,5"
                      FontSize="16"
-                     KeyUp="txtCodigo_KeyUp"/>
+                     MaxLength="25"/>
 
             <TextBox materialDesign:HintAssist.Hint="Descripcion"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -35,32 +36,11 @@
                      x:Name="txtDescripcion"
                      Padding="0,5,0,5"
                      Margin="0,5,0,0"
-                     IsEnabled="False"
+                     MaxLength="500"
                      FontSize="16"/>
 
-            <StackPanel Orientation="Horizontal">
-                
-                <DatePicker Width="150" 
-                            FontSize="16"
-                            Margin="0,10,0,0"
-                            x:Name="dpCaducidad"
-                            materialDesign:HintAssist.Hint="Caducidad"
-                            materialDesign:TextFieldAssist.HasClearButton="True"
-                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
-                            HorizontalAlignment="Left"
-                            KeyUp="dpCaducidad_KeyUp"/>
-
-                <TextBox materialDesign:HintAssist.Hint="Existencia"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         VerticalAlignment="Center" 
-                         x:Name="txtExistencia"
-                         Width="150"
-                         Padding="0,5,0,5"
-                         Margin="50,9,0,0"
-                         FontSize="16"
-                         KeyUp="txtExistencia_KeyUp"/>
-            </StackPanel>
-
+            
+            
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Margin="0,40,0,0">
@@ -69,9 +49,9 @@
                         Width="100"
                         ToolTip="Guardar cambios"
                         Content="Guardar"
-                        x:Name="btnGuardar"
-                        Click="btnGuardar_Click"/>
-                
+                        x:Name="btnGuardar"/>
+
+
                 <Button Style="{StaticResource MaterialDesignFlatLightButton}"
                         Width="100"
                         ToolTip="Cancelar"
@@ -79,11 +59,10 @@
                         Margin="20,0,0,0"
                         x:Name="btnCancelar"
                         Foreground="Black"
-                        Background="Silver"
-                        Click="btnCancelar_Click"
-                        />
+                        Background="Silver"/>
             </StackPanel>
 
         </StackPanel>        
+        
     </Grid>
 </Window>

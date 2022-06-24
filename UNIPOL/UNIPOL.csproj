@@ -61,7 +61,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Configuracion\Usuarios.xaml">
+    <Page Include="Catalogos\Articulos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Catalogos\Usuarios.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -89,7 +93,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Configuracion\Usuarios.xaml.cs">
+    <Compile Include="Catalogos\Articulos.xaml.cs">
+      <DependentUpon>Articulos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Usuarios.xaml.cs">
       <DependentUpon>Usuarios.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\Buscador.xaml.cs">

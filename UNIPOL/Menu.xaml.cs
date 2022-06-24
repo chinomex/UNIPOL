@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UNIPOL.Catalogos;
+using UNIPOL.Inventarios;
+using UNIPOL.Medicos;
 
 namespace UNIPOL
 {
@@ -36,32 +39,34 @@ namespace UNIPOL
             }
         }
 
-        private void MnConfigUsuarios_Click(object sender, RoutedEventArgs e)
+        private void mnCatalogoUsuarios_Click(object sender, RoutedEventArgs e)
         {
-            Configuracion.Usuarios usuarios = new Configuracion.Usuarios();
+            Usuarios usuarios = new Usuarios();
             usuarios.Owner = this;
             usuarios.ShowDialog();
         }
 
         private void mnInvExistencias_Click(object sender, RoutedEventArgs e)
         {
-            Inventarios.Existencias existencias = new Inventarios.Existencias();
+            Existencias existencias = new Existencias();
             existencias.Owner = this;
             existencias.ShowDialog();
         }
 
         private void mnMedicoAltaPaciente_Click(object sender, RoutedEventArgs e)
         {
-            Medicos.AltaPaciente altaPaciente = new Medicos.AltaPaciente();
+            AltaPaciente altaPaciente = new AltaPaciente();
             altaPaciente.Owner = this;
             altaPaciente.ShowDialog();
         }
 
         private void mnMedicoConsultar_Click(object sender, RoutedEventArgs e)
         {
-            Medicos.ConsultasMedicas consultasMedicas = new Medicos.ConsultasMedicas();
+            ConsultasMedicas consultasMedicas = new ConsultasMedicas();
             consultasMedicas.Owner = this;
             consultasMedicas.ShowDialog();
         }
+
+
     }
 }

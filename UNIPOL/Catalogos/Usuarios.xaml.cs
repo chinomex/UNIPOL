@@ -15,15 +15,18 @@ using WarmPack.Classes;
 using UNIPOL.BO;
 
 
-namespace UNIPOL.Configuracion
+namespace UNIPOL.Catalogos
 {
     /// <summary>
     /// Lógica de interacción para Usuarios.xaml
     /// </summary>
     public partial class Usuarios : Window
     {
+        CatalogosBO _bo = null;
+
         public Usuarios()
         {
+            _bo = new CatalogosBO();
             InitializeComponent();
         }
 
@@ -132,9 +135,25 @@ namespace UNIPOL.Configuracion
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Guardar");
+            if (ValidaGuardar())
+            {
+                var r = _bo.GuardarUsuario(Convert.ToInt32(txtUsuario.Text), txtNombre.Text, txtPass.Password.ToString(), Convert.ToBoolean(ckMedico.IsChecked), cmbTipoMedico.SelectedIndex, txtUniversidad.Text, txtCedula.Text, txtSSA.Text);
+                if (r.Value)
+                {
+                    MessageBox.Show("Usuario guardado correctamente", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show(r.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }    
+            }
         }
 
+
+        private bool ValidaGuardar()
+        {
+            return false;
+        }
 
     }
 }

@@ -44,7 +44,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfiguracionBO.cs" />
+    <Compile Include="CatalogosBO.cs" />
     <Compile Include="InventariosBO.cs" />
     <Compile Include="MedicosBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
