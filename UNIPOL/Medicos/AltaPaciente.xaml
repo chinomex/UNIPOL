@@ -38,6 +38,7 @@
                      Padding="0,5,0,5"
                      Margin="0,8,0,0"
                      FontSize="16"
+                     MaxLength="500"
                      KeyUp="txtNombre_KeyUp"/>
 
 
@@ -48,6 +49,7 @@
                      Padding="0,5,0,5"
                      Margin="0,8,0,0"
                      FontSize="16"
+                     MaxLength="1000"
                      KeyUp="txtDomicilio_KeyUp"/>
 
             <StackPanel Orientation="Horizontal"
@@ -84,6 +86,7 @@
                      Padding="0,5,0,5"
                      Margin="0,8,0,0"
                      FontSize="16"
+                     MaxLength="250"
                      KeyUp="txtCorreo_KeyUp"/>
 
 
