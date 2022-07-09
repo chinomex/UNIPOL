@@ -43,10 +43,25 @@ namespace UNIPOL
             txtUsuario.Focus();
         }
 
+        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
         private void txtUsuario_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
+                if (!string.IsNullOrEmpty(txtUsuario.Text))
+                {
+                    var usuario = _bo.ConsultaUsuario(Convert.ToInt32(txtUsuario.Text));
+                    if (usuario.Data.Count > 0)
+                    {
+                        txtNombreUsuario.Text = usuario.Data[0].Nombre;
+                    }
+                }
                 txtPass.Focus();
             }
         }
@@ -94,5 +109,7 @@ namespace UNIPOL
                 MessageBox.Show(r.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+
     }
 }

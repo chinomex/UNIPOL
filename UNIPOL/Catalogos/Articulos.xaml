@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:UNIPOL.Catalogos"
         mc:Ignorable="d"
         Title="Articulos" 
-        Height="230" 
+        Height="280" 
         Width="600"
         
         WindowStartupLocation="CenterScreen"
@@ -28,7 +28,9 @@
                      Width="150"
                      Padding="0,5,0,5"
                      FontSize="16"
-                     MaxLength="25"/>
+                     MaxLength="25"
+                     PreviewKeyDown="txtCodigo_PreviewKeyDown"
+                     KeyUp="txtCodigo_KeyUp"/>
 
             <TextBox materialDesign:HintAssist.Hint="Descripcion"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -39,6 +41,16 @@
                      MaxLength="500"
                      FontSize="16"/>
 
+            <TextBox materialDesign:HintAssist.Hint="Precio"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Center" 
+                     HorizontalAlignment="Left"
+                     x:Name="txtPrecio"
+                     Width="150"
+                     Padding="0,5,0,5"
+                     FontSize="16"
+                     PreviewKeyDown="txtPrecio_PreviewKeyDown"
+                     MaxLength="25"/>            
             
             
             <StackPanel Orientation="Horizontal"

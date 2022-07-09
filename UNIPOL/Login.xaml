@@ -43,8 +43,13 @@
                      VerticalAlignment="Center" 
                      Padding="0,5,0,5"
                      FontSize="18"
+                     KeyDown="txtUsuario_KeyDown"
                      x:Name="txtUsuario"
                      KeyUp="txtUsuario_KeyUp"/>
+            <TextBlock HorizontalAlignment="Center" 
+                       x:Name="txtNombreUsuario"
+                       Foreground="#889DCA"
+                       Padding="3"></TextBlock>
         </StackPanel>
 
 

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticulosReceta.cs" />
+    <Compile Include="Catalogos\DatosArticulo.cs" />
     <Compile Include="Catalogos\DatosUsuario.cs" />
     <Compile Include="DatoBusqueda.cs" />
     <Compile Include="Globales.cs" />
