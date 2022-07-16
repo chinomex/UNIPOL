@@ -20,6 +20,7 @@
                 <Menu VerticalAlignment="Center">
                     <MenuItem Name="mnConfig" Header="Catalogos">
                         <MenuItem Name="mnCatalogoUsuarios" Header="Usuarios" Click="mnCatalogoUsuarios_Click"></MenuItem>
+                        <MenuItem Name="mnCatalogoArticulos" Header="Articulos" Click="mnCatalogoArticulos_Click"></MenuItem>
                     </MenuItem>                    
                     <MenuItem Name="mnInventario" Header="Inventario">
                         <MenuItem Name="mnInvExistencias" Header="Existencias" Click="mnInvExistencias_Click"></MenuItem>
@@ -29,7 +30,7 @@
                         <MenuItem Name="mnMedicoConsultar" Header="Consulta Medica" Click="mnMedicoConsultar_Click"></MenuItem>
                     </MenuItem>
                     <MenuItem Name="mnReportes" Header="Reportes">
-                        <MenuItem Name="mnRepExistencias" Header="Existencias"></MenuItem>
+                        <MenuItem Name="mnRepExistencias" Header="Existencias" Click="mnRepExistencias_Click"></MenuItem>
                     </MenuItem>
                 </Menu>
             </materialDesign:Card>

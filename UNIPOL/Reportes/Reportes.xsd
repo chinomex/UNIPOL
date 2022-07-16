@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Reportes"
+    targetNamespace="http://tempuri.org/Reportes.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/Reportes.xsd"
+    xmlns:mstns="http://tempuri.org/Reportes.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+
+  <xs:element name="rptExistencias">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="CodArticulo" type="xs:integer"/>
+        <xs:element name="Descripcion" type="xs:string"/>
+        <xs:element name="Caducidad" type="xs:date"/>
+        <xs:element name="PrecioProducto" type="xs:decimal"/>
+        <xs:element name="Existencia" type="xs:integer"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

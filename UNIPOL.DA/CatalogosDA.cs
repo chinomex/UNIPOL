@@ -105,8 +105,8 @@ namespace UNIPOL.DA
                 var parametros = new ConexionParameters();
                 parametros.Add("@pCodArticulo", ConexionDbType.Int, codArticulo);
                 parametros.Add("@pDescripcion", ConexionDbType.VarChar, descripcion);
-                parametros.Add("@pPrecio", ConexionDbType.VarChar, precio);
-                parametros.Add("@pEstatus", ConexionDbType.Bit, estatus);
+                parametros.Add("@pPrecio", ConexionDbType.Decimal, precio);
+                parametros.Add("@pEstatus", ConexionDbType.VarChar, estatus);
                 parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
                 parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
                 resultado = _conexion.ExecuteWithResults<DatosArticulo>("sp_ArticulosGuardar", parametros);
@@ -129,7 +129,7 @@ namespace UNIPOL.DA
                 parametros.Add("@pCodArticulo", ConexionDbType.Int, codArticulo);
                 parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
                 parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
-                resultado = _conexion.ExecuteWithResults<DatosArticulo>("sp_ArticulosCont", parametros);
+                resultado = _conexion.ExecuteWithResults<DatosArticulo>("sp_ArticulosCon", parametros);
 
             }
             catch (Exception ex)

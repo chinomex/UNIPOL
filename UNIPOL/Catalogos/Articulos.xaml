@@ -30,6 +30,7 @@
                      FontSize="16"
                      MaxLength="25"
                      PreviewKeyDown="txtCodigo_PreviewKeyDown"
+                     GotFocus="txtCodigo_GotFocus"
                      KeyUp="txtCodigo_KeyUp"/>
 
             <TextBox materialDesign:HintAssist.Hint="Descripcion"
@@ -39,6 +40,7 @@
                      Padding="0,5,0,5"
                      Margin="0,5,0,0"
                      MaxLength="500"
+                     KeyUp="txtDescripcion_KeyUp"
                      FontSize="16"/>
 
             <TextBox materialDesign:HintAssist.Hint="Precio"
@@ -50,6 +52,7 @@
                      Padding="0,5,0,5"
                      FontSize="16"
                      PreviewKeyDown="txtPrecio_PreviewKeyDown"
+                     KeyUp="txtPrecio_KeyUp"
                      MaxLength="25"/>            
             
             
@@ -61,6 +64,7 @@
                         Width="100"
                         ToolTip="Guardar cambios"
                         Content="Guardar"
+                        Click="btnGuardar_Click"
                         x:Name="btnGuardar"/>
 
 
@@ -70,6 +74,7 @@
                         Content="Cancelar"
                         Margin="20,0,0,0"
                         x:Name="btnCancelar"
+                        Click="btnCancelar_Click"
                         Foreground="Black"
                         Background="Silver"/>
             </StackPanel>

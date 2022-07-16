@@ -45,7 +45,8 @@
                      FontSize="18"
                      KeyDown="txtUsuario_KeyDown"
                      x:Name="txtUsuario"
-                     KeyUp="txtUsuario_KeyUp"/>
+                     KeyUp="txtUsuario_KeyUp"
+                     LostFocus="txtUsuario_LostFocus"/>
             <TextBlock HorizontalAlignment="Center" 
                        x:Name="txtNombreUsuario"
                        Foreground="#889DCA"

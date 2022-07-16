@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using WarmPack.Classes;
 using UNIPOL.BO;
 using UNIPOL.EN.Catalogos;
+using UNIPOL.EN;
 
 namespace UNIPOL
 {
@@ -45,7 +46,7 @@ namespace UNIPOL
 
         private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter)
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter || e.Key == Key.Back)
                 e.Handled = false;
             else
                 e.Handled = true;
@@ -54,15 +55,19 @@ namespace UNIPOL
         {
             if (e.Key == Key.Enter)
             {
-                if (!string.IsNullOrEmpty(txtUsuario.Text))
-                {
-                    var usuario = _bo.ConsultaUsuario(Convert.ToInt32(txtUsuario.Text));
-                    if (usuario.Data.Count > 0)
-                    {
-                        txtNombreUsuario.Text = usuario.Data[0].Nombre;
-                    }
-                }
                 txtPass.Focus();
+            }
+        }
+
+        private void txtUsuario_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtUsuario.Text))
+            {
+                var usuario = _bo.ConsultaUsuario(Convert.ToInt32(txtUsuario.Text));
+                if (usuario.Data.Count > 0)
+                {
+                    txtNombreUsuario.Text = usuario.Data[0].Nombre;
+                }
             }
         }
 
@@ -96,6 +101,8 @@ namespace UNIPOL
             {
                 if (r.Data.Count > 0)
                 {
+                    Globales.usuarioActivo = r.Data[0];
+
                     this.usuarioValido = true;
                     this.Close();
                 }

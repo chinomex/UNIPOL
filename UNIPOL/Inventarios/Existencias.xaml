@@ -27,7 +27,11 @@
                      Width="150"
                      Padding="0,5,0,5"
                      FontSize="16"
-                     KeyUp="txtCodigo_KeyUp"/>
+                     MaxLength="25"
+                     KeyUp="txtCodigo_KeyUp"
+                     PreviewKeyDown="txtCodigo_PreviewKeyDown"
+                     GotFocus="txtCodigo_GotFocus"
+                     LostFocus="txtCodigo_LostFocus"/>
 
             <TextBox materialDesign:HintAssist.Hint="Descripcion"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -36,6 +40,7 @@
                      Padding="0,5,0,5"
                      Margin="0,5,0,0"
                      IsEnabled="False"
+                     MaxLength="500"
                      FontSize="16"/>
 
             <StackPanel Orientation="Horizontal">
@@ -45,7 +50,7 @@
                             Margin="0,10,0,0"
                             x:Name="dpCaducidad"
                             materialDesign:HintAssist.Hint="Caducidad"
-                            materialDesign:TextFieldAssist.HasClearButton="True"
+                            materialDesign:TextFieldAssist.HasClearButton="False"
                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
                             HorizontalAlignment="Left"
                             KeyUp="dpCaducidad_KeyUp"/>
@@ -58,7 +63,9 @@
                          Padding="0,5,0,5"
                          Margin="50,9,0,0"
                          FontSize="16"
-                         KeyUp="txtExistencia_KeyUp"/>
+                         MaxLength="5"
+                         KeyUp="txtExistencia_KeyUp"
+                         PreviewKeyDown="txtExistencia_PreviewKeyDown"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal"
@@ -80,8 +87,7 @@
                         x:Name="btnCancelar"
                         Foreground="Black"
                         Background="Silver"
-                        Click="btnCancelar_Click"
-                        />
+                        Click="btnCancelar_Click"/>
             </StackPanel>
 
         </StackPanel>        
