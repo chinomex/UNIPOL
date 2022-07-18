@@ -28,23 +28,20 @@ namespace UNIPOL.Medicos
         {
             txtCodigo.Focus();
         }
-
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnGuardar_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Guardar");
-        }
-
         private void txtCodigo_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
                 txtNombre.Focus();
             }
+        }
+
+        private void txtCodigo_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter || e.Key == Key.Back)
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
 
         private void txtNombre_KeyUp(object sender, KeyEventArgs e)
@@ -86,5 +83,46 @@ namespace UNIPOL.Medicos
                 btnGuardar.Focus();
             }
         }
+
+
+
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Guardar");
+        }
+
+
+        private bool ValidaGuardar()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text))
+            {
+                MessageBox.Show("Favor de escribir un nombre", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                txtNombre.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+
+
+        private void Limpiar()
+        {
+            txtCodigo.Text = "";
+            txtNombre.Text = "";
+            txtDomicilio.Text = "";
+            dpFechaNacimiento.SelectedDate = null;
+            txtTelefono.Text = "";
+            txtCorreo.Text = "";
+        }
+
+
+
     }
 }
