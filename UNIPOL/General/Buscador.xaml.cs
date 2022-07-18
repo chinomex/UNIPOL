@@ -31,5 +31,10 @@ namespace UNIPOL.General
         {
             txtBuscador.Focus();
         }
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            _vm.Buscar();
+        }
     }
 }

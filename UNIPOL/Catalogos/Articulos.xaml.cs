@@ -52,18 +52,26 @@ namespace UNIPOL.Catalogos
                 if (!string.IsNullOrEmpty(txtCodigo.Text))
                 {
                     var articulo = _bo.ConsultaArticulo(Convert.ToInt32(txtCodigo.Text));
-                    if (articulo.Data.Count > 0)
+                    if (articulo.Value)
                     {
-                        var a = articulo.Data[0];
-                        txtCodigo.Text = a.CodArticulo.ToString();
-                        txtDescripcion.Text = a.Descripcion;
-                        txtPrecio.Text = a.Precio.ToString("##,##0.00");
-                        //Estatus = a.Estatus;
+                        if (articulo.Data.Count > 0)
+                        {
+                            var a = articulo.Data[0];
+                            txtCodigo.Text = a.CodArticulo.ToString();
+                            txtDescripcion.Text = a.Descripcion;
+                            txtPrecio.Text = a.Precio.ToString("##,##0.00");
+                            //Estatus = a.Estatus;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Articulo no encontrado", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Articulo no encontrado", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(articulo.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
+
                 }
                 txtDescripcion.Focus();
             }

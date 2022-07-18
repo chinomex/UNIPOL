@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UNIPOL.BO;
+using UNIPOL.EN;
 
 namespace UNIPOL.Medicos
 {
@@ -19,8 +21,10 @@ namespace UNIPOL.Medicos
     /// </summary>
     public partial class AltaPaciente : Window
     {
+        MedicosBO _bo = null;
         public AltaPaciente()
         {
+            _bo = new MedicosBO();
             InitializeComponent();
         }
 
@@ -32,6 +36,32 @@ namespace UNIPOL.Medicos
         {
             if (e.Key == Key.Enter)
             {
+                if (!string.IsNullOrEmpty(txtCodigo.Text))
+                {
+                    var r = _bo.ConsultaPaciente(Convert.ToInt32(txtCodigo.Text));
+                    if (r.Value)
+                    {
+                        if (r.Data.Count > 0)
+                        {
+                            var d = r.Data[0];
+                            txtCodigo.Text = d.CodPaciente.ToString();
+                            txtNombre.Text = d.Nombre;
+                            txtDomicilio.Text = d.Domicilio;
+                            dpFechaNacimiento.SelectedDate = d.FechaNacimiento;
+                            txtTelefono.Text = d.Telefono;
+                            txtCorreo.Text = d.Correo;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Paciente no encontrado", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(r.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
+                }
+
                 txtNombre.Focus();
             }
         }
@@ -94,7 +124,28 @@ namespace UNIPOL.Medicos
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Guardar");
+            if (ValidaGuardar())
+            {
+                var codPaciente = 0;
+                if (!string.IsNullOrEmpty(txtCodigo.Text))
+                {
+                    codPaciente = Convert.ToInt32(txtCodigo.Text);
+                }
+
+                var r = _bo.GuardarPaciente(codPaciente, txtNombre.Text, txtDomicilio.Text, dpFechaNacimiento.SelectedDate.Value, txtTelefono.Text, txtCorreo.Text);
+                if (r.Value)
+                {
+                    if (r.Data.Count > 0)
+                    {
+                        txtCodigo.Text = r.Data[0].CodPaciente.ToString();
+                        MessageBox.Show("Paciente guardado correctamente", "UNIPOL", MessageBoxButton.OK);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(r.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+            }
         }
 
 

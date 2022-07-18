@@ -21,21 +21,23 @@
                     Margin="20,10,20,5">
 
             <StackPanel Orientation="Horizontal">
-                <TextBox materialDesign:HintAssist.Hint="{Binding TipoBusqueda, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox materialDesign:HintAssist.Hint="{Binding TituloBusqueda, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          VerticalAlignment="Center"
                          x:Name="txtBuscador"
                          Padding="0,5,0,5"
                          Margin="0,8,0,0"
                          Width="485"
+                         Text="{Binding txtBuscar, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="16"/>
-                <Button Content="{materialDesign:PackIcon AccountSearch}"
+                <Button Content="{materialDesign:PackIcon Search}"
                         ToolTip="Buscar"
                         VerticalAlignment="Bottom"
                         FontSize="34"
                         Foreground="#fff"
                         Margin="10,0,0,0"
                         x:Name="btnBuscar"
+                        Click="btnBuscar_Click"
                         />
             </StackPanel>
 

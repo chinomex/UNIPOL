@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UNIPOL.EN
 {
-    public class DatoBusqueda
+    public class DatosBusqueda
     {
         public int Codigo { get; set; }
         public string Descripcion { get; set; }

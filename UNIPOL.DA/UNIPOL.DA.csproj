@@ -47,6 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusquedaDA.cs" />
     <Compile Include="CatalogosDA.cs" />
     <Compile Include="InventariosDA.cs" />
     <Compile Include="MedicosDA.cs" />
