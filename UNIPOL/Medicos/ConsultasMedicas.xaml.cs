@@ -65,6 +65,8 @@ namespace UNIPOL.Medicos
             Buscador buscador = new Buscador(2);
             buscador.Owner = this;
             buscador.ShowDialog();
+
+            txtMedicamento.Text = buscador.itemBusqueda.Descripcion;
         }
     }
 }

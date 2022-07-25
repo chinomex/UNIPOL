@@ -35,7 +35,7 @@ namespace UNIPOL.DA
                 parametros.Add("@pTipoBusqueda", ConexionDbType.Int, tipoBusqueda);
                 parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
                 parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
-                resultado = _conexion.ExecuteWithResults<DatosBusqueda>("sp_PacientesCon", parametros);
+                resultado = _conexion.ExecuteWithResults<DatosBusqueda>("sp_BusquedaCon", parametros);
             }
             catch (Exception ex)
             {
