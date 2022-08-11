@@ -11,6 +11,14 @@ namespace UNIPOL.EN
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public ArticulosReceta()
+        {
+            CodArticulo = 0;
+            Descripcion = "";
+            Cantidad = 0;
+            Observacion = "";
+        }
+
         public int CodArticulo { get; set; }
         public string Descripcion { get; set; }
         public int Cantidad { get; set; }

@@ -70,7 +70,9 @@
                          Width="150"
                          Padding="0,5,0,5"
                          MaxLength="100"
-                         FontSize="16"/>
+                         FontSize="16"
+                         KeyUp="txtCantidad_KeyUp"
+                         PreviewKeyDown="txtCantidad_PreviewKeyDown"/>
 
                 <TextBox materialDesign:HintAssist.Hint="Observaciones"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -82,7 +84,8 @@
                          Padding="0,5,0,5"
                          Margin="20,0,0,0"
                          MaxLength="1000"
-                         FontSize="16"/>
+                         FontSize="16"
+                         KeyUp="txtObservaciones_KeyUp"/>
 
                 <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
                         Width="90"
@@ -136,12 +139,13 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Style="{StaticResource MaterialDesignPaperDarkButton}" 
-                                        Content="{materialDesign:PackIcon AccountSearch}"
+                                        Content="{materialDesign:PackIcon Delete}"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
-                                        Foreground="Blue"
+                                        Foreground="#FFD91E1E"
                                         Margin="10,0,0,0"
                                         x:Name="btnEliminaRenglon"
+                                        Click="btnEliminaRenglon_Click"
                                         />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

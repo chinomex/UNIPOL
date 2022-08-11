@@ -8,6 +8,7 @@ namespace UNIPOL.EN
 {
     public class DatosBusqueda
     {
+        public bool seleccionado { get; set; }
         public int Codigo { get; set; }
         public string Descripcion { get; set; }
     }

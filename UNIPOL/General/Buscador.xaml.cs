@@ -55,8 +55,11 @@ namespace UNIPOL.General
         private void dg_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             itemBusqueda = (sender as DataGrid).SelectedItem as DatosBusqueda;
-            this.Close();
-
+            if (itemBusqueda != null)
+            {
+                itemBusqueda.seleccionado = true;
+                this.Close();
+            }
         }
     }
 }

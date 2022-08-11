@@ -30,7 +30,8 @@
                      Padding="0,5,0,5"
                      FontSize="16"
                      KeyUp="txtCodigo_KeyUp"
-                     PreviewKeyDown="txtCodigo_PreviewKeyDown"/>
+                     PreviewKeyDown="txtCodigo_PreviewKeyDown"
+                     GotFocus="txtCodigo_GotFocus"/>
 
             <TextBox materialDesign:HintAssist.Hint="Nombre"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"

@@ -27,5 +27,9 @@ namespace UNIPOL.BO
         {
             return _da.GuardarPaciente(codPaciente, nombre, domicilio, fechaNacimiento, telefono, correo);
         }
+
+
+
+
     }
 }

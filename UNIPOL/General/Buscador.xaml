@@ -59,11 +59,13 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Codigo}"
                                         Header="Codigo"
-                                        IsReadOnly="True">
+                                        IsReadOnly="True"
+                                        Width="80">
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Descripcion}"
                                         Header="Descripcion"
-                                        IsReadOnly="True">
+                                        IsReadOnly="True"
+                                        Width="460">
                     </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>

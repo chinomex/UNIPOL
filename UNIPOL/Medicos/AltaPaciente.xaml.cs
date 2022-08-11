@@ -173,7 +173,9 @@ namespace UNIPOL.Medicos
             txtCorreo.Text = "";
         }
 
-
-
+        private void txtCodigo_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Limpiar();
+        }
     }
 }

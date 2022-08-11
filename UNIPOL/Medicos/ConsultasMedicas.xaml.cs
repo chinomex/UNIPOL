@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UNIPOL.General;
+using UNIPOL.EN;
 
 namespace UNIPOL.Medicos
 {
@@ -24,6 +25,7 @@ namespace UNIPOL.Medicos
         //List<ArticulosReceta> lstArticulos = null;
 
         ConsultasMedicasVM _vm = null;
+
         public ConsultasMedicas()
         {
 
@@ -34,13 +36,17 @@ namespace UNIPOL.Medicos
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            btnBuscarPaciente.Focus();
            
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            _vm.AgregarMedicamento();
+            if (ValidaAgregar())
+            {
+                _vm.AgregarMedicamento();
+                btnBuscarMedicamento.Focus();
+            }
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -58,6 +64,11 @@ namespace UNIPOL.Medicos
             Buscador buscador = new Buscador(1);
             buscador.Owner = this;
             buscador.ShowDialog();
+            if (buscador.itemBusqueda != null && buscador.itemBusqueda.seleccionado)
+            {
+                _vm.pacienteCodigo = buscador.itemBusqueda.Codigo;
+                _vm.pacienteNombre = buscador.itemBusqueda.Descripcion;
+            }
         }
 
         private void btnBuscarMedicamento_Click(object sender, RoutedEventArgs e)
@@ -65,8 +76,74 @@ namespace UNIPOL.Medicos
             Buscador buscador = new Buscador(2);
             buscador.Owner = this;
             buscador.ShowDialog();
+            if (buscador.itemBusqueda != null && buscador.itemBusqueda.seleccionado)
+            {
+                _vm.medicamentoCodigo = buscador.itemBusqueda.Codigo;
+                _vm.medicamentoDescripcion = buscador.itemBusqueda.Descripcion;
+                txtCantidad.Focus();
+            }
+        }
 
-            txtMedicamento.Text = buscador.itemBusqueda.Descripcion;
+        private void txtCantidad_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtObservaciones.Focus();
+            }
+        }
+
+        private void btnEliminaRenglon_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as Button).DataContext as ArticulosReceta;
+            _vm.Articulos.Remove(item);
+        }
+
+        private void txtCantidad_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter || e.Key == Key.Back)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void txtObservaciones_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (ValidaAgregar())
+                {
+                    _vm.AgregarMedicamento();
+                }
+
+                btnBuscarMedicamento.Focus();
+            }
+        }
+
+
+        private bool ValidaAgregar()
+        {
+            if (_vm.pacienteCodigo == 0)
+            {
+                MessageBox.Show("Favor de seleccionar un paciente", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                btnBuscarPaciente.Focus();
+                return false;
+            }
+
+            if (_vm.medicamentoCodigo == 0)
+            {
+                MessageBox.Show("Favor de seleccionar un medicamento", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                btnBuscarMedicamento.Focus();
+                return false;
+            }
+
+            if (_vm.medicamentoCantidad <= 0)
+            {
+                MessageBox.Show("Favor de escribir una cantidad valida", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                txtCantidad.Focus();
+                return false;
+            }
+
+            return true;
         }
     }
 }
