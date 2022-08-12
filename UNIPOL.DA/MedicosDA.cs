@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WarmPack.Database;
 using WarmPack.Classes;
+using WarmPack.Extensions;
 using UNIPOL.EN;
 
 
@@ -61,6 +62,39 @@ namespace UNIPOL.DA
                 parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
                 parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
                 resultado = _conexion.ExecuteWithResults<DatosPaciente>("sp_PacienteGuardar", parametros);
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+
+        public Result<RecetaMedica> GuardarReceta(int codPaciente, int codMedico, List<ArticulosReceta> articulos)
+        {
+            var resultado = new Result<RecetaMedica>();
+            var xml = articulos.ToXml("RecetaMedica");
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@pCodPaciente", ConexionDbType.Int, codPaciente);
+                parametros.Add("@pCodUsuario", ConexionDbType.Int, codMedico);
+                parametros.Add("@pXmlDetalle", ConexionDbType.Xml, xml);
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                var r = _conexion.RecordsetsExecute("sp_RecetaGuardar", parametros);
+                if (r)
+                {
+                    resultado.Data.Encabezado = _conexion.RecordsetsResults<DatosReceta>()?.First();
+                    var d = _conexion.RecordsetsResults<DatosRecetaDetalle>();
+                    if (d.Count > 0)
+                    {
+                        resultado.Data.Detalle = d[0];
+                    }
+                }
+                
             }
             catch (Exception ex)
             {

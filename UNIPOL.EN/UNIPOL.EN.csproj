@@ -47,8 +47,11 @@
     <Compile Include="Catalogos\DatosUsuario.cs" />
     <Compile Include="DatosBusqueda.cs" />
     <Compile Include="DatosPaciente.cs" />
+    <Compile Include="DatosReceta.cs" />
+    <Compile Include="DatosRecetaDetalle.cs" />
     <Compile Include="Globales.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecetaMedica.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

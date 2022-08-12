@@ -80,8 +80,8 @@ namespace UNIPOL.Medicos
         }
 
         public void guardar()
-        { 
-            
+        {
+            _bo.GuardarReceta(this.pacienteCodigo, Globales.usuarioActivo.IdUsuario, this.Articulos.ToList<ArticulosReceta>());
         }
     }
 }

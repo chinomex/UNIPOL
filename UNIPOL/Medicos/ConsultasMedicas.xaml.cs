@@ -56,7 +56,7 @@ namespace UNIPOL.Medicos
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Guardar");
+            _vm.guardar();
         }
 
         private void btnBuscarPaciente_Click(object sender, RoutedEventArgs e)
