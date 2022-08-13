@@ -56,7 +56,11 @@ namespace UNIPOL.Medicos
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            _vm.guardar();
+            var result = _vm.guardar();
+            if (result)
+            {
+                this.Close();
+            }
         }
 
         private void btnBuscarPaciente_Click(object sender, RoutedEventArgs e)

@@ -189,7 +189,7 @@ namespace UNIPOL.Catalogos
                     {
                         txtUsuario.Text = r.Data[0].IdUsuario.ToString();
                     }
-                    MessageBox.Show("Usuario guardado correctamente", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    MessageBox.Show("Usuario guardado correctamente", "UNIPOL", MessageBoxButton.OK);
                 }
                 else
                 {

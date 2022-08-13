@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using UNIPOL.EN;
 using UNIPOL.BO;
+using CrystalDecisions.CrystalReports.Engine;
+using System.Windows;
 
 namespace UNIPOL.Medicos
 {
@@ -18,6 +20,9 @@ namespace UNIPOL.Medicos
         public ArticulosReceta articuloActual { get; set; }
         public int pacienteCodigo { get; set; }
         public string pacienteNombre { get; set; }
+        public int pacienteTA { get; set; }
+        public int pacienteFC { get; set; }
+        public int pacienteTEM { get; set; }
         public int medicamentoCodigo { get; set; }
         public string medicamentoDescripcion { get; set; }
         public int medicamentoCantidad { get; set; }
@@ -29,36 +34,6 @@ namespace UNIPOL.Medicos
         {
             this.Articulos = new ObservableCollection<ArticulosReceta>();
             _bo = new MedicosBO();
-            //this.pacienteCodigo = 1;
-            //this.pacienteNombre = "Paciente de prueba";
-            //this.medicamentoCodigo = 10;
-            //this.medicamentoDescripcion = "Medicamento de prueba";
-            //this.medicamentoCantidad = 1;
-            //this.medicamentoObservacion = "";
-
-
-            //var a = new ArticulosReceta();
-            //a.CodArticulo = 10;
-            //a.Descripcion = "algo";
-            //a.Cantidad = 1;
-            //a.Observacion = "dato";
-            //this.Articulos.Add(a);
-
-            //a = new ArticulosReceta();
-            //a.CodArticulo = 10;
-            //a.Descripcion = "algo";
-            //a.Cantidad = 1;
-            //a.Observacion = "dato";
-            //this.Articulos.Add(a);
-
-
-            //a = new ArticulosReceta();
-            //a.CodArticulo = 10;
-            //a.Descripcion = "algo";
-            //a.Cantidad = 1;
-            //a.Observacion = "dato";
-            //this.Articulos.Add(a);
-
         }
 
 
@@ -79,9 +54,53 @@ namespace UNIPOL.Medicos
             this.medicamentoObservacion = "";
         }
 
-        public void guardar()
+        public bool guardar()
         {
-            _bo.GuardarReceta(this.pacienteCodigo, Globales.usuarioActivo.IdUsuario, this.Articulos.ToList<ArticulosReceta>());
+            
+            var result = _bo.GuardarReceta(this.pacienteCodigo, Globales.usuarioActivo.IdUsuario, this.Articulos.ToList<ArticulosReceta>());
+            if (result.Value)
+            {
+                var receta = _bo.Receta(result.Data);
+                if (receta.Value)
+                {
+                    if (receta.Data.Count > 0)
+                    {
+                        var d = receta.Data;
+                        ReportDocument reporte = new ReportDocument();
+                        var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+                        reporte.Load(path + @"\Reportes\rptReceta.rpt");
+                        reporte.SetDataSource(d);
+                        Reportes.Reporteador reportView = new Reportes.Reporteador(reporte, 90);
+                        reportView.WindowState = System.Windows.WindowState.Maximized;
+                        reportView.Title = "Existencias";
+                        reportView.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron resultados", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    Limpiar();
+                }
+
+                return receta.Value;
+            }
+
+            return result.Value;
         }
+
+        private void Limpiar()
+        {
+            this.Articulos = new ObservableCollection<ArticulosReceta>();
+            this.articuloActual = new ArticulosReceta();
+            this.pacienteCodigo = 0;
+            this.pacienteTA = 0;
+            this.pacienteFC = 0;
+            this.pacienteTEM = 0;
+            this.pacienteNombre = "";
+            this.medicamentoCodigo = 0;
+            this.medicamentoDescripcion = "";
+            this.medicamentoCantidad = 0;
+            this.medicamentoObservacion = "";
+    }
     }
 }

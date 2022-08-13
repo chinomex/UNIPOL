@@ -72,9 +72,9 @@ namespace UNIPOL.DA
         }
 
 
-        public Result<RecetaMedica> GuardarReceta(int codPaciente, int codMedico, List<ArticulosReceta> articulos)
+        public Result<int> GuardarReceta(int codPaciente, int codMedico, List<ArticulosReceta> articulos)
         {
-            var resultado = new Result<RecetaMedica>();
+            var resultado = new Result<int>();
             var xml = articulos.ToXml("RecetaMedica");
             try
             {
@@ -84,17 +84,7 @@ namespace UNIPOL.DA
                 parametros.Add("@pXmlDetalle", ConexionDbType.Xml, xml);
                 parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
                 parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
-                var r = _conexion.RecordsetsExecute("sp_RecetaGuardar", parametros);
-                if (r)
-                {
-                    resultado.Data.Encabezado = _conexion.RecordsetsResults<DatosReceta>()?.First();
-                    var d = _conexion.RecordsetsResults<DatosRecetaDetalle>();
-                    if (d.Count > 0)
-                    {
-                        resultado.Data.Detalle = d[0];
-                    }
-                }
-                
+                resultado = _conexion.ExecuteScalar<int> ("sp_RecetaGuardar", parametros);                
             }
             catch (Exception ex)
             {
@@ -104,6 +94,26 @@ namespace UNIPOL.DA
             return resultado;
         }
 
+
+        public Result<List<RecetaMedica>> Receta(int idReceta)
+        {
+            var resultado = new Result<List<RecetaMedica>>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@pIdReceta", ConexionDbType.Int, idReceta);
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults<RecetaMedica>("sp_RecetaCon", parametros);
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
 
     }
 }

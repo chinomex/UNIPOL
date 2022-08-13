@@ -8,12 +8,21 @@ namespace UNIPOL.EN
 {
     public class RecetaMedica
     {
-        public RecetaMedica()
-        {
-            Encabezado = new DatosReceta();
-            Detalle = new DatosRecetaDetalle();
-        }
-        public DatosReceta Encabezado { get; set; }
-        public DatosRecetaDetalle Detalle { get; set; }
+        public int IdReceta { get; set; }
+        public int CodPaciente { get; set; }
+        public string NombrePaciente { get; set; }
+        public int CodUsuario { get; set; }
+        public string NombreUsuario { get; set; }
+        public int Tipo { get; set; }
+        public string Universidad { get; set; }
+        public string Cedula { get; set; }
+        public string RegistroSSA { get; set; }
+        public DateTime Fecha { get; set; }
+        public int CodArticulo { get; set; }
+        public string Descripcion { get; set; }
+        public decimal Precio { get; set; }
+        public string Estatus { get; set; }
+        public int Cantidad { get; set; }
+        public string Observaciones { get; set; }
     }
 }

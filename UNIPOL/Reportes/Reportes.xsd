@@ -20,4 +20,28 @@
     </xs:complexType>
   </xs:element>
 
+
+  <xs:element name="rptReceta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IdReceta" type="xs:integer"/>
+        <xs:element name="CodPaciente" type="xs:integer"/>
+        <xs:element name="NombrePaciente" type="xs:string"/>
+        <xs:element name="CodUsuario" type="xs:integer"/>
+        <xs:element name="NombreUsuario" type="xs:string"/>
+        <xs:element name="Tipo" type="xs:integer"/>
+        <xs:element name="Universidad" type="xs:string"/>
+        <xs:element name="Cedula" type="xs:string"/>
+        <xs:element name="RegistroSSA" type="xs:string"/>
+        <xs:element name="Fecha" type="xs:dateTime"/>
+        <xs:element name="CodArticulo" type="xs:integer"/>
+        <xs:element name="Descripcion" type="xs:string"/>
+        <xs:element name="Precio" type="xs:decimal"/>
+        <xs:element name="Estatus" type="xs:string"/>
+        <xs:element name="Cantidad" type="xs:integer"/>
+        <xs:element name="Observaciones" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
 </xs:schema>
