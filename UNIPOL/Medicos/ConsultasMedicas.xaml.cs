@@ -149,5 +149,29 @@ namespace UNIPOL.Medicos
 
             return true;
         }
+
+        private void txtTA_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter || e.Key == Key.Back)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void txtFC_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter || e.Key == Key.Back)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void txtTEM_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter || e.Key == Key.Decimal || e.Key == Key.Back || e.Key == Key.OemPeriod)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
     }
 }

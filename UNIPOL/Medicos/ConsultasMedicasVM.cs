@@ -22,7 +22,7 @@ namespace UNIPOL.Medicos
         public string pacienteNombre { get; set; }
         public int pacienteTA { get; set; }
         public int pacienteFC { get; set; }
-        public int pacienteTEM { get; set; }
+        public decimal pacienteTEM { get; set; }
         public int medicamentoCodigo { get; set; }
         public string medicamentoDescripcion { get; set; }
         public int medicamentoCantidad { get; set; }
@@ -57,7 +57,7 @@ namespace UNIPOL.Medicos
         public bool guardar()
         {
             
-            var result = _bo.GuardarReceta(this.pacienteCodigo, Globales.usuarioActivo.IdUsuario, this.Articulos.ToList<ArticulosReceta>());
+            var result = _bo.GuardarReceta(this.pacienteCodigo, Globales.usuarioActivo.IdUsuario, this.pacienteTA, this.pacienteFC, this.pacienteTEM, this.Articulos.ToList<ArticulosReceta>());
             if (result.Value)
             {
                 var receta = _bo.Receta(result.Data);

@@ -72,7 +72,7 @@ namespace UNIPOL.DA
         }
 
 
-        public Result<int> GuardarReceta(int codPaciente, int codMedico, List<ArticulosReceta> articulos)
+        public Result<int> GuardarReceta(int codPaciente, int codMedico, int pacienteTA, int pacienteFC, decimal pacienteTEM, List<ArticulosReceta> articulos)
         {
             var resultado = new Result<int>();
             var xml = articulos.ToXml("RecetaMedica");
@@ -81,6 +81,9 @@ namespace UNIPOL.DA
                 var parametros = new ConexionParameters();
                 parametros.Add("@pCodPaciente", ConexionDbType.Int, codPaciente);
                 parametros.Add("@pCodUsuario", ConexionDbType.Int, codMedico);
+                parametros.Add("@pPacienteTA", ConexionDbType.Int, pacienteTA);
+                parametros.Add("@pPacienteFC", ConexionDbType.Int, pacienteFC);
+                parametros.Add("@pPacienteTEM", ConexionDbType.Decimal, pacienteTEM);
                 parametros.Add("@pXmlDetalle", ConexionDbType.Xml, xml);
                 parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
                 parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);

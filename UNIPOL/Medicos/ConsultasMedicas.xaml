@@ -47,6 +47,7 @@
                          Margin="0,8,0,0"
                          Width="100"
                          FontSize="16"
+                         PreviewKeyDown="txtTA_PreviewKeyDown"
                          Text="{Binding pacienteTA, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox materialDesign:HintAssist.Hint="FC"
@@ -57,6 +58,7 @@
                          Margin="20,8,0,0"
                          Width="100"
                          FontSize="16"
+                         PreviewKeyDown="txtFC_PreviewKeyDown"
                          Text="{Binding pacienteFC, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox materialDesign:HintAssist.Hint="TEM"
@@ -67,6 +69,7 @@
                          Margin="20,8,0,0"
                          Width="100"
                          FontSize="16"
+                         PreviewKeyDown="txtTEM_PreviewKeyDown"
                          Text="{Binding pacienteTEM, UpdateSourceTrigger=PropertyChanged}"/>
 
             </StackPanel>

@@ -29,6 +29,9 @@
         <xs:element name="NombrePaciente" type="xs:string"/>
         <xs:element name="CodUsuario" type="xs:integer"/>
         <xs:element name="NombreUsuario" type="xs:string"/>
+        <xs:element name="TA" type="xs:integer"/>
+        <xs:element name="FC" type="xs:integer"/>
+        <xs:element name="TEM" type="xs:decimal"/>        
         <xs:element name="Tipo" type="xs:integer"/>
         <xs:element name="Universidad" type="xs:string"/>
         <xs:element name="Cedula" type="xs:string"/>
