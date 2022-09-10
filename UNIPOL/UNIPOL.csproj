@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>botePastillas.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -166,6 +169,7 @@
     <None Include="Reportes\Reportes.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Resource Include="botePastillas.ico" />
     <Content Include="Reportes\rptExistencias.rpt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
