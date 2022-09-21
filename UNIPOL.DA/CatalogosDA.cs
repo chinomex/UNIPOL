@@ -8,6 +8,7 @@ using WarmPack.Classes;
 using UNIPOL.EN;
 using UNIPOL.EN.Catalogos;
 
+
 namespace UNIPOL.DA
 {
     public class CatalogosDA
@@ -37,13 +38,14 @@ namespace UNIPOL.DA
                 parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
                 parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
                 resultado = _conexion.ExecuteWithResults<DatosUsuario>("sp_ValidaUsario", parametros);
-
             }
             catch (Exception ex)
             {
                 resultado.Value = false;
                 resultado.Message = ex.Message;
             }
+
+
             return resultado;
         }
 

@@ -31,27 +31,37 @@ namespace UNIPOL
         {
             _boInventario = new InventariosBO();
             InitializeComponent();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Login login = new Login();
-            login.Owner = this;
-            login.ShowDialog();
-            if (!login.usuarioValido)
+            try
             {
-                this.Close();
+                Login login = new Login();
+                login.Owner = this;
+                login.ShowDialog();
+                if (!Globales.UsuarioValido)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    if (!Globales.usuarioActivo.esMedico)
+                    {
+                        mnMedico.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        mnConfig.Visibility = Visibility.Collapsed;
+                        mnInventario.Visibility = Visibility.Collapsed;
+                        mnReportes.Visibility = Visibility.Collapsed;
+                    }
+                }
             }
-
-            if (!Globales.usuarioActivo.esMedico)
+            catch (Exception ex)
             {
-                mnMedico.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                mnConfig.Visibility = Visibility.Collapsed;
-                mnInventario.Visibility = Visibility.Collapsed;
-                mnReportes.Visibility = Visibility.Collapsed;
+                MessageBox.Show("M01 -" + ex.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -92,25 +102,32 @@ namespace UNIPOL
 
         private void mnRepExistencias_Click(object sender, RoutedEventArgs e)
         {
-            var r = _boInventario.ExistenciaArticulo(0);
-            if (r.Value)
+            try
+            { 
+                var r = _boInventario.ExistenciaArticulo(0);
+                if (r.Value)
+                {
+                    if (r.Data.Count > 0)
+                    {
+                        var d = r.Data;
+                        ReportDocument reporte = new ReportDocument();
+                        var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+                        reporte.Load(path + @"\Reportes\rptExistencias.rpt");
+                        reporte.SetDataSource(d);
+                        Reportes.Reporteador reportView = new Reportes.Reporteador(reporte, 90);
+                        reportView.WindowState = System.Windows.WindowState.Maximized;
+                        reportView.Title = "Existencias";
+                        reportView.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron resultados", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }            
+            }
+            catch(Exception ex)
             {
-                if (r.Data.Count > 0)
-                {
-                    var d = r.Data;
-                    ReportDocument reporte = new ReportDocument();
-                    var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-                    reporte.Load(path + @"\Reportes\rptExistencias.rpt");
-                    reporte.SetDataSource(d);
-                    Reportes.Reporteador reportView = new Reportes.Reporteador(reporte, 90);
-                    reportView.WindowState = System.Windows.WindowState.Maximized;
-                    reportView.Title = "Existencias";
-                    reportView.Show();
-                }
-                else
-                {
-                    MessageBox.Show("No se encontraron resultados", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
+                MessageBox.Show("M02 -" + ex.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

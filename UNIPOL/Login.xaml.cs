@@ -15,6 +15,7 @@ using WarmPack.Classes;
 using UNIPOL.BO;
 using UNIPOL.EN.Catalogos;
 using UNIPOL.EN;
+using System.Data.SqlClient;
 
 namespace UNIPOL
 {
@@ -25,13 +26,14 @@ namespace UNIPOL
     {
         CatalogosBO _bo = null;
 
-        public bool usuarioValido { get; set; }
+        //public bool usuarioValido { get; set; }
 
         public Login()
         {
+            //usuarioValido = false;
+            Globales.UsuarioValido = false;
             _bo = new CatalogosBO();
             InitializeComponent();
-            usuarioValido = false;
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -42,6 +44,19 @@ namespace UNIPOL
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             txtUsuario.Focus();
+            //try
+            //{ 
+            //    MessageBox.Show( Globales.ConexionPrincipal, "UNIPOL");
+            //    SqlConnection cnn = new SqlConnection(Globales.ConexionPrincipal);
+            //    cnn.Open();
+
+            //    MessageBox.Show(cnn.State.ToString(), "UNIPOL");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "UNIPOL");
+            //}
+
         }
 
         private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
@@ -61,13 +76,20 @@ namespace UNIPOL
 
         private void txtUsuario_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtUsuario.Text))
+            try
             {
-                var usuario = _bo.ConsultaUsuario(Convert.ToInt32(txtUsuario.Text));
-                if (usuario.Data.Count > 0)
+                if (!string.IsNullOrEmpty(txtUsuario.Text))
                 {
-                    txtNombreUsuario.Text = usuario.Data[0].Nombre;
+                    var usuario = _bo.ConsultaUsuario(Convert.ToInt32(txtUsuario.Text));
+                    if (usuario.Data.Count > 0)
+                    {
+                        txtNombreUsuario.Text = usuario.Data[0].Nombre;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("L - " + ex.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -81,42 +103,47 @@ namespace UNIPOL
 
         private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtUsuario.Text))
+            try
             {
-                MessageBox.Show("Proporcione un usuario", "UNIPOL", MessageBoxButton.OK,MessageBoxImage.Information);
-                txtUsuario.Focus();
-                return;
-            }
-
-            if (string.IsNullOrEmpty(txtPass.Password.ToString()))
-            {
-                MessageBox.Show("Proporcione una Contraseña", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
-                txtPass.Focus();
-                return;
-            }
-
-            var r = _bo.ValidaUsuario(Convert.ToInt32(txtUsuario.Text), txtPass.Password.ToString());
-
-            if (r.Value)
-            {
-                if (r.Data.Count > 0)
+                if (string.IsNullOrEmpty(txtUsuario.Text))
                 {
-                    Globales.usuarioActivo = r.Data[0];
+                    MessageBox.Show("Proporcione un usuario", "UNIPOL", MessageBoxButton.OK,MessageBoxImage.Information);
+                    txtUsuario.Focus();
+                    return;
+                }
 
-                    this.usuarioValido = true;
-                    this.Close();
+                if (string.IsNullOrEmpty(txtPass.Password.ToString()))
+                {
+                    MessageBox.Show("Proporcione una Contraseña", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                    txtPass.Focus();
+                    return;
+                }
+
+                var r = _bo.ValidaUsuario(Convert.ToInt32(txtUsuario.Text), txtPass.Password.ToString());
+
+                if (r.Value)
+                {
+                    if (r.Data.Count > 0)
+                    {
+                        Globales.usuarioActivo = r.Data[0];
+                        Globales.UsuarioValido = true;
+                        //usuarioValido = true;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Credenciales incorrectas", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Credenciales incorrectas", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(r.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(r.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("L - " + ex.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-
     }
 }
