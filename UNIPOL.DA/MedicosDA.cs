@@ -72,7 +72,7 @@ namespace UNIPOL.DA
         }
 
 
-        public Result<int> GuardarReceta(int codPaciente, int codMedico, int pacienteTA, int pacienteFC, decimal pacienteTEM, List<ArticulosReceta> articulos)
+        public Result<int> GuardarReceta(int codPaciente, int codMedico, int pacienteTA, int pacienteFC, int pacienteFR, decimal pacienteTEM, List<ArticulosReceta> articulos)
         {
             var resultado = new Result<int>();
             var xml = articulos.ToXml("RecetaMedica");
@@ -83,6 +83,7 @@ namespace UNIPOL.DA
                 parametros.Add("@pCodUsuario", ConexionDbType.Int, codMedico);
                 parametros.Add("@pPacienteTA", ConexionDbType.Int, pacienteTA);
                 parametros.Add("@pPacienteFC", ConexionDbType.Int, pacienteFC);
+                parametros.Add("@pPacienteFR", ConexionDbType.Int, pacienteFR);
                 parametros.Add("@pPacienteTEM", ConexionDbType.Decimal, pacienteTEM);
                 parametros.Add("@pXmlDetalle", ConexionDbType.Xml, xml);
                 parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
@@ -109,6 +110,25 @@ namespace UNIPOL.DA
                 parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
                 resultado = _conexion.ExecuteWithResults<RecetaMedica>("sp_RecetaCon", parametros);
 
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+        public Result<int> UltimaReceta(int codMedico)
+        {
+            var resultado = new Result<int>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@pCodUsuario", ConexionDbType.Int, codMedico);
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteScalar<int>("sp_UltimaRecetaCon", parametros);
             }
             catch (Exception ex)
             {

@@ -21,7 +21,7 @@
         <StackPanel Orientation="Vertical"
                     Margin="20,10,20,5">
 
-            <TextBox materialDesign:HintAssist.Hint="Codigo"
+            <TextBox materialDesign:HintAssist.Hint="Código"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      VerticalAlignment="Center" 
                      HorizontalAlignment="Left"
@@ -68,7 +68,7 @@
                             KeyUp="dpFechaNacimiento_KeyUp"/>
 
 
-                <TextBox materialDesign:HintAssist.Hint="Telefono"
+                <TextBox materialDesign:HintAssist.Hint="Teléfono"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          VerticalAlignment="Center" 
                          HorizontalAlignment="Left"

@@ -20,7 +20,7 @@
                 <Menu VerticalAlignment="Center">
                     <MenuItem Name="mnConfig" Header="Catalogos">
                         <MenuItem Name="mnCatalogoUsuarios" Header="Usuarios" Click="mnCatalogoUsuarios_Click"></MenuItem>
-                        <MenuItem Name="mnCatalogoArticulos" Header="Articulos" Click="mnCatalogoArticulos_Click"></MenuItem>
+                        <MenuItem Name="mnCatalogoArticulos" Header="Artículos" Click="mnCatalogoArticulos_Click"></MenuItem>
                     </MenuItem>                    
                     <MenuItem Name="mnInventario" Header="Inventario">
                         <MenuItem Name="mnInvExistencias" Header="Existencias" Click="mnInvExistencias_Click"></MenuItem>
@@ -28,12 +28,22 @@
                     <MenuItem Name="mnMedico" Header="Medicos">
                         <MenuItem Name="mnMedicoAltaPaciente" Header="Alta de paciente" Click="mnMedicoAltaPaciente_Click"></MenuItem>
                         <MenuItem Name="mnMedicoConsultar" Header="Consulta Medica" Click="mnMedicoConsultar_Click"></MenuItem>
+                        <MenuItem Name="mnMedicoUltimaReceta" Header="Imprimir ultima receta" Click="mnMedicoUltimaReceta_Click"></MenuItem>
+                        <MenuItem Header="Historia Clinica">
+                            <MenuItem Header="Nueva"></MenuItem>
+                            <MenuItem Header="Historial"></MenuItem>
+                        </MenuItem>
                     </MenuItem>
                     <MenuItem Name="mnReportes" Header="Reportes">
                         <MenuItem Name="mnRepExistencias" Header="Existencias" Click="mnRepExistencias_Click"></MenuItem>
                     </MenuItem>
                 </Menu>
             </materialDesign:Card>
-        </StackPanel>        
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Right"
+                    Margin="0 0 10 5">
+            <Label x:Name="lblVersion">version</Label>
+        </StackPanel>
     </Grid>
 </Window>

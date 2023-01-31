@@ -19,7 +19,7 @@
         <StackPanel Orientation="Vertical"
                     Margin="20,10,20,5">
 
-            <TextBox materialDesign:HintAssist.Hint="Codigo"
+            <TextBox materialDesign:HintAssist.Hint="Código"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      VerticalAlignment="Center" 
                      HorizontalAlignment="Left"
@@ -33,7 +33,7 @@
                      GotFocus="txtCodigo_GotFocus"
                      LostFocus="txtCodigo_LostFocus"/>
 
-            <TextBox materialDesign:HintAssist.Hint="Descripcion"
+            <TextBox materialDesign:HintAssist.Hint="Descripción"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      VerticalAlignment="Center"
                      x:Name="txtDescripcion"

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UNIPOL.General;
 using UNIPOL.EN;
+using WarmPack.Classes;
 
 namespace UNIPOL.Medicos
 {
@@ -56,10 +57,15 @@ namespace UNIPOL.Medicos
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            var result = _vm.guardar();
-            if (result)
+            var result = _vm.guardar(txtTA.Text, txtFC.Text, txtFR.Text, txtTEM.Text);
+            if (result.Value)
             {
+                MessageBox.Show("Receta guardada correctamente.", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show(result.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -152,7 +158,7 @@ namespace UNIPOL.Medicos
 
         private void txtTA_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter || e.Key == Key.Back)
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter || e.Key == Key.Back || e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Delete)
                 e.Handled = false;
             else
                 e.Handled = true;
@@ -160,7 +166,7 @@ namespace UNIPOL.Medicos
 
         private void txtFC_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter || e.Key == Key.Back)
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter || e.Key == Key.Back || e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Delete)
                 e.Handled = false;
             else
                 e.Handled = true;
@@ -168,10 +174,79 @@ namespace UNIPOL.Medicos
 
         private void txtTEM_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter || e.Key == Key.Decimal || e.Key == Key.Back || e.Key == Key.OemPeriod)
+            if (e.Key >= Key.D0 && e.Key <= Key.D9
+                || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9
+                || e.Key == Key.Enter
+                || e.Key == Key.Decimal
+                || e.Key == Key.Back
+                || e.Key == Key.OemPeriod
+                || e.Key == Key.Back
+                || e.Key == Key.Delete
+                || e.Key == Key.Left
+                || e.Key == Key.Right)
+            {
+                if (e.Key != Key.Decimal)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    if(txtTEM.Text.IndexOf('.') <= 0)
+                    {
+                        e.Handled = false;
+                    }   
+                    else
+                    {
+                        e.Handled = true;
+                    }
+                    
+                }
+            }
+            else
+            {
+                e.Handled = true;
+            }
+                
+        }
+
+        private void txtFR_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Enter || e.Key == Key.Back || e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Delete)
                 e.Handled = false;
             else
                 e.Handled = true;
+        }
+
+        private void txtTA_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtFC.Focus();
+            }
+        }
+
+        private void txtFC_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtFR.Focus();
+            }
+        }
+
+        private void txtFR_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtTEM.Focus();
+            }
+        }
+
+        private void txtTEM_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnBuscarMedicamento.Focus();
+            }
         }
     }
 }

@@ -56,20 +56,31 @@ namespace UNIPOL.Catalogos
                 if (!string.IsNullOrEmpty(txtUsuario.Text))
                 {
                     var usuario = _bo.ConsultaUsuario(Convert.ToInt32(txtUsuario.Text));
-                    if (usuario.Data.Count > 0)
+                    if(usuario.Value)
                     {
-                        var u = usuario.Data[0];
-                        txtNombre.Text = u.Nombre;
-                        txtPass.Password = u.Password;
-                        txtPassConfirmacion.Password = u.Password;
-                        ckMedico.IsChecked = u.esMedico;
-                        if (u.esMedico)
+                        if (usuario.Data.Count > 0)
                         {
-                            cmbTipoMedico.SelectedIndex = u.Tipo;
-                            txtUniversidad.Text = u.Universidad;
-                            txtCedula.Text = u.Cedula;
-                            txtSSA.Text = u.RegistroSSA;
+                            var u = usuario.Data[0];
+                            txtNombre.Text = u.Nombre;
+                            txtPass.Password = u.Password;
+                            txtPassConfirmacion.Password = u.Password;
+                            ckMedico.IsChecked = u.esMedico;
+                            if (u.esMedico)
+                            {
+                                cmbTipoMedico.SelectedIndex = u.Tipo;
+                                txtUniversidad.Text = u.Universidad;
+                                txtCedula.Text = u.Cedula;
+                                txtSSA.Text = u.RegistroSSA;
+                            }
                         }
+                        else
+                        {
+                            MessageBox.Show("Usuario no encontrado", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(usuario.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                 }
 
@@ -190,11 +201,12 @@ namespace UNIPOL.Catalogos
                         txtUsuario.Text = r.Data[0].IdUsuario.ToString();
                     }
                     MessageBox.Show("Usuario guardado correctamente", "UNIPOL", MessageBoxButton.OK);
+                    this.Close();
                 }
                 else
                 {
                     MessageBox.Show(r.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                }    
+                }
             }
         }
 

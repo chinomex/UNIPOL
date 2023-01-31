@@ -9,6 +9,7 @@ using UNIPOL.EN;
 using UNIPOL.BO;
 using CrystalDecisions.CrystalReports.Engine;
 using System.Windows;
+using WarmPack.Classes;
 
 namespace UNIPOL.Medicos
 {
@@ -20,9 +21,6 @@ namespace UNIPOL.Medicos
         public ArticulosReceta articuloActual { get; set; }
         public int pacienteCodigo { get; set; }
         public string pacienteNombre { get; set; }
-        public int pacienteTA { get; set; }
-        public int pacienteFC { get; set; }
-        public decimal pacienteTEM { get; set; }
         public int medicamentoCodigo { get; set; }
         public string medicamentoDescripcion { get; set; }
         public int medicamentoCantidad { get; set; }
@@ -54,13 +52,31 @@ namespace UNIPOL.Medicos
             this.medicamentoObservacion = "";
         }
 
-        public bool guardar()
+        public Result guardar(string txtTA, string txtFC, string txtFR, string txtTEM)
         {
-            
-            var result = _bo.GuardarReceta(this.pacienteCodigo, Globales.usuarioActivo.IdUsuario, this.pacienteTA, this.pacienteFC, this.pacienteTEM, this.Articulos.ToList<ArticulosReceta>());
+            Result resultado = new Result();
+
+            if (string.IsNullOrEmpty(txtTA))
+                txtTA = "0";
+
+            if (string.IsNullOrEmpty(txtFC))
+                txtFC = "0";
+
+            if (string.IsNullOrEmpty(txtFR))
+                txtFR = "0";
+
+            if (string.IsNullOrEmpty(txtTEM))
+                txtTEM = "0";
+
+
+            var result = _bo.GuardarReceta(this.pacienteCodigo, Globales.usuarioActivo.IdUsuario, int.Parse(txtTA), int.Parse(txtFC), int.Parse(txtFR), decimal.Parse(txtTEM), this.Articulos.ToList<ArticulosReceta>());
+            resultado.Value = result.Value;
+            resultado.Message = result.Message;
             if (result.Value)
             {
                 var receta = _bo.Receta(result.Data);
+                resultado.Value = receta.Value;
+                resultado.Message = receta.Message;
                 if (receta.Value)
                 {
                     if (receta.Data.Count > 0)
@@ -72,7 +88,7 @@ namespace UNIPOL.Medicos
                         reporte.SetDataSource(d);
                         Reportes.Reporteador reportView = new Reportes.Reporteador(reporte, 90);
                         reportView.WindowState = System.Windows.WindowState.Maximized;
-                        reportView.Title = "Existencias";
+                        reportView.Title = "Receta";
                         reportView.Show();
                     }
                     else
@@ -81,21 +97,15 @@ namespace UNIPOL.Medicos
                     }
                     Limpiar();
                 }
-
-                return receta.Value;
+                return resultado;
             }
-
-            return result.Value;
+            return resultado;
         }
 
         private void Limpiar()
         {
             this.Articulos = new ObservableCollection<ArticulosReceta>();
             this.articuloActual = new ArticulosReceta();
-            this.pacienteCodigo = 0;
-            this.pacienteTA = 0;
-            this.pacienteFC = 0;
-            this.pacienteTEM = 0;
             this.pacienteNombre = "";
             this.medicamentoCodigo = 0;
             this.medicamentoDescripcion = "";

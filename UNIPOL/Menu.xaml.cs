@@ -18,6 +18,7 @@ using UNIPOL.Medicos;
 using UNIPOL.EN;
 using UNIPOL.BO;
 using CrystalDecisions.CrystalReports.Engine;
+using System.Reflection;
 
 namespace UNIPOL
 {
@@ -26,10 +27,12 @@ namespace UNIPOL
     /// </summary>
     public partial class MainWindow : Window
     {
-        InventariosBO _boInventario = null;
+        InventariosBO _boInventario = null; 
+        MedicosBO _boMedicos = null;
         public MainWindow()
         {
             _boInventario = new InventariosBO();
+            _boMedicos = new MedicosBO();
             InitializeComponent();
 
         }
@@ -38,6 +41,9 @@ namespace UNIPOL
         {
             try
             {
+                var version = Assembly.GetExecutingAssembly().GetName().Version;
+                lblVersion.Content =  "v" + version.ToString();
+
                 Login login = new Login();
                 login.Owner = this;
                 login.ShowDialog();
@@ -128,6 +134,38 @@ namespace UNIPOL
             catch(Exception ex)
             {
                 MessageBox.Show("M02 -" + ex.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void mnMedicoUltimaReceta_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var ultima = _boMedicos.UltimaReceta(Globales.usuarioActivo.IdUsuario);
+                if (ultima.Value)
+                {
+                    var receta = _boMedicos.Receta(ultima.Data);
+                    if (receta.Data.Count > 0)
+                    {
+                        var d = receta.Data;
+                        ReportDocument reporte = new ReportDocument();
+                        var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+                        reporte.Load(path + @"\Reportes\rptReceta.rpt");
+                        reporte.SetDataSource(d);
+                        Reportes.Reporteador reportView = new Reportes.Reporteador(reporte, 90);
+                        reportView.WindowState = System.Windows.WindowState.Maximized;
+                        reportView.Title = "Receta";
+                        reportView.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron resultados", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("M03 -" + ex.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -139,6 +139,7 @@ namespace UNIPOL.Medicos
                     {
                         txtCodigo.Text = r.Data[0].CodPaciente.ToString();
                         MessageBox.Show("Paciente guardado correctamente", "UNIPOL", MessageBoxButton.OK);
+                        this.Close();
                     }
                 }
                 else

@@ -126,6 +126,7 @@ namespace UNIPOL.Catalogos
                     {
                         txtCodigo.Text = r.Data[0].CodArticulo.ToString();
                         MessageBox.Show("Articulo guardado correctamente", "UNIPOL", MessageBoxButton.OK);
+                        this.Close();
                     }
                 }
                 else

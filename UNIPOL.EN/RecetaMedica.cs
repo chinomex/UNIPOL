@@ -24,5 +24,11 @@ namespace UNIPOL.EN
         public string Estatus { get; set; }
         public int Cantidad { get; set; }
         public string Observaciones { get; set; }
+        public int Edad { get; set; }
+
+        public int TA { get; set; }
+        public int FC { get; set; }
+        public int FR { get; set; }
+        public decimal TEM { get; set; }
     }
 }

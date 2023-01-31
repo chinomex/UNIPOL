@@ -114,6 +114,7 @@ namespace UNIPOL.Inventarios
                 {
                     txtCodigo.Focus();
                     MessageBox.Show("Existencia guardada correctamente", "UNIPOL", MessageBoxButton.OK);
+                    this.Close();
                 }
                 else
                 {

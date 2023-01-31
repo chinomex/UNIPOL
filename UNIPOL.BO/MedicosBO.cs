@@ -30,14 +30,20 @@ namespace UNIPOL.BO
 
 
 
-        public Result<int> GuardarReceta(int codPaciente, int codMedico, int pacienteTA, int pacienteFC, decimal pacienteTEM, List<ArticulosReceta> articulos)
+        public Result<int> GuardarReceta(int codPaciente, int codMedico, int pacienteTA, int pacienteFC, int pacienteFR, decimal pacienteTEM, List<ArticulosReceta> articulos)
         {
-            return _da.GuardarReceta(codPaciente, codMedico, pacienteTA, pacienteFC, pacienteTEM, articulos);
+            return _da.GuardarReceta(codPaciente, codMedico, pacienteTA, pacienteFC, pacienteFR, pacienteTEM, articulos);
         }
 
         public Result<List<RecetaMedica>> Receta(int idReceta)
         {
             return _da.Receta(idReceta);
+        }
+
+        public Result<int> UltimaReceta(int codMedico)
+        {
+            return _da.UltimaReceta(codMedico);
+
         }
     }
 }

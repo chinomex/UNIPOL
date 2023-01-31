@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:UNIPOL.Medicos"
         mc:Ignorable="d"
         Title="ConsultasMedicas" 
-        Height="530" 
+        Height="585" 
         Width="730"
         
         WindowStartupLocation="CenterScreen"
@@ -39,39 +39,60 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <TextBox materialDesign:HintAssist.Hint="TA"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="167"></ColumnDefinition>
+                        <ColumnDefinition Width="167"></ColumnDefinition>
+                        <ColumnDefinition Width="167"></ColumnDefinition>
+                        <ColumnDefinition Width="165"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBox Grid.Column="0"
+                         materialDesign:HintAssist.Hint="TA"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          VerticalAlignment="Center"
                          x:Name="txtTA"
                          Padding="0,5,0,5"
                          Margin="0,8,0,0"
-                         Width="100"
                          FontSize="16"
                          PreviewKeyDown="txtTA_PreviewKeyDown"
-                         Text="{Binding pacienteTA, UpdateSourceTrigger=PropertyChanged}"/>
+                             KeyUp="txtTA_KeyUp"/>
 
-                <TextBox materialDesign:HintAssist.Hint="FC"
+                    <TextBox Grid.Column="1" 
+                         materialDesign:HintAssist.Hint="FC"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          VerticalAlignment="Center"
                          x:Name="txtFC"
                          Padding="0,5,0,5"
                          Margin="20,8,0,0"
-                         Width="100"
                          FontSize="16"
                          PreviewKeyDown="txtFC_PreviewKeyDown"
-                         Text="{Binding pacienteFC, UpdateSourceTrigger=PropertyChanged}"/>
+                             KeyUp="txtFC_KeyUp"/>
 
-                <TextBox materialDesign:HintAssist.Hint="TEM"
+                    <TextBox Grid.Column="2" 
+                         materialDesign:HintAssist.Hint="FR"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         VerticalAlignment="Center"
+                         x:Name="txtFR"
+                         Padding="0,5,0,5"
+                         Margin="20,8,0,0"
+                         FontSize="16"
+                         PreviewKeyDown="txtFR_PreviewKeyDown"
+                             KeyUp="txtFR_KeyUp"/>
+
+                    <TextBox Grid.Column="3" 
+                         materialDesign:HintAssist.Hint="TEM"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          VerticalAlignment="Center"
                          x:Name="txtTEM"
                          Padding="0,5,0,5"
                          Margin="20,8,0,0"
-                         Width="100"
                          FontSize="16"
-                         PreviewKeyDown="txtTEM_PreviewKeyDown"
-                         Text="{Binding pacienteTEM, UpdateSourceTrigger=PropertyChanged}"/>
-
+                             MaxLength="5"
+                             KeyUp="txtTEM_KeyUp"
+                             PreviewKeyDown="txtTEM_PreviewKeyDown"/>
+                </Grid>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
@@ -149,18 +170,18 @@
                       >
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding CodArticulo, UpdateSourceTrigger=PropertyChanged}"
-                                        Header="Codigo"
-                                        Width="80"
+                                        Header="Código"
+                                        Width="75"
                                         >
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}"
-                                        Header="Descripcion"
+                                        Header="Descripción"
                                         Width="200"
                                         >
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Cantidad, UpdateSourceTrigger=PropertyChanged}"
                                         Header="Cantidad"
-                                        Width="90"
+                                        Width="85"
                                         >
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Observacion, UpdateSourceTrigger=PropertyChanged}"
@@ -170,7 +191,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTemplateColumn Header="Eliminar"
-                                            Width="100"
+                                            Width="97"
                                             IsReadOnly="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -179,7 +200,7 @@
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
                                         Foreground="#FFD91E1E"
-                                        Margin="10,0,0,0"
+                                        
                                         x:Name="btnEliminaRenglon"
                                         Click="btnEliminaRenglon_Click"
                                         />
