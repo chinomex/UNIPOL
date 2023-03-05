@@ -25,6 +25,7 @@ namespace UNIPOL.EN
         public int Cantidad { get; set; }
         public string Observaciones { get; set; }
         public int Edad { get; set; }
+        public string EdadCompleta { get; set; }
 
         public int TA { get; set; }
         public int FC { get; set; }

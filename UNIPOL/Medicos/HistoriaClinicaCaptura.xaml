@@ -1,0 +1,2146 @@
+﻿<Window x:Class="UNIPOL.Medicos.HistoriaClinicaCaptura"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:UNIPOL.Medicos"
+        mc:Ignorable="d"
+        Title="Historia Clinica Captura" 
+        Height="720" 
+        Width="1000"
+        
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize">
+    <Grid>
+        <materialDesign:Card>
+            <TabControl HorizontalContentAlignment="Left"
+                        Style="{StaticResource MaterialDesignFilledTabControl}"
+                        SelectionChanged="tbHistoria_SelectionChanged"
+                        Name="tbHistoria">
+                <TabItem Header="Datos del cadete">
+                    <StackPanel Margin="10"
+                                Orientation="Vertical"
+                                VerticalAlignment="Top"
+                                Height="570">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="57"></RowDefinition>
+                                <RowDefinition Height="57"></RowDefinition>
+                                <RowDefinition Height="57"></RowDefinition>
+                                <RowDefinition Height="57"></RowDefinition>
+                                <RowDefinition Height="57"></RowDefinition>
+                                <RowDefinition Height="57"></RowDefinition>
+                                <RowDefinition Height="57"></RowDefinition>
+                                <RowDefinition Height="57"></RowDefinition>
+                                <RowDefinition Height="57"></RowDefinition>
+                                <RowDefinition Height="57"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="Nombre"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       Margin="0,0,0,5"
+                                       FontSize="16"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="3"
+                                        Margin="10,0,0,0">
+                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         x:Name="txtPaciente"
+                                         Padding="0,5,0,5"
+                                         Width="744"
+                                         FontSize="16"
+                                         Text="{Binding pacienteNombre, UpdateSourceTrigger=PropertyChanged}"
+                                         IsEnabled="False"/>
+                                <Button Content="{materialDesign:PackIcon AccountSearch}"
+                                    VerticalAlignment="Bottom"
+                                    FontSize="34"
+                                    Foreground="#fff"
+                                    Margin="10,0,0,0"
+                                    x:Name="btnBuscarPaciente"
+                                    Click="btnBuscarPaciente_Click"></Button>
+                            </StackPanel>
+
+
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="Edad (años)"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding pacienteEdad, UpdateSourceTrigger=PropertyChanged}"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       FontSize="16"
+                                       Margin="10,0,0,0"></TextBlock>
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="2"
+                                       Text="Fecha de nacimiento"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="3"
+                                       Text="{Binding pacienteFechaNacimiento, UpdateSourceTrigger=PropertyChanged}"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       FontSize="16"
+                                       Margin="10,0,0,0"></TextBlock>
+
+
+
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="Estado Civil"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <ComboBox Grid.Row="2"
+                                      Grid.Column="1"
+                                      VerticalAlignment="Bottom"
+                                      FontSize="16"
+                                      Margin="10,0,0,0"
+                                      ItemsSource="{Binding lstEstadosCiviles, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding EstadoCivilSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="CodEstadoCivil"
+                                      DisplayMemberPath="Descripcion">
+                            </ComboBox>
+
+
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="2"
+                                       Text="Sexo"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <ComboBox Grid.Row="2"
+                                      Grid.Column="3"
+                                      VerticalAlignment="Bottom"
+                                      FontSize="16"
+                                      Margin="10,0,0,0"
+                                      ItemsSource="{Binding lstSexos, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding SexoSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="CodSexo"
+                                      DisplayMemberPath="Descripcion">
+                            </ComboBox>
+
+
+
+                            <TextBlock Grid.Row="3"
+                                       Grid.Column="0"
+                                       Text="Señas particulares"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <TextBox Grid.Row="3" 
+                                     Grid.Column="1"
+                                     Grid.ColumnSpan="3"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Center"
+                                     x:Name="txtSParticulares"
+                                     Padding="0,5,0,5"
+                                     Margin="10,0,0,0"
+                                     FontSize="16"
+                                     MaxLength="300"/>
+                           
+
+                            <TextBlock Grid.Row="4"
+                                       Grid.Column="0"
+                                       Text="Escolaridad"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <TextBox Grid.Row="4" 
+                                     Grid.Column="1"
+                                     Grid.ColumnSpan="3"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Center"
+                                     x:Name="txtEscolaridad"
+                                     Padding="0,5,0,5"
+                                     Margin="10,0,0,0"
+                                     FontSize="16"
+                                     MaxLength="100"/>
+
+
+                            <TextBlock Grid.Row="5"
+                                       Grid.Column="0"
+                                       Text="Originario"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <TextBox Grid.Row="5" 
+                                     Grid.Column="1"
+                                     Grid.ColumnSpan="3"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Center"
+                                     x:Name="txtOriginario"
+                                     Padding="0,5,0,5"
+                                     Margin="10,0,0,0"
+                                     FontSize="16"
+                                     MaxLength="100"/>
+
+
+                            <TextBlock Grid.Row="6"
+                                       Grid.Column="0"
+                                       Text="Domicilio"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <TextBox Grid.Row="6" 
+                                     Grid.Column="1"
+                                     Grid.ColumnSpan="3"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Center"
+                                     x:Name="txtDomicilio"
+                                     Padding="0,5,0,5"
+                                     Margin="10,0,0,0"
+                                     FontSize="16"
+                                     MaxLength="250"/>
+
+
+                            <TextBlock Grid.Row="7"
+                                       Grid.Column="0"
+                                       Text="Procedencia"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <TextBox Grid.Row="7" 
+                                     Grid.Column="1"
+                                     Grid.ColumnSpan="3"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Center"
+                                     x:Name="txtProcedencia"
+                                     Padding="0,5,0,5"
+                                     Margin="10,0,0,0"
+                                     FontSize="16"
+                                     MaxLength="300"/>
+
+                            <TextBlock Grid.Row="8"
+                                       Grid.Column="0"
+                                       Text="Trabajo"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <TextBox Grid.Row="8" 
+                                     Grid.Column="1"
+                                     Grid.ColumnSpan="3"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Center"
+                                     x:Name="txtTrabajo"
+                                     Padding="0,5,0,5"
+                                     Margin="10,0,0,0"
+                                     FontSize="16"
+                                     MaxLength="100"/>
+
+                            <TextBlock Grid.Row="9"
+                                       Grid.Column="0"
+                                       Text="Telefono"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <TextBlock Grid.Row="9"
+                                       Grid.Column="1"
+                                       Text="{Binding pacienteTelefono, UpdateSourceTrigger=PropertyChanged}"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       FontSize="16"
+                                       Margin="10,0,0,0"></TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Antecedentes">
+                    <StackPanel Margin="10"
+                                Orientation="Vertical"
+                                VerticalAlignment="Top"
+                                Height="570">
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="570">
+                            <Grid Margin="0,10,10,20">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25"></RowDefinition>
+                                    <RowDefinition Height="80"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="80"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="420"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="340"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="80"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+
+                                <TextBlock Grid.Row="0"
+                                           Text="Antecedentes Heredo Familiares"
+                                           FontSize="14"
+                                           TextAlignment="Center"
+                                           Foreground="#000"
+                                           Background="Silver"
+                                           Padding="3"></TextBlock>
+                                <TextBox Grid.Row="1"
+                                         TextWrapping="Wrap"
+                                         VerticalAlignment="Stretch"
+                                         VerticalContentAlignment="Bottom"
+                                         MinWidth="100"
+                                         AcceptsReturn="True"
+                                         VerticalScrollBarVisibility="Auto"
+                                         SpellCheck.IsEnabled="True"
+                                         BorderBrush="Silver"
+                                         BorderThickness="1"
+                                         Text="" 
+                                         Margin="0,0,0,20"
+                                         Padding="5"
+                                         MaxLength="450"/>
+
+
+                                <TextBlock Grid.Row="2"
+                                           Text="Antecedentes Personales Patológicos"
+                                           FontSize="14"
+                                           TextAlignment="Center"
+                                           Foreground="#000"
+                                           Background="Silver">
+                                </TextBlock>
+                                <TextBox Grid.Row="3"
+                                         TextWrapping="Wrap"
+                                         VerticalAlignment="Stretch"
+                                         VerticalContentAlignment="Bottom"
+                                         MinWidth="100"
+                                         AcceptsReturn="True"
+                                         VerticalScrollBarVisibility="Auto"
+                                         SpellCheck.IsEnabled="True"
+                                         BorderBrush="Silver"
+                                         BorderThickness="1"
+                                         Text="" 
+                                         Margin="0,0,0,20"
+                                         Padding="5"
+                                         MaxLength="450"/>
+
+
+                                <TextBlock Grid.Row="4"
+                                           Text="Antecedentes Personales Patológicos"
+                                           FontSize="14"
+                                           TextAlignment="Center"
+                                           Foreground="#000"
+                                           Background="Silver"></TextBlock>
+                                <StackPanel Grid.Row="5"
+                                            Orientation="Vertical">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="200"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="57"></RowDefinition>
+                                            <RowDefinition Height="57"></RowDefinition>
+                                            <RowDefinition Height="57"></RowDefinition>
+                                            <RowDefinition Height="57"></RowDefinition>
+                                            <RowDefinition Height="57"></RowDefinition>
+                                            <RowDefinition Height="57"></RowDefinition>
+                                            <RowDefinition Height="57"></RowDefinition>
+                                            <RowDefinition Height="57"></RowDefinition>
+                                            <RowDefinition Height="57"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   Text="ANTECEDENTES CRONICOS DEGENERATIVOS"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,7"></TextBlock>
+                                        <TextBox Grid.Row="0" 
+                                                 Grid.Column="1"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 Padding="0,5,0,5"
+                                                 Margin="10,0,0,0"
+                                                 MaxLength="250"/>
+
+
+                                        <TextBlock Grid.Row="1"
+                                                   Grid.Column="0"
+                                                   Text="ANTECEDENTES QUIRURGICOS"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,7"></TextBlock>
+                                        <TextBox Grid.Row="1" 
+                                                 Grid.Column="1"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 Padding="0,5,0,5"
+                                                 Margin="10,0,0,0"
+                                                 MaxLength="250"/>
+
+                                        <TextBlock Grid.Row="2"
+                                                   Grid.Column="0"
+                                                   Text="ANTECEDENTES TRAUMATOLOGICOS"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,7"></TextBlock>
+                                        <TextBox Grid.Row="2" 
+                                                 Grid.Column="1"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 Padding="0,5,0,5"
+                                                 Margin="10,0,0,0"
+                                                 MaxLength="250"/>
+
+                                        <TextBlock Grid.Row="3"
+                                                   Grid.Column="0"
+                                                   Text="TRANSFUSIONES"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,7"></TextBlock>
+                                        <TextBox Grid.Row="3" 
+                                                 Grid.Column="1"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 Padding="0,5,0,5"
+                                                 Margin="10,0,0,0"
+                                                 MaxLength="150"/>
+
+
+                                        <TextBlock Grid.Row="4"
+                                                   Grid.Column="0"
+                                                   Text="INFECTOCONTAGIOSOS"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,7"></TextBlock>
+                                        <TextBox Grid.Row="4" 
+                                                 Grid.Column="1"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 Padding="0,5,0,5"
+                                                 Margin="10,0,0,0"
+                                                 MaxLength="250"/>
+
+                                        <TextBlock Grid.Row="5"
+                                                   Grid.Column="0"
+                                                   Text="HOSPITALIZACIONES"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,7"></TextBlock>
+                                        <TextBox Grid.Row="5" 
+                                                 Grid.Column="1"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 Padding="0,5,0,5"
+                                                 Margin="10,0,0,0"
+                                                 MaxLength="250"/>
+
+                                        <TextBlock Grid.Row="6"
+                                                   Grid.Column="0"
+                                                   Text="COVID 19"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,7"></TextBlock>
+                                        <TextBox Grid.Row="6" 
+                                                 Grid.Column="1"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 Padding="0,5,0,5"
+                                                 Margin="10,0,0,0"
+                                                 MaxLength="250"/>
+                                    </Grid>
+                                </StackPanel>
+
+
+
+
+
+                                <TextBlock Grid.Row="6"
+                                           Text="Antecedentes Gineco Obstetricos"
+                                           FontSize="14"
+                                           TextAlignment="Center"
+                                           Foreground="#000"
+                                           Background="Silver"></TextBlock>
+                                <StackPanel Grid.Row="7"
+                                            Orientation="Vertical">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="120"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="120"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="57"></RowDefinition>
+                                            <RowDefinition Height="57"></RowDefinition>
+                                            <RowDefinition Height="100"></RowDefinition>
+                                            <RowDefinition Height="100"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+
+
+                                        <TextBlock Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   Text="MENARCA"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,10"></TextBlock>
+                                        <StackPanel Grid.Row="0"
+                                                    Grid.Column="1" 
+                                                    Orientation="Horizontal">
+                                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                     VerticalAlignment="Center"
+                                                     Padding="0,5,0,5"
+                                                     Margin="10,0,0,0"
+                                                     Width="151"
+                                                     FontSize="16"
+                                                  >
+                                            </TextBox>
+                                            <TextBlock Text="AÑOS"
+                                                       VerticalAlignment="Bottom"
+                                                       Foreground="#9f9f9f"
+                                                       Margin="5,5,5,10"
+                                                       ></TextBlock>
+                                        </StackPanel>
+
+
+                                        <TextBlock Grid.Row="0"
+                                                   Grid.Column="2"
+                                                   Text="EMBARAZO"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,10"></TextBlock>
+                                        <TextBox Grid.Row="0" 
+                                                 Grid.Column="3"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 Padding="0,5,0,5"
+                                                 Margin="10,0,0,0"
+                                                 FontSize="16"/>
+
+
+                                        <TextBlock Grid.Row="0"
+                                                   Grid.Column="4"
+                                                   Text="CESAREA"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,10"></TextBlock>
+                                        <TextBox Grid.Row="0" 
+                                                 Grid.Column="5"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 Padding="0,5,0,5"
+                                                 Margin="10,0,0,0"
+                                                 FontSize="16"/>
+
+
+                                        <TextBlock Grid.Row="1"
+                                                   Grid.Column="0"
+                                                   Text="ABORTO"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,10"></TextBlock>
+                                        <TextBox Grid.Row="1" 
+                                                 Grid.Column="1"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 Padding="0,5,0,5"
+                                                 Margin="10,0,0,0"
+                                                 FontSize="16"/>
+
+
+                                        <TextBlock Grid.Row="1"
+                                                   Grid.Column="2"
+                                                   Text="IVSA"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,10"></TextBlock>
+                                        <TextBox Grid.Row="1" 
+                                                 Grid.Column="3"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 Padding="0,5,0,5"
+                                                 Margin="10,0,0,0"
+                                                 FontSize="16"/>
+
+                                        <TextBlock Grid.Row="1"
+                                                   Grid.Column="4"
+                                                   Text="MPF"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,7"></TextBlock>
+                                        <ComboBox Grid.Row="1"
+                                                  Grid.Column="5"
+                                                  VerticalAlignment="Bottom"
+                                                  FontSize="16"
+                                                  Margin="10,0,0,0"
+                                                  ItemsSource="{Binding lstMPF, UpdateSourceTrigger=PropertyChanged}"
+                                                  SelectedItem="{Binding MPFSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                                  SelectedValue="CodSexo"
+                                                  DisplayMemberPath="Descripcion">
+                                        </ComboBox>
+
+
+                                        <Border BorderBrush="#9f9f9f"
+                                                BorderThickness="1,1,1,0"
+                                                Grid.Row="2"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="6"
+                                                Height="70"
+                                                Margin="0,20,0,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="ULTIMA VEZ QUE SE REALIZO PAPANICOLAO Y ULTRASONIDO MAMARIO U MAMOGRAFIA"
+                                                           VerticalAlignment="Bottom"
+                                                           HorizontalAlignment="Left"
+                                                           TextAlignment="Center"
+                                                           TextWrapping="WrapWithOverflow"
+                                                           Foreground="#9f9f9f"
+                                                           Margin="10,5,0,0"
+                                                           ></TextBlock>
+                                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                         VerticalAlignment="Center"
+                                                         Padding="5,5,5,5"
+                                                         
+                                                         FontSize="16"
+                                                         MaxLength="150"/>
+                                            </StackPanel>
+                                        </Border>
+
+
+
+
+                                        <Border BorderBrush="#9f9f9f"
+                                                BorderThickness="1,1,1,0"
+                                                Grid.Row="3"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="6"
+                                                Height="70"
+                                                Margin="0,20,0,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="ULTIMA VEZ QUE SE REALIZO PAPANICOLAO Y ULTRASONIDO MAMARIO U MAMOGRAFIA"
+                                                           VerticalAlignment="Bottom"
+                                                           HorizontalAlignment="Left"
+                                                           TextAlignment="Center"
+                                                           TextWrapping="WrapWithOverflow"
+                                                           Foreground="#9f9f9f"
+                                                           Margin="10,5,0,0"
+                                                           ></TextBlock>
+                                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                         VerticalAlignment="Center"
+                                                         Padding="5,5,5,5"
+                                                         
+                                                         FontSize="16"
+                                                         MaxLength="150"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                    </Grid>
+                                </StackPanel>
+                                
+
+
+                                <TextBlock Grid.Row="8"
+                                           Text="Padecimiento Actual"
+                                           FontSize="14"
+                                           TextAlignment="Center"
+                                           Foreground="#000"
+                                           Background="Silver"></TextBlock>
+                                <TextBox Grid.Row="9"
+                                         TextWrapping="Wrap"
+                                         VerticalAlignment="Stretch"
+                                         VerticalContentAlignment="Bottom"
+                                         MinWidth="100"
+                                         AcceptsReturn="True"
+                                         VerticalScrollBarVisibility="Auto"
+                                         SpellCheck.IsEnabled="True"
+                                         BorderBrush="Silver"
+                                         BorderThickness="1"
+                                         Text="" 
+                                         Margin="0,0,0,20"
+                                         Padding="5"
+                                         MaxLength="200"/>
+                            </Grid>                            
+                            
+                        </ScrollViewer>                        
+
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Otros">
+                    <StackPanel Margin="10"
+                                Orientation="Vertical"
+                                VerticalAlignment="Top"
+                                Height="570">
+
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="570">
+                            <Grid Margin="0,10,10,20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="120"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="120"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+
+
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="0"
+                                           Text="Inmunizaciones"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <ComboBox Grid.Row="0"
+                                          Grid.Column="1"
+                                          VerticalAlignment="Bottom"
+                                          FontSize="16"
+                                          Margin="10,0,0,0"
+                                          ItemsSource="{Binding lstInmunizaciones, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedItem="{Binding InmunizacionSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedValue="Codigo"
+                                          DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="2"
+                                           Text="Religión"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="0" 
+                                         Grid.Column="3"
+                                         Grid.ColumnSpan="3"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         x:Name="txtReligion"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         MaxLength="50"/>
+
+
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="0"
+                                           Text="Grupo sanguíneo"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="1"
+                                          Grid.Column="1"
+                                          Grid.ColumnSpan="2"
+                                          VerticalAlignment="Bottom"
+                                          FontSize="16"
+                                          Margin="10,0,0,0"
+                                          ItemsSource="{Binding lstGrupoSanguineo, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedItem="{Binding GrupoSanguineoSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedValue="Codigo"
+                                          DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="3"
+                                           Text="Factor"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <ComboBox Grid.Row="1"
+                                          Grid.Column="4"
+                                          Grid.ColumnSpan="2"
+                                          VerticalAlignment="Bottom"
+                                          FontSize="16"
+                                          Margin="10,0,0,0"
+                                          ItemsSource="{Binding lstFactor, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedItem="{Binding FactorSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedValue="Codigo"
+                                          DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="0"
+                                           Text="Alérgico a la Penicilina"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           TextAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="2"
+                                          Grid.Column="1"
+                                          VerticalAlignment="Bottom"
+                                          FontSize="16"
+                                          Margin="10,0,0,0"
+                                          ItemsSource="{Binding lstPenicilina, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedItem="{Binding PenicilinaSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedValue="Codigo"
+                                          DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+
+
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="2"
+                                           Text="Otros"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"
+                                           ></TextBlock>
+                                <TextBox Grid.Row="2" 
+                                         Grid.Column="3"
+                                         Grid.ColumnSpan="3"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         x:Name="txtOtros"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         MaxLength="250"/>
+
+
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="0"
+                                           Text="E.T.S."
+                                           ToolTip="Enfermedades de Transmisión Sexual"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           TextAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="3"
+                                          Grid.Column="1"
+                                          VerticalAlignment="Bottom"
+                                          FontSize="16"
+                                          Margin="10,0,0,0"
+                                          ItemsSource="{Binding lstTransmisionSexual, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedItem="{Binding TransmisionSexualSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedValue="Codigo"
+                                          DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="2"
+                                           Text="Especifique"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="3"
+                                         Grid.Column="3"
+                                         Grid.ColumnSpan="3"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         x:Name="txtEspecifique"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         MaxLength="250"/>
+
+
+                                <TextBlock Grid.Row="4"
+                                           Grid.Column="0"
+                                           Text="SIDA"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="4"
+                                          Grid.Column="1"
+                                          VerticalAlignment="Bottom"
+                                          FontSize="16"
+                                          Margin="10,0,0,0"
+                                          ItemsSource="{Binding lstSida, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedItem="{Binding SidaSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedValue="Codigo"
+                                          DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+
+                                <TextBlock Grid.Row="4"
+                                           Grid.Column="2"
+                                           Text="Seropositivo"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="4" 
+                                         Grid.Column="3"
+                                         Grid.ColumnSpan="3"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         x:Name="txtSeropositivo"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         MaxLength="40"></TextBox>
+
+
+
+                                <TextBlock Grid.Row="5"
+                                       Grid.Column="0"
+                                       Text="Drogas"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="5"
+                                      Grid.Column="1"
+                                      VerticalAlignment="Bottom"
+                                      FontSize="16"
+                                      Margin="10,0,0,0"
+                                      ItemsSource="{Binding lstDroga, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding DrogaSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="Codigo"
+                                      DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+
+                                <TextBlock Grid.Row="5"
+                                       Grid.Column="2"
+                                       Text="Cocaina"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="5"
+                                      Grid.Column="3"
+                                      VerticalAlignment="Bottom"
+                                      FontSize="16"
+                                      Margin="10,0,0,0"
+                                      ItemsSource="{Binding lstCocaina, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding CocainaSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="Codigo"
+                                      DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+
+                                <TextBlock Grid.Row="5"
+                                       Grid.Column="4"
+                                       Text="Mariguana"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="5"
+                                      Grid.Column="5"
+                                      VerticalAlignment="Bottom"
+                                      FontSize="16"
+                                      Margin="10,0,0,0"
+                                      ItemsSource="{Binding lstMariguana, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding MariguanaSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="Codigo"
+                                      DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+
+                                <TextBlock Grid.Row="6"
+                                       Grid.Column="0"
+                                           Grid.ColumnSpan="2"
+                                       Text="Por cuanto tiempo consumio"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       TextAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <TextBox Grid.Row="6" 
+                                     Grid.Column="2"
+                                     Grid.ColumnSpan="4"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Bottom"
+                                     x:Name="txtTiempoConsumo"
+                                     Padding="0,5,0,5"
+                                     Margin="10,0,0,0"
+                                     FontSize="16"
+                                     MaxLength="100"/>
+
+
+
+                                <TextBlock Grid.Row="7"
+                                       Grid.Column="0"
+                                       Text="Psicofármacos"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="7"
+                                      Grid.Column="1"
+                                      VerticalAlignment="Bottom"
+                                      FontSize="16"
+                                      Margin="10,0,0,0"
+                                      ItemsSource="{Binding lstPsicofarmacos, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding PsicofarmacosSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="Codigo"
+                                      DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+
+                                <TextBlock Grid.Row="7"
+                                       Grid.Column="2"
+                                       Text="Ingesta de alcohol"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                           TextAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="7"
+                                      Grid.Column="3"
+                                      VerticalAlignment="Bottom"
+                                      FontSize="16"
+                                      Margin="10,0,0,0"
+                                      ItemsSource="{Binding lstAlcohol, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding AlcoholSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="Codigo"
+                                      DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+                                <TextBlock Grid.Row="7"
+                                       Grid.Column="4"
+                                       Text="Tabaquismo"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="7"
+                                      Grid.Column="5"
+                                      VerticalAlignment="Bottom"
+                                      FontSize="16"
+                                      Margin="10,0,0,0"
+                                      ItemsSource="{Binding lstTabaquismo, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding TabaquismoSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="Codigo"
+                                      DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+                                
+                                <TextBlock Grid.Row="8"
+                                       Grid.Column="0"
+                                       Text="Tatuajes"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="8"
+                                      Grid.Column="1"
+                                      VerticalAlignment="Bottom"
+                                      FontSize="16"
+                                      Margin="10,0,0,0"
+                                      ItemsSource="{Binding lstTatuajes, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding TatuajeSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="Codigo"
+                                      DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+                                <TextBlock Grid.Row="8"
+                                       Grid.Column="2"
+                                       Text="Descripción"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       TextAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <TextBox Grid.Row="8" 
+                                     Grid.Column="3"
+                                         Grid.ColumnSpan="3"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Bottom"
+                                     x:Name="txtDescripcion"
+                                     Padding="0,5,0,5"
+                                     Margin="10,0,0,0"
+                                     FontSize="16"
+                                     MaxLength="250"/>
+
+
+                                <TextBlock Grid.Row="9"
+                                       Grid.Column="0"
+                                       Text="Localización"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="9" 
+                                     Grid.Column="1"
+                                     Grid.ColumnSpan="5"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Center"
+                                     x:Name="txtLocalizacion"
+                                     Padding="0,5,0,5"
+                                     Margin="10,0,0,0"
+                                     FontSize="16"
+                                     MaxLength="50"/>
+
+
+
+
+
+                                <TextBlock Grid.Row="10"
+                                       Grid.Column="0"
+                                       Text="Deportes"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="10"
+                                      Grid.Column="1"
+                                      VerticalAlignment="Bottom"
+                                      FontSize="16"
+                                      Margin="10,0,0,0"
+                                      ItemsSource="{Binding lstDeportes, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding DeporteSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="Codigo"
+                                      DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+
+                                <TextBlock Grid.Row="10"
+                                       Grid.Column="2"
+                                       Text="Cual practica"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       TextAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <TextBox Grid.Row="10" 
+                                     Grid.Column="3"
+                                         Grid.ColumnSpan="3"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Bottom"
+                                     x:Name="txtCualPractica"
+                                     Padding="0,5,0,5"
+                                     Margin="10,0,0,0"
+                                     FontSize="16"
+                                     MaxLength="50"/>
+
+
+                                <TextBlock Grid.Row="11"
+                                       Grid.Column="0"
+                                       Text="Tratamiento psiquiatrico"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="11"
+                                      Grid.Column="1"
+                                      VerticalAlignment="Bottom"
+                                      FontSize="16"
+                                      Margin="10,0,0,0"
+                                      ItemsSource="{Binding lstPsiquiatrico, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding PsiquiatricoSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="Codigo"
+                                      DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+                                <TextBlock Grid.Row="11"
+                                       Grid.Column="2"
+                                       Text="Tratamiento Psicologico"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"
+                                       TextWrapping="WrapWithOverflow"></TextBlock>
+                                <ComboBox Grid.Row="11"
+                                      Grid.Column="3"
+                                      VerticalAlignment="Bottom"
+                                      FontSize="16"
+                                      Margin="10,0,0,0"
+                                      ItemsSource="{Binding lstPsicologico, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding PsicologicoSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="Codigo"
+                                      DisplayMemberPath="Descripcion">
+                                </ComboBox>
+
+
+                            </Grid>
+                        </ScrollViewer>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Detras">
+                    <StackPanel Margin="10"
+                                Orientation="Vertical"
+                                VerticalAlignment="Top"
+                                Height="570">
+
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="570">
+                            <Grid Margin="0,10,10,20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="120"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="120"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="57"></RowDefinition>
+
+                                </Grid.RowDefinitions>
+
+
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="0"
+                                           Text="Inspeccion general"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           Margin="0,0,0,5"
+                                           FontSize="16"
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"
+                                           TextAlignment="Right"></TextBlock>
+                                <TextBox Grid.Row="0"
+                                         Grid.Column="1" 
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         MaxLength="100"/>
+
+                                
+                                
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="0"
+                                           Text="Lenguaje corporal"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           TextAlignment="Right"
+                                           FontSize="16"
+                                           TextWrapping="WrapWithOverflow"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="1"
+                                         Grid.Column="1" 
+                                         Grid.ColumnSpan="3"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         MaxLength="500"/>
+
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="4"
+                                           Text="Resp."
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="1" 
+                                         Grid.Column="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="0"
+                                           Text="TA"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="2" 
+                                         Grid.Column="1"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"/>
+
+
+
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="2"
+                                           Text="FR"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="2" 
+                                         Grid.Column="3"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"/>
+
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="4"
+                                           Text="FC"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="2" 
+                                         Grid.Column="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"/>
+
+
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="0"
+                                           Text="Peso"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="3" 
+                                         Grid.Column="1"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""/>
+
+
+
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="2"
+                                           Text="Estatura"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="3" 
+                                         Grid.Column="3"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""/>
+
+
+
+
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="4"
+                                           Text="Índice de Masa Corporal"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           TextWrapping="WrapWithOverflow"
+                                           Foreground="#9f9f9f"
+                                           TextAlignment="Right"></TextBlock>
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="5"
+                                           Text=""
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Left"
+                                           FontSize="16"
+                                           Margin="10,0,0,0"></TextBlock>
+
+
+
+
+                                <TextBlock Grid.Row="5"
+                                           Grid.Column="0"
+                                           Text="Craneo"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="5" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="6"
+                                           Grid.Column="0"
+                                           Text="Cara"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="6" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+
+                                <TextBlock Grid.Row="7"
+                                           Grid.Column="0"
+                                           Text="Ojos"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="7" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+
+                                <TextBlock Grid.Row="8"
+                                           Grid.Column="0"
+                                           Text="Vision"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="8" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                
+                                <TextBlock Grid.Row="9"
+                                           Grid.Column="0"
+                                           Text="Nariz"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="9" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+
+                                <TextBlock Grid.Row="10"
+                                           Grid.Column="0"
+                                           Text="Oidos"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="10" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+
+                                <TextBlock Grid.Row="11"
+                                           Grid.Column="0"
+                                           Text="Boca"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="11" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="12"
+                                           Grid.Column="0"
+                                           Text="Cuello"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="12" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="13"
+                                           Grid.Column="0"
+                                           Text="Faringe"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="13" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="14"
+                                           Grid.Column="0"
+                                           Text="Torax"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="14" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="15"
+                                           Grid.Column="0"
+                                           Text="Mamas"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="15" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+
+                                <TextBlock Grid.Row="16"
+                                           Grid.Column="0"
+                                           Text="Abdomen"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="16" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="53"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+
+                                <TextBlock Grid.Row="17"
+                                           Grid.Column="0"
+                                           Text="A. Digestivo"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="17" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="18"
+                                           Grid.Column="0"
+                                           Text="A. Respiratorio"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="18" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="19"
+                                           Grid.Column="0"
+                                           Text="A. Cardiovascular"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="19" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+
+                                <TextBlock Grid.Row="20"
+                                           Grid.Column="0"
+                                           Text="Genitales"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="20" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="21"
+                                           Grid.Column="0"
+                                           Text="Sistema Nervioso"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           TextWrapping="WrapWithOverflow"
+                                           TextAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="21" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="22"
+                                           Grid.Column="0"
+                                           Text="S. musculo esqueletico"
+                                           ToolTip="Sistema musculo esqueletico"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"
+                                           TextAlignment="Right"></TextBlock>
+                                <TextBox Grid.Row="22" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+
+                                <TextBlock Grid.Row="23"
+                                           Grid.Column="0"
+                                           Text="Miembro Superior"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"
+                                           TextAlignment="Right"></TextBlock>
+                                <TextBox Grid.Row="23" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="24"
+                                           Grid.Column="0"
+                                           Text="Miembro Inferior"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"
+                                           TextAlignment="Right"></TextBlock>
+                                <TextBox Grid.Row="24" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="25"
+                                           Grid.Column="0"
+                                           Text="Pelvis"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"></TextBlock>
+                                <TextBox Grid.Row="25" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+
+                                <TextBlock Grid.Row="26"
+                                           Grid.Column="0"
+                                           Text="Columna vertebral"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"></TextBlock>
+                                <TextBox Grid.Row="26" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="27"
+                                           Grid.Column="0"
+                                           Text="Pie"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"></TextBlock>
+                                <TextBox Grid.Row="27" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+                                <TextBlock Grid.Row="28"
+                                           Grid.Column="0"
+                                           Text="Anexos"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Margin="5"
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"></TextBlock>
+                                <TextBox Grid.Row="28" 
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="5"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"
+                                         Padding="0,5,0,5"
+                                         Margin="10,0,0,0"
+                                         FontSize="16"
+                                         Text=""
+                                         MaxLength="100"/>
+
+
+
+
+
+
+
+
+                                <TextBlock Grid.Row="30"
+                                           Grid.Column="0"
+                                           Text="Viajes a la frontera"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           TextAlignment="Right"
+                                           FontSize="16"
+                                           TextWrapping="WrapWithOverflow"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="30"
+                                         Grid.Column="1" 
+                                         Grid.ColumnSpan="5"
+                                         TextWrapping="Wrap"
+                                         VerticalAlignment="Stretch"
+                                         VerticalContentAlignment="Bottom"
+                                         MinWidth="100"
+                                         AcceptsReturn="True"
+                                         VerticalScrollBarVisibility="Auto"
+                                         SpellCheck.IsEnabled="True"
+                                         Text="" 
+                                         Margin="10,5,0,0"
+                                         MaxLength="100"
+                                         FontSize="14"/>
+
+
+                                <TextBlock Grid.Row="31"
+                                           Grid.Column="0"
+                                           Text="Diagnostico"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           TextAlignment="Right"
+                                           FontSize="16"
+                                           TextWrapping="WrapWithOverflow"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="31"
+                                         Grid.Column="1" 
+                                         Grid.ColumnSpan="5"
+                                         TextWrapping="Wrap"
+                                         VerticalAlignment="Stretch"
+                                         VerticalContentAlignment="Bottom"
+                                         MinWidth="100"
+                                         AcceptsReturn="True"
+                                         VerticalScrollBarVisibility="Auto"
+                                         SpellCheck.IsEnabled="True"
+                                         Text="" 
+                                         Margin="10,5,0,0"
+                                         MaxLength="500"
+                                         FontSize="14"/>
+
+                                <TextBlock Grid.Row="32"
+                                           Grid.Column="0"
+                                           Text="Observaciones"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           TextAlignment="Right"
+                                           FontSize="16"
+                                           TextWrapping="WrapWithOverflow"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="32"
+                                         Grid.Column="1" 
+                                         Grid.ColumnSpan="5"
+                                         TextWrapping="Wrap"
+                                         VerticalAlignment="Stretch"
+                                         VerticalContentAlignment="Bottom"
+                                         MinWidth="100"
+                                         AcceptsReturn="True"
+                                         VerticalScrollBarVisibility="Auto"
+                                         SpellCheck.IsEnabled="True"
+                                         Text="" 
+                                         Margin="10,5,0,0"
+                                         MaxLength="1000"
+                                         FontSize="14"/>
+
+                                <TextBlock Grid.Row="33"
+                                           Grid.Column="0"
+                                           Text="Resultado"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           TextAlignment="Right"
+                                           FontSize="16"
+                                           TextWrapping="WrapWithOverflow"
+                                           Foreground="#9f9f9f"></TextBlock>
+                                <TextBox Grid.Row="33"
+                                         Grid.Column="1" 
+                                         Grid.ColumnSpan="5"
+                                         TextWrapping="Wrap"
+                                         VerticalAlignment="Stretch"
+                                         VerticalContentAlignment="Bottom"
+                                         MinWidth="100"
+                                         AcceptsReturn="True"
+                                         VerticalScrollBarVisibility="Auto"
+                                         SpellCheck.IsEnabled="True"
+                                         Text="" 
+                                         Margin="10,5,0,0"
+                                         MaxLength="500"
+                                         FontSize="14"/>
+
+                            </Grid>
+                        </ScrollViewer>
+
+
+
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </materialDesign:Card>
+
+
+        <Button VerticalAlignment="Bottom"
+                HorizontalAlignment="Left" 
+                Style="{StaticResource MaterialDesignFlatLightButton}"
+                Width="100"
+                ToolTip="Anterior"
+                Content="Anterior"
+                x:Name="btnAnterior"
+                Foreground="Black"
+                Background="Silver"
+                Margin="10,0,0,10"
+                Visibility="Collapsed"
+                Click="btnAnterior_Click"/>
+        
+        <Button VerticalAlignment="Bottom"
+                HorizontalAlignment="Right" 
+                Style="{StaticResource MaterialDesignFlatLightButton}"
+                Width="100"
+                ToolTip="Siguiente"
+                Content="Siguiente"
+                x:Name="btnSiguiente"
+                Foreground="Black"
+                Background="Silver"
+                Margin="0,0,10,10"
+                Click="btnSiguiente_Click"/>
+
+        <Button VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Style="{StaticResource MaterialDesignRaisedSecondaryDarkButton}"
+                Width="100"
+                ToolTip="Guardar cambios"
+                Content="Guardar"
+                Margin="0,0,10,10"
+                x:Name="btnGuardar"
+                Visibility="Collapsed"
+                Click="btnGuardar_Click">
+        </Button>
+    </Grid>
+</Window>

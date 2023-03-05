@@ -44,6 +44,10 @@ namespace UNIPOL
                 var version = Assembly.GetExecutingAssembly().GetName().Version;
                 lblVersion.Content =  "v" + version.ToString();
 
+                var configFile = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
+                var AppSettings = configFile.AppSettings.Settings;
+                Globales.ConexionPrincipal = AppSettings["conexion"].Value;
+
                 Login login = new Login();
                 login.Owner = this;
                 login.ShowDialog();
@@ -53,15 +57,18 @@ namespace UNIPOL
                 }
                 else
                 {
-                    if (!Globales.usuarioActivo.esMedico)
+                    if (Globales.usuarioActivo.esMedico)
                     {
-                        mnMedico.Visibility = Visibility.Collapsed;
+                        //mnMedico.Visibility = Visibility.Collapsed;
+                        mnMedicoAltaPaciente.Visibility = Visibility.Visible;
+                        mnMedicoConsultar.Visibility = Visibility.Visible;
+                        mnMedicoHistoriaClinica.Visibility = Visibility.Visible;
                     }
                     else
                     {
-                        mnConfig.Visibility = Visibility.Collapsed;
-                        mnInventario.Visibility = Visibility.Collapsed;
-                        mnReportes.Visibility = Visibility.Collapsed;
+                        mnConfig.Visibility = Visibility.Visible;
+                        mnInventario.Visibility = Visibility.Visible;
+                        mnReportes.Visibility = Visibility.Visible;
                     }
                 }
             }
@@ -139,34 +146,52 @@ namespace UNIPOL
 
         private void mnMedicoUltimaReceta_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                var ultima = _boMedicos.UltimaReceta(Globales.usuarioActivo.IdUsuario);
-                if (ultima.Value)
-                {
-                    var receta = _boMedicos.Receta(ultima.Data);
-                    if (receta.Data.Count > 0)
-                    {
-                        var d = receta.Data;
-                        ReportDocument reporte = new ReportDocument();
-                        var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-                        reporte.Load(path + @"\Reportes\rptReceta.rpt");
-                        reporte.SetDataSource(d);
-                        Reportes.Reporteador reportView = new Reportes.Reporteador(reporte, 90);
-                        reportView.WindowState = System.Windows.WindowState.Maximized;
-                        reportView.Title = "Receta";
-                        reportView.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontraron resultados", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("M03 -" + ex.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            General.ImprimirUltimoFolio ultimoFolio = new General.ImprimirUltimoFolio();
+            ultimoFolio.TipoImpresion = "R";
+            ultimoFolio.Owner = this;
+            ultimoFolio.ShowDialog();
+            //try
+            //{
+            //    var ultima = _boMedicos.UltimaReceta(Globales.usuarioActivo.IdUsuario);
+            //    if (ultima.Value)
+            //    {
+            //        var receta = _boMedicos.Receta(ultima.Data);
+            //        if (receta.Data.Count > 0)
+            //        {
+            //            var d = receta.Data;
+            //            ReportDocument reporte = new ReportDocument();
+            //            var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            //            reporte.Load(path + @"\Reportes\rptReceta.rpt");
+            //            reporte.SetDataSource(d);
+            //            Reportes.Reporteador reportView = new Reportes.Reporteador(reporte, 90);
+            //            reportView.WindowState = System.Windows.WindowState.Maximized;
+            //            reportView.Title = "Receta";
+            //            reportView.Show();
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("No se encontraron resultados", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("M03 -" + ex.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
+        }
+
+        private void mnMedicoHCCaptura_Click(object sender, RoutedEventArgs e)
+        {
+            HistoriaClinicaCaptura hcc = new HistoriaClinicaCaptura();
+            hcc.Owner = this;
+            hcc.ShowDialog();
+        }
+
+        private void mnMedicoHCCHistorial_Click(object sender, RoutedEventArgs e)
+        {
+            HistoriaClinicaHistorial hch = new HistoriaClinicaHistorial();
+            hch.Owner = this;
+            hch.ShowDialog();
         }
     }
 }

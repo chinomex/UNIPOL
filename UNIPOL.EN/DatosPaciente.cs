@@ -14,5 +14,7 @@ namespace UNIPOL.EN
         public DateTime FechaNacimiento { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }
+        public int Edad { get; set; }
+        public string EdadCompleta { get; set; }
     }
 }
