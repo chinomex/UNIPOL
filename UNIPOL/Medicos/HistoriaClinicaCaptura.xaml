@@ -688,7 +688,7 @@
                                                 Height="70"
                                                 Margin="0,20,0,0">
                                             <StackPanel Orientation="Vertical">
-                                                <TextBlock Text="ULTIMA VEZ QUE SE REALIZO PAPANICOLAO Y ULTRASONIDO MAMARIO U MAMOGRAFIA"
+                                                <TextBlock Text="OTRA OBSERVACION"
                                                            VerticalAlignment="Bottom"
                                                            HorizontalAlignment="Left"
                                                            TextAlignment="Center"
@@ -1296,7 +1296,7 @@
                                       Height="570">
                             <Grid Margin="0,10,10,20">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="120"></ColumnDefinition>
+                                    <ColumnDefinition Width="140"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="120"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -1792,7 +1792,9 @@
                                            HorizontalAlignment="Right"
                                            FontSize="16"
                                            Margin="5"
-                                           Foreground="#9f9f9f"></TextBlock>
+                                           Foreground="#9f9f9f"
+                                           TextWrapping="WrapWithOverflow"
+                                           TextAlignment="Right"></TextBlock>
                                 <TextBox Grid.Row="19" 
                                          Grid.Column="1"
                                          Grid.ColumnSpan="5"
@@ -1847,7 +1849,7 @@
 
                                 <TextBlock Grid.Row="22"
                                            Grid.Column="0"
-                                           Text="S. musculo esqueletico"
+                                           Text="Sistema musculo esqueletico"
                                            ToolTip="Sistema musculo esqueletico"
                                            VerticalAlignment="Bottom"
                                            HorizontalAlignment="Right"
