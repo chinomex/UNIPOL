@@ -48,5 +48,155 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  
+
+
+
+  <xs:element name="rptHistoriaClinica">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IdHistoria" type="xs:integer"/>
+        <xs:element name="CodPaciente" type="xs:integer"/>
+        <xs:element name="Modalidad" type="xs:string"/>
+        <xs:element name="Nombre" type="xs:string"/>
+        <xs:element name="FechaNacimiento" type="xs:dateTime"/>
+        <xs:element name="EdadCompleta" type="xs:string"/>
+        <xs:element name="Fecha" type="xs:dateTime"/>
+        <xs:element name="IdEstatoCivil" type="xs:integer"/>
+        <xs:element name="EstadoCivil" type="xs:string"/>
+        <xs:element name="IdGenero" type="xs:integer"/>
+        <xs:element name="Genero" type="xs:string"/>
+        <xs:element name="SenasParticulares" type="xs:string"/>
+        <xs:element name="Escolaridad" type="xs:string"/>
+        <xs:element name="Originario" type="xs:string"/>
+        <xs:element name="Domicilio" type="xs:string"/>
+        <xs:element name="Procedencia" type="xs:string"/>
+        <xs:element name="Trabajo" type="xs:string"/>
+        <xs:element name="Telefono" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="rptHistoriaClinicaAntecedentes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IdHistoria" type="xs:int"/>
+        <xs:element name="HeredoFamiliares" type="xs:string"/>
+        <xs:element name="PersonalesNoPatologicos" type="xs:string"/>
+        <xs:element name="AntecedentesCronicoDegenerativos" type="xs:string"/>
+        <xs:element name="AntecedentesQuirurgicos" type="xs:string"/>
+        <xs:element name="AntecedentesTraumatologicos" type="xs:string"/>
+        <xs:element name="Transfuciones" type="xs:string"/>
+        <xs:element name="Infectocontagiosos" type="xs:string"/>
+        <xs:element name="Hospitalizaiones" type="xs:string"/>
+        <xs:element name="COVID19" type="xs:string"/>
+        <xs:element name="Menarca" type="xs:integer"/>
+        <xs:element name="Embarazo" type="xs:integer"/>
+        <xs:element name="Cesarea" type="xs:integer"/>
+        <xs:element name="Aborto" type="xs:integer"/>
+        <xs:element name="IVSA" type="xs:integer"/>
+        <xs:element name="IdMPF" type="xs:integer"/>
+        <xs:element name="MPF" type="xs:string"/>
+        <xs:element name="UltimoPapanicolaoUltrasonido" type="xs:string"/>
+        <xs:element name="OtraObservacion" type="xs:string"/>
+        <xs:element name="PadecimientoActual" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+  <xs:element name="rptHistoriaClinicaOtros">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IdHistoria" type="xs:integer"/>
+        <xs:element name="IdInmunizacion" type="xs:integer"/>
+        <xs:element name="Inmunizacion" type="xs:string"/>
+        <xs:element name="Religion" type="xs:string"/>
+        <xs:element name="IdGrupoSanguineo" type="xs:integer"/>
+        <xs:element name="GrupooSanguineo" type="xs:string"/>
+        <xs:element name="IdFactor" type="xs:integer"/>
+        <xs:element name="Factor" type="xs:string"/>
+        <xs:element name="AlergicoPenicilina" type="xs:boolean"/>
+        <xs:element name="AlergicoPenicilinaTXT" type="xs:string"/>
+        <xs:element name="Otros" type="xs:string"/>
+        <xs:element name="ETS" type="xs:boolean"/>
+        <xs:element name="ETSTXT" type="xs:string"/>
+        <xs:element name="EspecifiqueETS" type="xs:string"/>
+        <xs:element name="SIDA" type="xs:boolean"/>
+        <xs:element name="SIDATXT" type="xs:string"/>
+        <xs:element name="Seropositivo" type="xs:string"/>
+        <xs:element name="Drogas" type="xs:boolean"/>
+        <xs:element name="DrogasTXT" type="xs:string"/>
+        <xs:element name="Cocaina" type="xs:boolean"/>
+        <xs:element name="CocainaTXT" type="xs:string"/>
+        <xs:element name="Mariguana" type="xs:boolean"/>
+        <xs:element name="MariguanaTXT" type="xs:string"/>
+        <xs:element name="TiempoConsumo" type="xs:string"/>
+        <xs:element name="Psicofarmacos" type="xs:boolean"/>
+        <xs:element name="PsicofarmacosTXT" type="xs:string"/>
+        <xs:element name="IngestaAlcohol" type="xs:boolean"/>
+        <xs:element name="IngestaAlcoholTXT" type="xs:string"/>
+        <xs:element name="Tabaquisto" type="xs:boolean"/>
+        <xs:element name="TabaquistoTXT" type="xs:string"/>
+        <xs:element name="IdCantidadTatuajes" type="xs:integer"/>
+        <xs:element name="TatuajesDescripcion" type="xs:string"/>
+        <xs:element name="TatuajesLocalizacion" type="xs:string"/>
+        <xs:element name="Deportes" type="xs:boolean"/>
+        <xs:element name="DeportesTXT" type="xs:string"/>
+        <xs:element name="DeportesPractica" type="xs:string"/>
+        <xs:element name="TratamientoPsiquiatrico" type="xs:boolean"/>
+        <xs:element name="TratamientoPsiquiatricoTXT" type="xs:string"/>
+        <xs:element name="TratamientoPsicologico" type="xs:boolean"/>
+        <xs:element name="TratamientoPsicologicoTXT" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+  <xs:element name="rptHistoriaClinicaDetras">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IdHistoria" type="xs:integer"/>
+        <xs:element name="InspeccionGeneral" type="xs:string"/>
+        <xs:element name="LenguajeCorporal" type="xs:string"/>
+        <xs:element name="Resp" type="xs:string"/>
+        <xs:element name="TA" type="xs:decimal"/>
+        <xs:element name="FR" type="xs:decimal"/>
+        <xs:element name="FC" type="xs:decimal"/>
+        <xs:element name="Peso" type="xs:decimal"/>
+        <xs:element name="Estatura" type="xs:decimal"/>
+        <xs:element name="Craneo" type="xs:string"/>
+        <xs:element name="Cara" type="xs:string"/>
+        <xs:element name="Ojos" type="xs:string"/>
+        <xs:element name="Vision" type="xs:string"/>
+        <xs:element name="Nariz" type="xs:string"/>
+        <xs:element name="Oidos" type="xs:string"/>
+        <xs:element name="Boca" type="xs:string"/>
+        <xs:element name="Cuello" type="xs:string"/>
+        <xs:element name="Faringe" type="xs:string"/>
+        <xs:element name="Torax" type="xs:string"/>
+        <xs:element name="Mamas" type="xs:string"/>
+        <xs:element name="Abdomen" type="xs:string"/>
+        <xs:element name="ADigestivo" type="xs:string"/>
+        <xs:element name="ARespiratorio" type="xs:string"/>
+        <xs:element name="ACardiovascular" type="xs:string"/>
+        <xs:element name="Genitales" type="xs:string"/>
+        <xs:element name="SistemaNervioso" type="xs:string"/>
+        <xs:element name="MusculoEsqueletico" type="xs:string"/>
+        <xs:element name="MiembroSuperior" type="xs:string"/>
+        <xs:element name="MiembroInferior" type="xs:string"/>
+        <xs:element name="Pelvis" type="xs:string"/>
+        <xs:element name="ColumnaVertebral" type="xs:string"/>
+        <xs:element name="Pie" type="xs:string"/>
+        <xs:element name="Anexos" type="xs:string"/>
+        <xs:element name="ViajesFrontera" type="xs:string"/>
+        <xs:element name="Diagnostico" type="xs:string"/>
+        <xs:element name="Observaciones" type="xs:string"/>
+        <xs:element name="Resultado" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+
+
 </xs:schema>

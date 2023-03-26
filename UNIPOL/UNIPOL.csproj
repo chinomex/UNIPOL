@@ -201,6 +201,9 @@
     <None Include="Reportes\Reportes.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Reportes\rptHistoriaClinica.rpt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Resource Include="botePastillas.ico" />
     <Content Include="Reportes\rptExistencias.rpt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

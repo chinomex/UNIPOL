@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using UNIPOL.DA;
 using UNIPOL.EN;
 using WarmPack.Classes;
@@ -44,6 +46,16 @@ namespace UNIPOL.BO
         {
             return _da.UltimaReceta(codMedico);
 
+        }
+
+        public Result<int> guardarHistoriaClinica(HC xml)
+        {
+            return _da.guardarHistoriaClinica(xml);
+        }
+
+        public Result ConsultaHistoriaClinia(int idHistoria, ref DataSet ds)
+        {
+            return _da.ConsultaHistoriaClinia(idHistoria,ref ds);
         }
     }
 }

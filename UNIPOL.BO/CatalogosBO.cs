@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WarmPack.Classes;
 using UNIPOL.DA;
 using UNIPOL.EN.Catalogos;
-
+using UNIPOL.EN;
 
 namespace UNIPOL.BO
 {
@@ -43,6 +43,45 @@ namespace UNIPOL.BO
         {
             return _da.ConsultaArticulo(codArticulo);
 
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatEstadoCivil()
+        {
+            return _da.ConsultaCatEstadoCivil();
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatGenero()
+        {
+            return _da.ConsultaCatGenero();
+        }
+        public Result<List<ComboGenerico>> ConsultaCatMPF()
+        {
+            return _da.ConsultaCatMPF();
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatInmunizaciones()
+        {
+            return _da.ConsultaCatInmunizaciones();
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatGrupoSanguineo()
+        {
+            return _da.ConsultaCatGrupoSanguineo();
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatFactor()
+        {
+            return _da.ConsultaCatFactor();
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatTatuajes()
+        {
+            return _da.ConsultaCatTatuajes();
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatGenerico()
+        {
+            return _da.ConsultaCatGenerico();
         }
     }
 }

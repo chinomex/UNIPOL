@@ -143,5 +143,162 @@ namespace UNIPOL.DA
         }
 
 
+
+
+
+        public Result<List<ComboGenerico>> ConsultaCatEstadoCivil()
+        {
+            var resultado = new Result<List<ComboGenerico>>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults<ComboGenerico>("sp_CatEstadosCivilesCon", parametros);
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatGenero()
+        {
+            var resultado = new Result<List<ComboGenerico>>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults<ComboGenerico>("sp_CatGeneroCon", parametros);
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatMPF()
+        {
+            var resultado = new Result<List<ComboGenerico>>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults<ComboGenerico>("sp_CatMPFCon", parametros);
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatInmunizaciones()
+        {
+            var resultado = new Result<List<ComboGenerico>>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults<ComboGenerico>("sp_CatInmunizacionesCon", parametros);
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatGrupoSanguineo()
+        {
+            var resultado = new Result<List<ComboGenerico>>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults<ComboGenerico>("sp_CatGrupoSanguineoCon", parametros);
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatFactor()
+        {
+            var resultado = new Result<List<ComboGenerico>>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults<ComboGenerico>("sp_CatFactoresCon", parametros);
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+
+        public Result<List<ComboGenerico>> ConsultaCatTatuajes()
+        {
+            var resultado = new Result<List<ComboGenerico>>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults<ComboGenerico>("sp_CatTatuajesCon", parametros);
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+        public Result<List<ComboGenerico>> ConsultaCatGenerico()
+        {
+            var resultado = new Result<List<ComboGenerico>>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults<ComboGenerico>("sp_CatGenericoCon", parametros);
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+
     }
 }

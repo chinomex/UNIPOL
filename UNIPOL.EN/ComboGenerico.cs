@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace UNIPOL.EN
 {
-    public class EstadoCivil
+    public class ComboGenerico
     {
-        public int CodEstadoCivil { get; set; }
-        public string Descripcion { get; set; }
+        public int Codigo { get; set; }
+       public string Descripcion { get; set; }
     }
 }

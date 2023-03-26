@@ -21,7 +21,7 @@
                         SelectionChanged="tbHistoria_SelectionChanged"
                         Name="tbHistoria">
                 <TabItem Header="Datos del cadete">
-                    <StackPanel Margin="10"
+                    <StackPanel Margin="10,10,15,10"
                                 Orientation="Vertical"
                                 VerticalAlignment="Top"
                                 Height="570">
@@ -31,6 +31,8 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="150"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>                                
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="57"></RowDefinition>
@@ -57,13 +59,13 @@
                             <StackPanel Orientation="Horizontal"
                                         Grid.Row="0"
                                         Grid.Column="1"
-                                        Grid.ColumnSpan="3"
+                                        Grid.ColumnSpan="5"
                                         Margin="10,0,0,0">
                                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                          VerticalAlignment="Center"
                                          x:Name="txtPaciente"
                                          Padding="0,5,0,5"
-                                         Width="744"
+                                         Width="740"
                                          FontSize="16"
                                          Text="{Binding pacienteNombre, UpdateSourceTrigger=PropertyChanged}"
                                          IsEnabled="False"/>
@@ -108,9 +110,45 @@
                                        FontSize="16"
                                        Margin="10,0,0,0"></TextBlock>
 
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="4"
+                                       Text="Telefono"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="5"
+                                       Text="{Binding pacienteTelefono, UpdateSourceTrigger=PropertyChanged}"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       FontSize="16"
+                                       Margin="10,0,0,0"></TextBlock>
 
 
                             <TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="Modalidad"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       FontSize="16"
+                                       Margin="5"
+                                       Foreground="#9f9f9f"></TextBlock>
+                            <TextBox Grid.Row="2" 
+                                     Grid.Column="1"
+                                     Grid.ColumnSpan="5"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Center"
+                                     x:Name="txtModalidad"
+                                     Padding="0,5,0,5"
+                                     Margin="10,0,0,0"
+                                     FontSize="16"
+                                     MaxLength="40"/>
+
+
+
+
+                            <TextBlock Grid.Row="3"
                                        Grid.Column="0"
                                        Text="Estado Civil"
                                        VerticalAlignment="Bottom"
@@ -118,40 +156,42 @@
                                        FontSize="16"
                                        Margin="5"
                                        Foreground="#9f9f9f"></TextBlock>
-                            <ComboBox Grid.Row="2"
+                            <ComboBox Grid.Row="3"
                                       Grid.Column="1"
+                                      Grid.ColumnSpan="2"
                                       VerticalAlignment="Bottom"
                                       FontSize="16"
                                       Margin="10,0,0,0"
                                       ItemsSource="{Binding lstEstadosCiviles, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding EstadoCivilSeleccionado, UpdateSourceTrigger=PropertyChanged}"
-                                      SelectedValue="CodEstadoCivil"
+                                      SelectedValue="Codigo"
                                       DisplayMemberPath="Descripcion">
                             </ComboBox>
 
 
-                            <TextBlock Grid.Row="2"
-                                       Grid.Column="2"
+                            <TextBlock Grid.Row="3"
+                                       Grid.Column="3"
                                        Text="Sexo"
                                        VerticalAlignment="Bottom"
                                        HorizontalAlignment="Right"
                                        FontSize="16"
                                        Margin="5"
                                        Foreground="#9f9f9f"></TextBlock>
-                            <ComboBox Grid.Row="2"
-                                      Grid.Column="3"
+                            <ComboBox Grid.Row="3"
+                                      Grid.Column="4"
+                                      Grid.ColumnSpan="2"
                                       VerticalAlignment="Bottom"
                                       FontSize="16"
                                       Margin="10,0,0,0"
-                                      ItemsSource="{Binding lstSexos, UpdateSourceTrigger=PropertyChanged}"
-                                      SelectedItem="{Binding SexoSeleccionado, UpdateSourceTrigger=PropertyChanged}"
-                                      SelectedValue="CodSexo"
+                                      ItemsSource="{Binding lstGenero, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding GeneroSeleccionado, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="Codigo"
                                       DisplayMemberPath="Descripcion">
                             </ComboBox>
 
 
 
-                            <TextBlock Grid.Row="3"
+                            <TextBlock Grid.Row="4"
                                        Grid.Column="0"
                                        Text="Señas particulares"
                                        VerticalAlignment="Bottom"
@@ -159,9 +199,9 @@
                                        FontSize="16"
                                        Margin="5"
                                        Foreground="#9f9f9f"></TextBlock>
-                            <TextBox Grid.Row="3" 
+                            <TextBox Grid.Row="4" 
                                      Grid.Column="1"
-                                     Grid.ColumnSpan="3"
+                                     Grid.ColumnSpan="5"
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                      VerticalAlignment="Center"
                                      x:Name="txtSParticulares"
@@ -171,7 +211,7 @@
                                      MaxLength="300"/>
                            
 
-                            <TextBlock Grid.Row="4"
+                            <TextBlock Grid.Row="5"
                                        Grid.Column="0"
                                        Text="Escolaridad"
                                        VerticalAlignment="Bottom"
@@ -179,9 +219,9 @@
                                        FontSize="16"
                                        Margin="5"
                                        Foreground="#9f9f9f"></TextBlock>
-                            <TextBox Grid.Row="4" 
+                            <TextBox Grid.Row="5" 
                                      Grid.Column="1"
-                                     Grid.ColumnSpan="3"
+                                     Grid.ColumnSpan="5"
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                      VerticalAlignment="Center"
                                      x:Name="txtEscolaridad"
@@ -191,7 +231,7 @@
                                      MaxLength="100"/>
 
 
-                            <TextBlock Grid.Row="5"
+                            <TextBlock Grid.Row="6"
                                        Grid.Column="0"
                                        Text="Originario"
                                        VerticalAlignment="Bottom"
@@ -199,9 +239,9 @@
                                        FontSize="16"
                                        Margin="5"
                                        Foreground="#9f9f9f"></TextBlock>
-                            <TextBox Grid.Row="5" 
+                            <TextBox Grid.Row="6" 
                                      Grid.Column="1"
-                                     Grid.ColumnSpan="3"
+                                     Grid.ColumnSpan="5"
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                      VerticalAlignment="Center"
                                      x:Name="txtOriginario"
@@ -211,7 +251,7 @@
                                      MaxLength="100"/>
 
 
-                            <TextBlock Grid.Row="6"
+                            <TextBlock Grid.Row="7"
                                        Grid.Column="0"
                                        Text="Domicilio"
                                        VerticalAlignment="Bottom"
@@ -219,9 +259,9 @@
                                        FontSize="16"
                                        Margin="5"
                                        Foreground="#9f9f9f"></TextBlock>
-                            <TextBox Grid.Row="6" 
+                            <TextBox Grid.Row="7" 
                                      Grid.Column="1"
-                                     Grid.ColumnSpan="3"
+                                     Grid.ColumnSpan="5"
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                      VerticalAlignment="Center"
                                      x:Name="txtDomicilio"
@@ -231,7 +271,7 @@
                                      MaxLength="250"/>
 
 
-                            <TextBlock Grid.Row="7"
+                            <TextBlock Grid.Row="8"
                                        Grid.Column="0"
                                        Text="Procedencia"
                                        VerticalAlignment="Bottom"
@@ -239,9 +279,9 @@
                                        FontSize="16"
                                        Margin="5"
                                        Foreground="#9f9f9f"></TextBlock>
-                            <TextBox Grid.Row="7" 
+                            <TextBox Grid.Row="8" 
                                      Grid.Column="1"
-                                     Grid.ColumnSpan="3"
+                                     Grid.ColumnSpan="5"
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                      VerticalAlignment="Center"
                                      x:Name="txtProcedencia"
@@ -250,7 +290,7 @@
                                      FontSize="16"
                                      MaxLength="300"/>
 
-                            <TextBlock Grid.Row="8"
+                            <TextBlock Grid.Row="9"
                                        Grid.Column="0"
                                        Text="Trabajo"
                                        VerticalAlignment="Bottom"
@@ -258,9 +298,9 @@
                                        FontSize="16"
                                        Margin="5"
                                        Foreground="#9f9f9f"></TextBlock>
-                            <TextBox Grid.Row="8" 
+                            <TextBox Grid.Row="9" 
                                      Grid.Column="1"
-                                     Grid.ColumnSpan="3"
+                                     Grid.ColumnSpan="5"
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                      VerticalAlignment="Center"
                                      x:Name="txtTrabajo"
@@ -269,20 +309,7 @@
                                      FontSize="16"
                                      MaxLength="100"/>
 
-                            <TextBlock Grid.Row="9"
-                                       Grid.Column="0"
-                                       Text="Telefono"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Right"
-                                       FontSize="16"
-                                       Foreground="#9f9f9f"></TextBlock>
-                            <TextBlock Grid.Row="9"
-                                       Grid.Column="1"
-                                       Text="{Binding pacienteTelefono, UpdateSourceTrigger=PropertyChanged}"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Left"
-                                       FontSize="16"
-                                       Margin="10,0,0,0"></TextBlock>
+
                         </Grid>
                     </StackPanel>
                 </TabItem>
@@ -329,7 +356,8 @@
                                          Text="" 
                                          Margin="0,0,0,20"
                                          Padding="5"
-                                         MaxLength="450"/>
+                                         MaxLength="450"
+                                         x:Name="txtHeredoFamiliares"/>
 
 
                                 <TextBlock Grid.Row="2"
@@ -352,7 +380,8 @@
                                          Text="" 
                                          Margin="0,0,0,20"
                                          Padding="5"
-                                         MaxLength="450"/>
+                                         MaxLength="450"
+                                         x:Name="txtPersonalesPatologicos"/>
 
 
                                 <TextBlock Grid.Row="4"
@@ -394,7 +423,8 @@
                                                  VerticalAlignment="Center"
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
-                                                 MaxLength="250"/>
+                                                 MaxLength="250"
+                                                 x:Name="txtCronicoDegenerativos"/>
 
 
                                         <TextBlock Grid.Row="1"
@@ -412,7 +442,8 @@
                                                  VerticalAlignment="Center"
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
-                                                 MaxLength="250"/>
+                                                 MaxLength="250"
+                                                 x:Name="txtQuirurgicos"/>
 
                                         <TextBlock Grid.Row="2"
                                                    Grid.Column="0"
@@ -429,7 +460,8 @@
                                                  VerticalAlignment="Center"
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
-                                                 MaxLength="250"/>
+                                                 MaxLength="250"
+                                                 x:Name="txtTraumatologicos"/>
 
                                         <TextBlock Grid.Row="3"
                                                    Grid.Column="0"
@@ -446,7 +478,8 @@
                                                  VerticalAlignment="Center"
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
-                                                 MaxLength="150"/>
+                                                 MaxLength="150"
+                                                 x:Name="txtTransfusiones"/>
 
 
                                         <TextBlock Grid.Row="4"
@@ -464,7 +497,8 @@
                                                  VerticalAlignment="Center"
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
-                                                 MaxLength="250"/>
+                                                 MaxLength="250"
+                                                 x:Name="txtInfectocontagiosos"/>
 
                                         <TextBlock Grid.Row="5"
                                                    Grid.Column="0"
@@ -481,7 +515,8 @@
                                                  VerticalAlignment="Center"
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
-                                                 MaxLength="250"/>
+                                                 MaxLength="250"
+                                                 x:Name="txtHozpitalizaciones"/>
 
                                         <TextBlock Grid.Row="6"
                                                    Grid.Column="0"
@@ -498,7 +533,8 @@
                                                  VerticalAlignment="Center"
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
-                                                 MaxLength="250"/>
+                                                 MaxLength="250"
+                                                 x:Name="txtCovid"/>
                                     </Grid>
                                 </StackPanel>
 
@@ -550,6 +586,8 @@
                                                      Margin="10,0,0,0"
                                                      Width="151"
                                                      FontSize="16"
+                                                     x:Name="txtMenarca"
+                                                     PreviewKeyDown="txtMenarca_PreviewKeyDown"
                                                   >
                                             </TextBox>
                                             <TextBlock Text="AÑOS"
@@ -575,7 +613,8 @@
                                                  VerticalAlignment="Center"
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
-                                                 FontSize="16"/>
+                                                 FontSize="16"
+                                                 x:Name="txtEmbarazo"/>
 
 
                                         <TextBlock Grid.Row="0"
@@ -593,7 +632,8 @@
                                                  VerticalAlignment="Center"
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
-                                                 FontSize="16"/>
+                                                 FontSize="16"
+                                                 x:Name="txtCesarea"/>
 
 
                                         <TextBlock Grid.Row="1"
@@ -611,7 +651,8 @@
                                                  VerticalAlignment="Center"
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
-                                                 FontSize="16"/>
+                                                 FontSize="16"
+                                                 x:Name="txtAborto"/>
 
 
                                         <TextBlock Grid.Row="1"
@@ -629,7 +670,8 @@
                                                  VerticalAlignment="Center"
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
-                                                 FontSize="16"/>
+                                                 FontSize="16"
+                                                 x:Name="txtIVSA"/>
 
                                         <TextBlock Grid.Row="1"
                                                    Grid.Column="4"
@@ -670,10 +712,9 @@
                                                            ></TextBlock>
                                                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                          VerticalAlignment="Center"
-                                                         Padding="5,5,5,5"
-                                                         
-                                                         FontSize="16"
-                                                         MaxLength="150"/>
+                                                         Padding="5,14,5,5"
+                                                         MaxLength="150"
+                                                         x:Name="txtUltimoPapanicolao"/>
                                             </StackPanel>
                                         </Border>
 
@@ -698,10 +739,9 @@
                                                            ></TextBlock>
                                                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                          VerticalAlignment="Center"
-                                                         Padding="5,5,5,5"
-                                                         
-                                                         FontSize="16"
-                                                         MaxLength="150"/>
+                                                         Padding="5,14,5,5"
+                                                         MaxLength="150"
+                                                         x:Name="txtOtraObservacion"/>
                                             </StackPanel>
                                         </Border>
 
@@ -729,7 +769,8 @@
                                          Text="" 
                                          Margin="0,0,0,20"
                                          Padding="5"
-                                         MaxLength="200"/>
+                                         MaxLength="200"
+                                         x:Name="txtPadecimientoActual"/>
                             </Grid>                            
                             
                         </ScrollViewer>                        
@@ -1308,7 +1349,7 @@
                                     <RowDefinition Height="57"></RowDefinition>
                                     <RowDefinition Height="57"></RowDefinition>
                                     <RowDefinition Height="57"></RowDefinition>
-                                    <RowDefinition Height="57"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
                                     <RowDefinition Height="57"></RowDefinition>
                                     <RowDefinition Height="57"></RowDefinition>
                                     <RowDefinition Height="57"></RowDefinition>
@@ -1361,7 +1402,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtInspeccionGeneral"/>
 
                                 
                                 
@@ -1382,7 +1424,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         MaxLength="500"/>
+                                         MaxLength="500"
+                                         x:Name="txtLenguajeCorporal"/>
 
                                 <TextBlock Grid.Row="1"
                                            Grid.Column="4"
@@ -1399,7 +1442,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtResp"/>
 
                                 <TextBlock Grid.Row="2"
                                            Grid.Column="0"
@@ -1415,7 +1459,9 @@
                                          VerticalAlignment="Center"
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
-                                         FontSize="16"/>
+                                         FontSize="16"
+                                         x:Name="txtTA"
+                                         PreviewKeyDown="txtTA_PreviewKeyDown"/>
 
 
 
@@ -1433,7 +1479,9 @@
                                          VerticalAlignment="Center"
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
-                                         FontSize="16"/>
+                                         FontSize="16"
+                                         x:Name="txtFR"
+                                         PreviewKeyDown="txtFR_PreviewKeyDown"/>
 
                                 <TextBlock Grid.Row="2"
                                            Grid.Column="4"
@@ -1449,7 +1497,9 @@
                                          VerticalAlignment="Center"
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
-                                         FontSize="16"/>
+                                         FontSize="16"
+                                         x:Name="txtFC"
+                                         PreviewKeyDown="txtFC_PreviewKeyDown"/>
 
 
                                 <TextBlock Grid.Row="3"
@@ -1467,7 +1517,9 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""/>
+                                         x:Name="txtPeso"
+                                         KeyUp="txtPeso_KeyUp"
+                                         PreviewKeyDown="txtPeso_PreviewKeyDown"/>
 
 
 
@@ -1486,7 +1538,9 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""/>
+                                         x:Name="txtEstatura"
+                                         PreviewKeyDown="txtEstatura_PreviewKeyDown"
+                                         KeyUp="txtEstatura_KeyUp"/>
 
 
 
@@ -1503,13 +1557,22 @@
                                            TextAlignment="Right"></TextBlock>
                                 <TextBlock Grid.Row="3"
                                            Grid.Column="5"
-                                           Text=""
                                            VerticalAlignment="Bottom"
                                            HorizontalAlignment="Left"
                                            FontSize="16"
-                                           Margin="10,0,0,0"></TextBlock>
+                                           Margin="10,0,0,6"
+                                           x:Name="lblIMC"></TextBlock>
 
-
+                                <TextBlock Grid.Row="4"
+                                           Grid.Column="5"
+                                           VerticalAlignment="Top"
+                                           HorizontalAlignment="Left"
+                                           FontSize="12"
+                                           Margin="10,0,0,0"
+                                           Foreground="#A7A7A7"
+                                           x:Name="lblIMCInfo"></TextBlock>
+                                
+                                
 
 
                                 <TextBlock Grid.Row="5"
@@ -1528,8 +1591,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtCraneo"/>
 
                                 <TextBlock Grid.Row="6"
                                            Grid.Column="0"
@@ -1547,8 +1610,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtCara"/>
 
 
                                 <TextBlock Grid.Row="7"
@@ -1567,8 +1630,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtOjos"/>
 
 
                                 <TextBlock Grid.Row="8"
@@ -1587,8 +1650,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtVision"/>
 
                                 
                                 <TextBlock Grid.Row="9"
@@ -1607,8 +1670,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtNariz"/>
 
 
                                 <TextBlock Grid.Row="10"
@@ -1627,8 +1690,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtOidos"/>
 
 
                                 <TextBlock Grid.Row="11"
@@ -1647,8 +1710,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtBoca"/>
 
                                 <TextBlock Grid.Row="12"
                                            Grid.Column="0"
@@ -1666,8 +1729,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtCuello"/>
 
                                 <TextBlock Grid.Row="13"
                                            Grid.Column="0"
@@ -1685,8 +1748,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtFaringe"/>
 
                                 <TextBlock Grid.Row="14"
                                            Grid.Column="0"
@@ -1704,8 +1767,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtTorax"/>
 
                                 <TextBlock Grid.Row="15"
                                            Grid.Column="0"
@@ -1723,8 +1786,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtMamas"/>
 
 
                                 <TextBlock Grid.Row="16"
@@ -1743,8 +1806,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtAbdomen"/>
 
 
                                 <TextBlock Grid.Row="17"
@@ -1763,8 +1826,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtADigestivo"/>
 
                                 <TextBlock Grid.Row="18"
                                            Grid.Column="0"
@@ -1782,8 +1845,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtARespiratorio"/>
 
                                 <TextBlock Grid.Row="19"
                                            Grid.Column="0"
@@ -1803,8 +1866,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtACardiovascular"/>
 
 
                                 <TextBlock Grid.Row="20"
@@ -1823,8 +1886,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtGenitales"/>
 
                                 <TextBlock Grid.Row="21"
                                            Grid.Column="0"
@@ -1844,8 +1907,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtSistemaNervioso"/>
 
                                 <TextBlock Grid.Row="22"
                                            Grid.Column="0"
@@ -1866,8 +1929,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtMusculoEsqueletico"/>
 
 
                                 <TextBlock Grid.Row="23"
@@ -1888,8 +1951,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtMiembroSuperior"/>
 
                                 <TextBlock Grid.Row="24"
                                            Grid.Column="0"
@@ -1909,8 +1972,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtMiembroInferior"/>
 
                                 <TextBlock Grid.Row="25"
                                            Grid.Column="0"
@@ -1929,8 +1992,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtPelvis"/>
 
 
                                 <TextBlock Grid.Row="26"
@@ -1950,8 +2013,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtColumnaVertebral"/>
 
                                 <TextBlock Grid.Row="27"
                                            Grid.Column="0"
@@ -1970,8 +2033,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtPie"/>
 
                                 <TextBlock Grid.Row="28"
                                            Grid.Column="0"
@@ -1990,8 +2053,8 @@
                                          Padding="0,5,0,5"
                                          Margin="10,0,0,0"
                                          FontSize="16"
-                                         Text=""
-                                         MaxLength="100"/>
+                                         MaxLength="100"
+                                         x:Name="txtAnexos"/>
 
 
 
@@ -2019,10 +2082,10 @@
                                          AcceptsReturn="True"
                                          VerticalScrollBarVisibility="Auto"
                                          SpellCheck.IsEnabled="True"
-                                         Text="" 
                                          Margin="10,5,0,0"
                                          MaxLength="100"
-                                         FontSize="14"/>
+                                         FontSize="14"
+                                         x:Name="txtViajesFrontera"/>
 
 
                                 <TextBlock Grid.Row="31"
@@ -2044,10 +2107,10 @@
                                          AcceptsReturn="True"
                                          VerticalScrollBarVisibility="Auto"
                                          SpellCheck.IsEnabled="True"
-                                         Text="" 
-                                         Margin="10,5,0,0"
+                                         Margin="10,15,0,0"
                                          MaxLength="500"
-                                         FontSize="14"/>
+                                         FontSize="14"
+                                         x:Name="txtDiagnotico"/>
 
                                 <TextBlock Grid.Row="32"
                                            Grid.Column="0"
@@ -2068,10 +2131,10 @@
                                          AcceptsReturn="True"
                                          VerticalScrollBarVisibility="Auto"
                                          SpellCheck.IsEnabled="True"
-                                         Text="" 
-                                         Margin="10,5,0,0"
-                                         MaxLength="1000"
-                                         FontSize="14"/>
+                                         Margin="10,15,0,0"
+                                         MaxLength="500"
+                                         FontSize="14"
+                                         x:Name="txtObservaciones"/>
 
                                 <TextBlock Grid.Row="33"
                                            Grid.Column="0"
@@ -2092,10 +2155,10 @@
                                          AcceptsReturn="True"
                                          VerticalScrollBarVisibility="Auto"
                                          SpellCheck.IsEnabled="True"
-                                         Text="" 
-                                         Margin="10,5,0,0"
+                                         Margin="10,15,0,0"
                                          MaxLength="500"
-                                         FontSize="14"/>
+                                         FontSize="14"
+                                         x:Name="txtResultado"/>
 
                             </Grid>
                         </ScrollViewer>

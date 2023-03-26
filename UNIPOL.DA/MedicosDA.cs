@@ -7,7 +7,8 @@ using WarmPack.Database;
 using WarmPack.Classes;
 using WarmPack.Extensions;
 using UNIPOL.EN;
-
+using System.Xml.Linq;
+using System.Data;
 
 namespace UNIPOL.DA
 {
@@ -138,5 +139,53 @@ namespace UNIPOL.DA
             return resultado;
         }
 
+        public Result<int> guardarHistoriaClinica(HC xml)
+        {
+            var resultado = new Result<int>();
+            try
+            {
+                var sXML = xml.ToXml("historia");
+
+                var parametros = new ConexionParameters();
+                parametros.Add("@pXML", ConexionDbType.Xml, sXML);
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 500);
+                resultado = _conexion.ExecuteScalar<int>("sp_HistoriaClinicaGuardar", parametros);
+
+                //resultado.Data.hc = _conexion.RecordsetsResults<HistoriaClinica>()?.First();
+                //if(resultado.Data.hc != null)
+                //{
+                //    resultado.Data.hca = _conexion.RecordsetsResults<HistoriaClinicaAntecedentes>().First();
+                //    resultado.Data.hco = _conexion.RecordsetsResults<HistoriaClinicaOtros>().First();
+                //    resultado.Data.hcd = _conexion.RecordsetsResults<HistoriaClinicaDetras>().First();
+                //}
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+
+        public Result ConsultaHistoriaClinia(int idHistoria, ref DataSet ds)
+        {
+            var resultado = new Result();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@IdHistoria", ConexionDbType.Int, idHistoria);
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults("sp_HistoriaClinicaCon", parametros, out ds);
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
     }
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UNIPOL.EN
+namespace UNIPOL.BO
 {
-    public class Sexo
+    public class GeneralesBO
     {
-        public int CodSexo { get; set; }
-        public string Descripcion { get; set; }
+
     }
 }
