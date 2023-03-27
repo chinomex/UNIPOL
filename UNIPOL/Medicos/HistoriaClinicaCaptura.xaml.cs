@@ -105,6 +105,7 @@ namespace UNIPOL.Medicos
                 hca.COVID19 = txtCovid.Text.Trim();
                 hca.Menarca = !string.IsNullOrEmpty(txtMenarca.Text.Trim()) ? int.Parse(txtMenarca.Text.Trim()) : 0;
                 hca.Embarazo = !string.IsNullOrEmpty(txtEmbarazo.Text.Trim()) ? int.Parse(txtEmbarazo.Text.Trim()) : 0;
+                hca.Parto = !string.IsNullOrEmpty(txtParto.Text.Trim()) ? int.Parse(txtParto.Text.Trim()) : 0;
                 hca.Cesarea = !string.IsNullOrEmpty(txtCesarea.Text.Trim()) ? int.Parse(txtCesarea.Text.Trim()) : 0;
                 hca.Aborto = !string.IsNullOrEmpty(txtAborto.Text.Trim()) ? int.Parse(txtAborto.Text.Trim()) : 0;
                 hca.IVSA = !string.IsNullOrEmpty(txtIVSA.Text.Trim()) ? int.Parse(txtIVSA.Text.Trim()) : 0;
@@ -261,6 +262,30 @@ namespace UNIPOL.Medicos
         {
             e.Handled = ValidaNumero(true, txtMenarca.Text,e);
         }
+        private void txtEmbarazo_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = ValidaNumero(true, txtEmbarazo.Text, e);
+        }
+
+        private void txtParto_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = ValidaNumero(true, txtParto.Text, e);
+        }
+
+        private void txtCesarea_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = ValidaNumero(true, txtCesarea.Text, e);
+        }
+
+        private void txtAborto_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = ValidaNumero(true, txtAborto.Text, e);
+        }
+
+        private void txtIVSA_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = ValidaNumero(true, txtIVSA.Text, e);
+        }
         #endregion
 
         #region Otros
@@ -368,6 +393,7 @@ namespace UNIPOL.Medicos
             lblIMCInfo.Text = imcInfo;
             lblIMCInfo.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(color);
         }
+
 
 
 

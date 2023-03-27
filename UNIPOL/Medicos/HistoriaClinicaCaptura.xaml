@@ -330,7 +330,7 @@
                                     <RowDefinition Height="20"></RowDefinition>
                                     <RowDefinition Height="420"></RowDefinition>
                                     <RowDefinition Height="20"></RowDefinition>
-                                    <RowDefinition Height="340"></RowDefinition>
+                                    <RowDefinition Height="397"></RowDefinition>
                                     <RowDefinition Height="20"></RowDefinition>
                                     <RowDefinition Height="80"></RowDefinition>
                                 </Grid.RowDefinitions>
@@ -562,6 +562,7 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="57"></RowDefinition>
                                             <RowDefinition Height="57"></RowDefinition>
+                                            <RowDefinition Height="57"></RowDefinition>
                                             <RowDefinition Height="100"></RowDefinition>
                                             <RowDefinition Height="100"></RowDefinition>
                                         </Grid.RowDefinitions>
@@ -614,12 +615,13 @@
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
                                                  FontSize="16"
-                                                 x:Name="txtEmbarazo"/>
+                                                 x:Name="txtEmbarazo"
+                                                 PreviewKeyDown="txtEmbarazo_PreviewKeyDown"/>
 
 
                                         <TextBlock Grid.Row="0"
                                                    Grid.Column="4"
-                                                   Text="CESAREA"
+                                                   Text="PARTO"
                                                    VerticalAlignment="Bottom"
                                                    HorizontalAlignment="Right"
                                                    TextAlignment="Right"
@@ -633,12 +635,16 @@
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
                                                  FontSize="16"
-                                                 x:Name="txtCesarea"/>
+                                                 x:Name="txtParto"
+                                                 PreviewKeyDown="txtParto_PreviewKeyDown"/>
+
+
+
 
 
                                         <TextBlock Grid.Row="1"
                                                    Grid.Column="0"
-                                                   Text="ABORTO"
+                                                   Text="CESAREA"
                                                    VerticalAlignment="Bottom"
                                                    HorizontalAlignment="Right"
                                                    TextAlignment="Right"
@@ -652,12 +658,13 @@
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
                                                  FontSize="16"
-                                                 x:Name="txtAborto"/>
+                                                 x:Name="txtCesarea"
+                                                 PreviewKeyDown="txtCesarea_PreviewKeyDown"/>
 
 
                                         <TextBlock Grid.Row="1"
                                                    Grid.Column="2"
-                                                   Text="IVSA"
+                                                   Text="ABORTO"
                                                    VerticalAlignment="Bottom"
                                                    HorizontalAlignment="Right"
                                                    TextAlignment="Right"
@@ -671,10 +678,31 @@
                                                  Padding="0,5,0,5"
                                                  Margin="10,0,0,0"
                                                  FontSize="16"
-                                                 x:Name="txtIVSA"/>
+                                                 x:Name="txtAborto"
+                                                 PreviewKeyDown="txtAborto_PreviewKeyDown"/>
+
 
                                         <TextBlock Grid.Row="1"
                                                    Grid.Column="4"
+                                                   Text="IVSA"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,10"></TextBlock>
+                                        <TextBox Grid.Row="1" 
+                                                 Grid.Column="5"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 VerticalAlignment="Center"
+                                                 Padding="0,5,0,5"
+                                                 Margin="10,0,0,0"
+                                                 FontSize="16"
+                                                 x:Name="txtIVSA"
+                                                 PreviewKeyDown="txtIVSA_PreviewKeyDown"/>
+
+                                        <TextBlock Grid.Row="2"
+                                                   Grid.Column="0"
                                                    Text="MPF"
                                                    VerticalAlignment="Bottom"
                                                    HorizontalAlignment="Right"
@@ -682,8 +710,8 @@
                                                    TextWrapping="WrapWithOverflow"
                                                    Foreground="#9f9f9f"
                                                    Margin="5,5,5,7"></TextBlock>
-                                        <ComboBox Grid.Row="1"
-                                                  Grid.Column="5"
+                                        <ComboBox Grid.Row="2"
+                                                  Grid.Column="1"
                                                   VerticalAlignment="Bottom"
                                                   FontSize="16"
                                                   Margin="10,0,0,0"
@@ -696,7 +724,7 @@
 
                                         <Border BorderBrush="#9f9f9f"
                                                 BorderThickness="1,1,1,0"
-                                                Grid.Row="2"
+                                                Grid.Row="3"
                                                 Grid.Column="0"
                                                 Grid.ColumnSpan="6"
                                                 Height="70"
@@ -723,7 +751,7 @@
 
                                         <Border BorderBrush="#9f9f9f"
                                                 BorderThickness="1,1,1,0"
-                                                Grid.Row="3"
+                                                Grid.Row="4"
                                                 Grid.Column="0"
                                                 Grid.ColumnSpan="6"
                                                 Height="70"

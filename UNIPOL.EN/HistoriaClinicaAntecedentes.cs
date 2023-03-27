@@ -20,6 +20,7 @@ namespace UNIPOL.EN
         public string COVID19 { get; set; }
         public int Menarca { get; set; }
         public int Embarazo { get; set; }
+        public int Parto { get; set; }
         public int Cesarea { get; set; }
         public int Aborto { get; set; }
         public int IVSA { get; set; }

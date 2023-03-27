@@ -33,7 +33,7 @@ namespace UNIPOL.Medicos
         private void btnReimprimir_Click(object sender, RoutedEventArgs e)
         {
             DataSet ds = new DataSet();
-            var rHistoria = _bo.ConsultaHistoriaClinia(1, ref ds);
+            var rHistoria = _bo.ConsultaHistoriaClinia(2, ref ds);
             if (rHistoria.Value)
             {
                 if (ds.Tables.Count > 0)

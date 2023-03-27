@@ -91,6 +91,7 @@
         <xs:element name="COVID19" type="xs:string"/>
         <xs:element name="Menarca" type="xs:integer"/>
         <xs:element name="Embarazo" type="xs:integer"/>
+        <xs:element name="Parto" type="xs:integer"/>
         <xs:element name="Cesarea" type="xs:integer"/>
         <xs:element name="Aborto" type="xs:integer"/>
         <xs:element name="IVSA" type="xs:integer"/>
