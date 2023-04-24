@@ -187,5 +187,51 @@ namespace UNIPOL.DA
             }
             return resultado;
         }
+
+
+        public Result<List<HistoriaClinicaHistoria>> ConsultaHistorial(int codPaciente, int codUsuario, DateTime fi, DateTime ff)
+        {
+            var resultado = new Result<List<HistoriaClinicaHistoria>>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@codPaciente", ConexionDbType.Int, codPaciente);
+                parametros.Add("@codUsuario", ConexionDbType.Int, codUsuario);
+                parametros.Add("@fi", ConexionDbType.Date, fi);
+                parametros.Add("@ff", ConexionDbType.Date, ff);
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults< HistoriaClinicaHistoria>("sp_HistoriaClinicaHistorialCon", parametros);
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+
+        public Result<List<ConsultaMedicaHistoria>> ConsultaMedicaHistorial(int codPaciente, int codUsuario, DateTime fi, DateTime ff)
+        {
+            var resultado = new Result<List<ConsultaMedicaHistoria>>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@codPaciente", ConexionDbType.Int, codPaciente);
+                parametros.Add("@codUsuario", ConexionDbType.Int, codUsuario);
+                parametros.Add("@fi", ConexionDbType.Date, fi);
+                parametros.Add("@ff", ConexionDbType.Date, ff);
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults<ConsultaMedicaHistoria>("sp_ConsultaMedicaHistorialCon", parametros);
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
     }
 }

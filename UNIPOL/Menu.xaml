@@ -32,7 +32,8 @@
                             <MenuItem Name="mnMedicoNuevo" Header="Nueva consulta" Click="mnMedicoConsultar_Click"></MenuItem>
                             <!--<MenuItem Name="mnMedicoHistorialPaciente" Header="Ver historial paciente"></MenuItem>
                             <MenuItem Name="mnMedicoHistorialMedico" Header="Ver historial medico"></MenuItem>--> 
-                            <MenuItem Name="mnMedicoUltimaReceta" Header="Imprimir ultima receta" Click="mnMedicoUltimaReceta_Click"></MenuItem>
+                            <!--<MenuItem Name="mnMedicoUltimaReceta" Header="Imprimir ultima receta" Click="mnMedicoUltimaReceta_Click"></MenuItem>-->
+                            <MenuItem Name="mnMedicoHistorialReceta" Header="Historial" Click="mnMedicoHistorialReceta_Click"></MenuItem>
                     </MenuItem>
                     <MenuItem Name="mnMedicoHistoriaClinica" Header="Historia Clinica" Visibility="Collapsed">
                         <MenuItem Name="mnMedicoHCCaptura" Header="Nueva" Click="mnMedicoHCCaptura_Click"></MenuItem>

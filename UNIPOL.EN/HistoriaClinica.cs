@@ -10,6 +10,7 @@ namespace UNIPOL.EN
     {
         public int IdHistoria { get; set; }
         public int CodPaciente { get; set; }
+        public int CodUsuario { get; set; }
         public string Nombre { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string EdadCompleta { get; set; }

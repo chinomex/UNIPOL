@@ -82,6 +82,7 @@ namespace UNIPOL.Medicos
 
                 var hc = new HistoriaClinica();
                 hc.CodPaciente = _vm.pacienteCodigo;
+                hc.CodUsuario = Globales.usuarioActivo.IdUsuario;
                 hc.Modalidad = txtModalidad.Text.Trim();
                 hc.IdEstatoCivil = _vm.EstadoCivilSeleccionado != null ? _vm.EstadoCivilSeleccionado.Codigo : 0;
                 hc.IdGenero = _vm.GeneroSeleccionado != null ? _vm.GeneroSeleccionado.Codigo : 0;
@@ -151,6 +152,7 @@ namespace UNIPOL.Medicos
                 hcd.FC = !string.IsNullOrEmpty(txtFC.Text.Trim()) ? decimal.Parse(txtFC.Text.Trim()) : 0.0m;
                 hcd.Peso = !string.IsNullOrEmpty(txtPeso.Text.Trim()) ? decimal.Parse(txtPeso.Text.Trim()) : 0.0m;
                 hcd.Estatura = !string.IsNullOrEmpty(txtEstatura.Text.Trim()) ? decimal.Parse(txtEstatura.Text.Trim()) : 0.0m;
+                hcd.IMC = !string.IsNullOrEmpty(lblIMC.Text.Trim()) ? decimal.Parse(lblIMC.Text.Trim()) : 0.0m;
                 hcd.Craneo = txtCraneo.Text.Trim();
                 hcd.Cara = txtCara.Text.Trim();
                 hcd.Ojos = txtOjos.Text.Trim();
@@ -183,6 +185,7 @@ namespace UNIPOL.Medicos
 
 
                 _vm.guardarHistoriaClinica(historia);
+                this.Close();
             }
             catch(Exception ex)
             {
@@ -394,17 +397,26 @@ namespace UNIPOL.Medicos
             lblIMCInfo.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(color);
         }
 
+        private void piTA_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MostrarImagen mi = new MostrarImagen();
+            mi.tipoImagen = 1;
+            mi.ShowDialog();
+        }
 
+        private void piFR_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MostrarImagen mi = new MostrarImagen();
+            mi.tipoImagen = 2;
+            mi.ShowDialog();
+        }
 
-
-
-
-
-
-
-
-
-
+        private void piFC_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MostrarImagen mi = new MostrarImagen();
+            mi.tipoImagen = 3;
+            mi.ShowDialog();
+        }
 
         #endregion
 

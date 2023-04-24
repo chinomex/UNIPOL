@@ -57,5 +57,15 @@ namespace UNIPOL.BO
         {
             return _da.ConsultaHistoriaClinia(idHistoria,ref ds);
         }
+
+        public Result<List<HistoriaClinicaHistoria>> ConsultaHistorial(int codPaciente, int codUsuario, DateTime fi, DateTime ff)
+        {
+            return _da.ConsultaHistorial(codPaciente, codUsuario, fi, ff);
+        }
+
+        public Result<List<ConsultaMedicaHistoria>> ConsultaMedicaHistorial(int codPaciente, int codUsuario, DateTime fi, DateTime ff)
+        {
+            return _da.ConsultaMedicaHistorial(codPaciente, codUsuario, fi, ff);
+        }
     }
 }

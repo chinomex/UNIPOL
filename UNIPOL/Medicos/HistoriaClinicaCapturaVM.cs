@@ -123,7 +123,7 @@ namespace UNIPOL.Medicos
 
                             ReportDocument reporte = new ReportDocument();
                             var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-                            reporte.Load(path + @"\Reportes\rptHistoriaClinica.rpt");
+                            reporte.Load(path + @"\Reportes\rptHistoria.rpt");
                             reporte.SetDataSource(ds);
                             Reportes.Reporteador reportView = new Reportes.Reporteador(reporte, 90);
                             reportView.WindowState = System.Windows.WindowState.Maximized;

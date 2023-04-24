@@ -139,6 +139,7 @@
         <xs:element name="Tabaquisto" type="xs:boolean"/>
         <xs:element name="TabaquistoTXT" type="xs:string"/>
         <xs:element name="IdCantidadTatuajes" type="xs:integer"/>
+        <xs:element name="CatidadTatuajes" type="xs:string"/>
         <xs:element name="TatuajesDescripcion" type="xs:string"/>
         <xs:element name="TatuajesLocalizacion" type="xs:string"/>
         <xs:element name="Deportes" type="xs:boolean"/>
@@ -165,6 +166,7 @@
         <xs:element name="FC" type="xs:decimal"/>
         <xs:element name="Peso" type="xs:decimal"/>
         <xs:element name="Estatura" type="xs:decimal"/>
+        <xs:element name="IMC" type="xs:decimal"/>
         <xs:element name="Craneo" type="xs:string"/>
         <xs:element name="Cara" type="xs:string"/>
         <xs:element name="Ojos" type="xs:string"/>

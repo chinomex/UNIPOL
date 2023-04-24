@@ -58,6 +58,7 @@
                         Margin="0,5,0,0">
 
                 <DatePicker Width="180" 
+                            xml:lang="es-MX"
                             FontSize="16"
                             Margin="0,10,0,0"
                             x:Name="dpFechaNacimiento"

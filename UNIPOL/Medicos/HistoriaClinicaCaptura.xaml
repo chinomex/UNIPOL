@@ -1473,14 +1473,25 @@
                                          MaxLength="100"
                                          x:Name="txtResp"/>
 
-                                <TextBlock Grid.Row="2"
-                                           Grid.Column="0"
-                                           Text="TA"
-                                           VerticalAlignment="Bottom"
-                                           HorizontalAlignment="Right"
-                                           FontSize="16"
-                                           Margin="5"
-                                           Foreground="#9f9f9f"></TextBlock>
+                                <StackPanel Grid.Row="2"
+                                            Grid.Column="0" 
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Right">
+                                    <materialDesign:PackIcon Kind="Information" 
+                                                             Margin="0,9,0,0"
+                                                             Foreground="#ccc"
+                                                             Panel.ZIndex="99"
+                                                             Name="piTA"
+                                                             MouseLeftButtonUp="piTA_MouseLeftButtonUp"
+/>
+                                    <TextBlock Text="TA"
+                                               FontSize="16"
+                                               Margin="5"
+                                               Foreground="#9f9f9f"></TextBlock>
+                                </StackPanel>
+
+
                                 <TextBox Grid.Row="2" 
                                          Grid.Column="1"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -1492,15 +1503,23 @@
                                          PreviewKeyDown="txtTA_PreviewKeyDown"/>
 
 
+                                <StackPanel Grid.Row="2"
+                                            Grid.Column="2" 
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Right">
+                                    <materialDesign:PackIcon Kind="Information" 
+                                                             Margin="0,9,0,0"
+                                                             Foreground="#ccc"
+                                                             Panel.ZIndex="99"
+                                                             Name="piFR"
+                                                             MouseLeftButtonUp="piFR_MouseLeftButtonUp"></materialDesign:PackIcon>
+                                    <TextBlock Text="FR"
+                                               FontSize="16"
+                                               Margin="5"
+                                               Foreground="#9f9f9f"></TextBlock>                                    
+                                </StackPanel>
 
-                                <TextBlock Grid.Row="2"
-                                           Grid.Column="2"
-                                           Text="FR"
-                                           VerticalAlignment="Bottom"
-                                           HorizontalAlignment="Right"
-                                           FontSize="16"
-                                           Margin="5"
-                                           Foreground="#9f9f9f"></TextBlock>
                                 <TextBox Grid.Row="2" 
                                          Grid.Column="3"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -1511,14 +1530,23 @@
                                          x:Name="txtFR"
                                          PreviewKeyDown="txtFR_PreviewKeyDown"/>
 
-                                <TextBlock Grid.Row="2"
-                                           Grid.Column="4"
-                                           Text="FC"
-                                           VerticalAlignment="Bottom"
-                                           HorizontalAlignment="Right"
-                                           FontSize="16"
-                                           Margin="5"
-                                           Foreground="#9f9f9f"></TextBlock>
+                                <StackPanel Grid.Row="2"
+                                            Grid.Column="4" 
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Right">
+                                    <materialDesign:PackIcon Kind="Information" 
+                                                             Margin="0,9,0,0"
+                                                             Foreground="#ccc"
+                                                             Panel.ZIndex="99"
+                                                             Name="piFC"
+                                                             MouseLeftButtonUp="piFC_MouseLeftButtonUp"></materialDesign:PackIcon>
+                                    <TextBlock Text="FC"
+                                               FontSize="16"
+                                               Margin="5"
+                                               Foreground="#9f9f9f"></TextBlock>
+                                </StackPanel>
+
                                 <TextBox Grid.Row="2" 
                                          Grid.Column="5"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"

@@ -45,6 +45,7 @@
     <Compile Include="ArticulosReceta.cs" />
     <Compile Include="Catalogos\DatosArticulo.cs" />
     <Compile Include="Catalogos\DatosUsuario.cs" />
+    <Compile Include="ConsultaMedicaHistoria.cs" />
     <Compile Include="DatosBusqueda.cs" />
     <Compile Include="DatosPaciente.cs" />
     <Compile Include="DatosReceta.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="HistoriaClinica.cs" />
     <Compile Include="HistoriaClinicaAntecedentes.cs" />
     <Compile Include="HistoriaClinicaDetras.cs" />
+    <Compile Include="HistoriaClinicaHistoria.cs" />
     <Compile Include="HistoriaClinicaOtros.cs" />
     <Compile Include="ComboGenerico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

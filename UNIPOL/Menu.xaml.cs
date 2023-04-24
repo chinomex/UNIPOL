@@ -144,40 +144,19 @@ namespace UNIPOL
             }
         }
 
-        private void mnMedicoUltimaReceta_Click(object sender, RoutedEventArgs e)
+        //private void mnMedicoUltimaReceta_Click(object sender, RoutedEventArgs e)
+        //{
+        //    General.ImprimirUltimoFolio ultimoFolio = new General.ImprimirUltimoFolio();
+        //    ultimoFolio.TipoImpresion = "R";
+        //    ultimoFolio.Owner = this;
+        //    ultimoFolio.ShowDialog();
+        //}
+
+        private void mnMedicoHistorialReceta_Click(object sender, RoutedEventArgs e)
         {
-            General.ImprimirUltimoFolio ultimoFolio = new General.ImprimirUltimoFolio();
-            ultimoFolio.TipoImpresion = "R";
-            ultimoFolio.Owner = this;
-            ultimoFolio.ShowDialog();
-            //try
-            //{
-            //    var ultima = _boMedicos.UltimaReceta(Globales.usuarioActivo.IdUsuario);
-            //    if (ultima.Value)
-            //    {
-            //        var receta = _boMedicos.Receta(ultima.Data);
-            //        if (receta.Data.Count > 0)
-            //        {
-            //            var d = receta.Data;
-            //            ReportDocument reporte = new ReportDocument();
-            //            var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-            //            reporte.Load(path + @"\Reportes\rptReceta.rpt");
-            //            reporte.SetDataSource(d);
-            //            Reportes.Reporteador reportView = new Reportes.Reporteador(reporte, 90);
-            //            reportView.WindowState = System.Windows.WindowState.Maximized;
-            //            reportView.Title = "Receta";
-            //            reportView.Show();
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("No se encontraron resultados", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("M03 -" + ex.Message, "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+            ConsultasMedicasHistorial cmh = new ConsultasMedicasHistorial();
+            cmh.Owner = this;
+            cmh.ShowDialog();
         }
 
         private void mnMedicoHCCaptura_Click(object sender, RoutedEventArgs e)
@@ -193,5 +172,7 @@ namespace UNIPOL
             hch.Owner = this;
             hch.ShowDialog();
         }
+
+
     }
 }

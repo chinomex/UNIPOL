@@ -16,6 +16,7 @@ namespace UNIPOL.EN
         public decimal FR { get; set; }
         public decimal FC { get; set; }
         public decimal Peso { get; set; }
+        public decimal IMC { get; set; }
         public decimal Estatura { get; set; }
         public string Craneo { get; set; }
         public string Cara { get; set; }
