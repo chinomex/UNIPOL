@@ -48,7 +48,7 @@ namespace UNIPOL.DA
             return resultado;
         }
 
-        public Result<List<DatosPaciente>> GuardarPaciente(int codPaciente, string nombre, string domicilio, DateTime fechaNacimiento, string telefono, string correo)
+        public Result<List<DatosPaciente>> GuardarPaciente(int codPaciente, string nombre, int idGenero, string domicilio, DateTime fechaNacimiento, string telefono, string correo, string rfc, string alergias)
         {
             var resultado = new Result<List<DatosPaciente>>();
             try
@@ -56,10 +56,13 @@ namespace UNIPOL.DA
                 var parametros = new ConexionParameters();
                 parametros.Add("@pCodPaciente", ConexionDbType.Int, codPaciente);
                 parametros.Add("@pNombre", ConexionDbType.VarChar, nombre);
+                parametros.Add("@pIdGenero", ConexionDbType.Int, idGenero);
                 parametros.Add("@pDomicilio", ConexionDbType.VarChar, domicilio);
                 parametros.Add("@pFechaNacimiento", ConexionDbType.Date, fechaNacimiento.Date);
                 parametros.Add("@pTelefono", ConexionDbType.VarChar, telefono);
                 parametros.Add("@pCorreo", ConexionDbType.VarChar, correo);
+                parametros.Add("@pRFC", ConexionDbType.VarChar, rfc);
+                parametros.Add("@pAlergias", ConexionDbType.VarChar, alergias);
                 parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
                 parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
                 resultado = _conexion.ExecuteWithResults<DatosPaciente>("sp_PacienteGuardar", parametros);
@@ -73,7 +76,7 @@ namespace UNIPOL.DA
         }
 
 
-        public Result<int> GuardarReceta(int codPaciente, int codMedico, int pacienteTA, int pacienteFC, int pacienteFR, decimal pacienteTEM, List<ArticulosReceta> articulos)
+        public Result<int> GuardarReceta(int codPaciente, int codMedico, int pacienteTA, int pacienteFC, int pacienteFR, decimal pacienteTEM, string txtNotaEvolucion, List<ArticulosReceta> articulos)
         {
             var resultado = new Result<int>();
             var xml = articulos.ToXml("RecetaMedica");
@@ -86,6 +89,7 @@ namespace UNIPOL.DA
                 parametros.Add("@pPacienteFC", ConexionDbType.Int, pacienteFC);
                 parametros.Add("@pPacienteFR", ConexionDbType.Int, pacienteFR);
                 parametros.Add("@pPacienteTEM", ConexionDbType.Decimal, pacienteTEM);
+                parametros.Add("@pNotaEvolucion", ConexionDbType.Decimal, txtNotaEvolucion);
                 parametros.Add("@pXmlDetalle", ConexionDbType.Xml, xml);
                 parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
                 parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
@@ -110,6 +114,26 @@ namespace UNIPOL.DA
                 parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
                 parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
                 resultado = _conexion.ExecuteWithResults<RecetaMedica>("sp_RecetaCon", parametros);
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Value = false;
+                resultado.Message = ex.Message;
+            }
+            return resultado;
+        }
+
+        public Result<List<RecetaMedica>> RecetaHistorial(int CodPaciente)
+        {
+            var resultado = new Result<List<RecetaMedica>>();
+            try
+            {
+                var parametros = new ConexionParameters();
+                parametros.Add("@pCodPaciente", ConexionDbType.Int, CodPaciente);
+                parametros.Add("@pResultado", ConexionDbType.Bit, System.Data.ParameterDirection.Output);
+                parametros.Add("@pMsg", ConexionDbType.VarChar, System.Data.ParameterDirection.Output, 300);
+                resultado = _conexion.ExecuteWithResults<RecetaMedica>("sp_RecetaHistorialCon", parametros);
 
             }
             catch (Exception ex)

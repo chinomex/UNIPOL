@@ -25,17 +25,20 @@ namespace UNIPOL.Medicos
             CargaListados();
         }
 
-        public int pacienteCodigo { get; set; }
-        public string pacienteNombre { get; set; }
-        public string pacienteFechaNacimiento { get; set; }
-        public string pacienteEdad { get; set; }
-        public string pacienteTelefono { get; set; }
+        //public int pacienteCodigo { get; set; }
+        //public string pacienteNombre { get; set; }
+        //public string pacienteFechaNacimiento { get; set; }
+        //public string pacienteEdad { get; set; }
+        //public string pacienteTelefono { get; set; }
+        //public string pacienteSexo { get; set; }
+
+        public DatosPaciente datosPaciente { get; set; }
 
         public List<ComboGenerico> lstEstadosCiviles { get; set; }
         public ComboGenerico EstadoCivilSeleccionado { get; set; }
         
-        public List<ComboGenerico> lstGenero { get; set; }
-        public ComboGenerico GeneroSeleccionado { get; set; }
+        //public List<ComboGenerico> lstGenero { get; set; }
+        //public ComboGenerico GeneroSeleccionado { get; set; }
         
         public List<ComboGenerico> lstInmunizaciones { get; set; }
         public ComboGenerico InmunizacionSeleccionado { get; set; }
@@ -92,14 +95,23 @@ namespace UNIPOL.Medicos
         public decimal Estatura { get; set; }
         public decimal Peso { get; set; }
         public decimal IMC { get; set; }
-        public void ConsultaPaciente()
+        public void ConsultaPaciente(int pacienteCodigo)
         {
             var r = _bo.ConsultaPaciente(pacienteCodigo);
             if(r.Value)
             {
-                pacienteFechaNacimiento = r.Data[0].FechaNacimiento.ToShortDateString();
-                pacienteEdad = r.Data[0].EdadCompleta;
-                pacienteTelefono = r.Data[0].Telefono;
+                if (r.Data.Count > 0)
+                {
+                    datosPaciente = r.Data[0];
+                }
+                else
+                {
+                    datosPaciente = new DatosPaciente();
+                }
+                //pacienteFechaNacimiento = r.Data[0].FechaNacimiento.ToShortDateString();
+                //pacienteEdad = r.Data[0].EdadCompleta;
+                //pacienteTelefono = r.Data[0].Telefono;
+                //pacienteSexo = r.Data[0].Genero;
             }
         }
 
@@ -151,41 +163,17 @@ namespace UNIPOL.Medicos
             {
                 lstEstadosCiviles = rEstadoCivil.Data;
             }
-            //ComboGenerico ec = new ComboGenerico();
-            //ec.Codigo = 1;
-            //ec.Descripcion = "SOLTERO";
-            //lstEstadosCiviles.Add(ec);
 
-            //ec = new ComboGenerico();
-            //ec.Codigo = 2;
-            //ec.Descripcion = "CASADO";
-            //lstEstadosCiviles.Add(ec);
+        
 
-            //ec = new ComboGenerico();
-            //ec.Codigo = 3;
-            //ec.Descripcion = "DIVORCIADO";
-            //lstEstadosCiviles.Add(ec);
+            //lstGenero = new List<ComboGenerico>();
+            //var rGenero = _boCatalogos.ConsultaCatGenero();
+            //if (rGenero.Value)
+            //{
+            //    lstGenero = rGenero.Data;
+            //}
 
-            //ec = new ComboGenerico();
-            //ec.Codigo = 4;
-            //ec.Descripcion = "UNION LIBRE";
-            //lstEstadosCiviles.Add(ec);
 
-            lstGenero = new List<ComboGenerico>();
-            var rGenero = _boCatalogos.ConsultaCatGenero();
-            if (rGenero.Value)
-            {
-                lstGenero = rGenero.Data;
-            }
-            //ComboGenerico s = new ComboGenerico();
-            //s.Codigo = 1;
-            //s.Descripcion = "MASCULINO";
-            //lstSexos.Add(s);
-
-            //s = new ComboGenerico();
-            //s.Codigo = 2;
-            //s.Descripcion = "FEMENINO";
-            //lstSexos.Add(s);
 
 
             lstMPF = new List<ComboGenerico>();

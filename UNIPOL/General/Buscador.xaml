@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:UNIPOL.General"
         mc:Ignorable="d"
         Title="Buscador" 
-        Height="350" 
+        Height="400" 
         Width="600"
         
         WindowStartupLocation="CenterScreen"
@@ -27,7 +27,7 @@
                          x:Name="txtBuscador"
                          Padding="0,5,0,5"
                          Margin="0,8,0,0"
-                         Width="485"
+                         Width="{Binding withBuscador, UpdateSourceTrigger=PropertyChanged}"
                          Text="{Binding txtBuscar, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="16"
                          KeyUp="txtBuscador_KeyUp"/>
@@ -40,11 +40,20 @@
                         x:Name="btnBuscar"
                         Click="btnBuscar_Click"
                         />
+                <Button Content="{materialDesign:PackIcon AccountPlus}"
+                        ToolTip="Buscar"
+                        VerticalAlignment="Bottom"
+                        FontSize="34"
+                        Foreground="#fff"
+                        Margin="10,0,0,0"
+                        x:Name="btnAgregar"
+                        Click="btnAgregar_Click"
+                        />                
             </StackPanel>
 
 
             <DataGrid ItemsSource="{Binding DatosBusqueda, UpdateSourceTrigger=PropertyChanged}"
-                      Height="230"
+                      Height="280"
                       Margin="0,10,0,0"
                       AutoGenerateColumns="False"
                       CanUserResizeColumns="False"
@@ -65,7 +74,7 @@
                     <DataGridTextColumn Binding="{Binding Descripcion}"
                                         Header="Descripción"
                                         IsReadOnly="True"
-                                        Width="460">
+                                        Width="440">
                     </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>

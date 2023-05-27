@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:UNIPOL.Medicos"
         mc:Ignorable="d"
         Title="ConsultasMedicas" 
-        Height="585" 
+        Height="655" 
         Width="730"
         
         WindowStartupLocation="CenterScreen"
@@ -17,7 +17,7 @@
         Loaded="Window_Loaded">
     <Grid>
         <StackPanel Orientation="Vertical"
-                    Margin="20,10,20,5">
+                    Margin="20,10,10,5">
             <StackPanel Orientation="Horizontal">
                 <TextBox materialDesign:HintAssist.Hint="Paciente"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -142,7 +142,7 @@
                          FontSize="16"
                          KeyUp="txtObservaciones_KeyUp"/>
 
-                <Button Style="{StaticResource MaterialDesignPaperDarkButton}"
+                <Button Style="{StaticResource MaterialDesignOutlinedDarkButton}"
                         Width="90"
                         VerticalAlignment="Bottom"
                         ToolTip="Agregar"
@@ -151,6 +151,19 @@
                         Click="btnAgregar_Click"/>
 
             </StackPanel>
+
+            <TextBox materialDesign:HintAssist.Hint="Nota de Evolución"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Center" 
+                     HorizontalAlignment="Left"
+                     x:Name="txtNotaEvolucion"
+                     Text="{Binding medicamentoObservacion, UpdateSourceTrigger=PropertyChanged}"
+                     Width="670"
+                     Padding="0,5,0,5"
+                     Margin="0,8,0,8"
+                     MaxLength="500"
+                     FontSize="16"/>
+
 
             <DataGrid ItemsSource="{Binding Articulos, UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding articuloActual, UpdateSourceTrigger=PropertyChanged}"
@@ -166,8 +179,7 @@
                       CanUserSortColumns="False" 
                       SelectionMode="Single"
                       RowHeaderWidth="0"
-                      IsReadOnly="True"
-                      >
+                      IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding CodArticulo, UpdateSourceTrigger=PropertyChanged}"
                                         Header="Código"
@@ -212,9 +224,18 @@
 
 
             <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Right"
                         Margin="0,20,0,0">
 
+                <Button Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                        Width="100"
+                        ToolTip="Historial de consultas"
+                        Content="Historial"
+                        x:Name="btnHistorial"
+                        Click="btnHistorial_Click"
+                        Margin="0,0,363,0"
+                        IsEnabled="{Binding HistorialActivo, UpdateSourceTrigger=PropertyChanged}">
+                </Button>
+                
                 <Button Style="{StaticResource MaterialDesignRaisedSecondaryDarkButton}"
                         Width="100"
                         ToolTip="Guardar cambios"

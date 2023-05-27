@@ -231,6 +231,9 @@
     <None Include="Reportes\rptHistoriaClinica.rpt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Reportes\rptRecetaHistorial.rpt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Resource Include="botePastillas.ico" />
     <Resource Include="Imagenes\imageFC.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

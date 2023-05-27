@@ -57,7 +57,7 @@ namespace UNIPOL.Medicos
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            var result = _vm.guardar(txtTA.Text, txtFC.Text, txtFR.Text, txtTEM.Text);
+            var result = _vm.guardar(txtTA.Text.Trim(), txtFC.Text.Trim(), txtFR.Text.Trim(), txtTEM.Text.Trim(), txtNotaEvolucion.Text.Trim());
             if (result.Value)
             {
                 MessageBox.Show("Receta guardada correctamente.", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -76,6 +76,7 @@ namespace UNIPOL.Medicos
             buscador.ShowDialog();
             if (buscador.itemBusqueda != null && buscador.itemBusqueda.seleccionado)
             {
+                _vm.HistorialActivo = true;
                 _vm.pacienteCodigo = buscador.itemBusqueda.Codigo;
                 _vm.pacienteNombre = buscador.itemBusqueda.Descripcion;
             }
@@ -247,6 +248,11 @@ namespace UNIPOL.Medicos
             {
                 btnBuscarMedicamento.Focus();
             }
+        }
+
+        private void btnHistorial_Click(object sender, RoutedEventArgs e)
+        {
+            _vm.MuestraHistorial();
         }
     }
 }

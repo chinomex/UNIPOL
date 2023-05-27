@@ -18,6 +18,7 @@ namespace UNIPOL.General
         public string TituloBusqueda { get; set; }
         public int TipoBusqueda { get; set; }
         public string txtBuscar { get; set; }
+        public int withBuscador { get; set; }
 
         BusquedaBO _bo = null;
 
@@ -30,10 +31,12 @@ namespace UNIPOL.General
                 case 1:
                     this.TituloBusqueda = "Buscar Paciente";
                     this.TipoBusqueda = 1;
+                    this.withBuscador = 425;
                     break;
                 case 2:
                     this.TituloBusqueda = "Buscar Medicamento";
                     this.TipoBusqueda = 2;
+                    this.withBuscador = 485;
                     break;
             }
         }

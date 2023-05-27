@@ -61,5 +61,16 @@ namespace UNIPOL.General
                 this.Close();
             }
         }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            Medicos.AltaPaciente alta = new Medicos.AltaPaciente();
+            alta.ShowDialog();
+            if(alta.CodPaciente > 0)
+            {
+                _vm.txtBuscar = alta.NombrePaciente;
+                _vm.Buscar();
+            }
+        }
     }
 }

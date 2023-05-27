@@ -129,6 +129,7 @@
                                 <ColumnDefinition Width="80"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="60"></ColumnDefinition>
+                                <ColumnDefinition Width="60"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Row="0"
@@ -181,14 +182,27 @@
 
 
 
-                            <Button Content="{materialDesign:PackIcon Printer}"
+                            <Button Content="{materialDesign:PackIcon SquareEditOutline}"
+                                    Style="{StaticResource MaterialDesignOutlinedDarkButton}"
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="6"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
-                                    Height="30"
+                                    Height="35"
+                                    ToolTip="Editar"
+                                    x:Name="btnEditar"></Button>
+                            
+                            <Button Content="{materialDesign:PackIcon Printer}"
+                                    Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="7"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Height="35"
                                     x:Name="btnReImprimir"
+                                    ToolTip="Imprimir"
                                     Click="btnReimprimir_Click"></Button>
                         </Grid>
                     </DataTemplate>

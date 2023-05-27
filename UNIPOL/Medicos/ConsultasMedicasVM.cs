@@ -25,6 +25,7 @@ namespace UNIPOL.Medicos
         public string medicamentoDescripcion { get; set; }
         public int medicamentoCantidad { get; set; }
         public string medicamentoObservacion { get; set; }
+        public bool HistorialActivo { get; set; }
 
         MedicosBO _bo = null;
 
@@ -32,10 +33,8 @@ namespace UNIPOL.Medicos
         {
             this.Articulos = new ObservableCollection<ArticulosReceta>();
             _bo = new MedicosBO();
+            HistorialActivo = false;
         }
-
-
-
 
         public void AgregarMedicamento()
         {
@@ -52,7 +51,7 @@ namespace UNIPOL.Medicos
             this.medicamentoObservacion = "";
         }
 
-        public Result guardar(string txtTA, string txtFC, string txtFR, string txtTEM)
+        public Result guardar(string txtTA, string txtFC, string txtFR, string txtTEM, string txtNotaEvolucion)
         {
             Result resultado = new Result();
 
@@ -69,7 +68,7 @@ namespace UNIPOL.Medicos
                 txtTEM = "0";
 
 
-            var result = _bo.GuardarReceta(this.pacienteCodigo, Globales.usuarioActivo.IdUsuario, int.Parse(txtTA), int.Parse(txtFC), int.Parse(txtFR), decimal.Parse(txtTEM), this.Articulos.ToList<ArticulosReceta>());
+            var result = _bo.GuardarReceta(this.pacienteCodigo, Globales.usuarioActivo.IdUsuario, int.Parse(txtTA), int.Parse(txtFC), int.Parse(txtFR), decimal.Parse(txtTEM), txtNotaEvolucion, this.Articulos.ToList<ArticulosReceta>());
             resultado.Value = result.Value;
             resultado.Message = result.Message;
             if (result.Value)
@@ -102,6 +101,38 @@ namespace UNIPOL.Medicos
             return resultado;
         }
 
+        public void MuestraHistorial()
+        {
+            try
+            {
+                var receta = _bo.RecetaHistorial(pacienteCodigo);
+                if (receta.Value)
+                {
+                    if (receta.Data.Count > 0)
+                    {
+                        var d = receta.Data;
+                        ReportDocument reporte = new ReportDocument();
+                        var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+                        reporte.Load(path + @"\Reportes\rptRecetaHistorial.rpt");
+                        reporte.SetDataSource(d);
+                        Reportes.Reporteador reportView = new Reportes.Reporteador(reporte, 90);
+                        reportView.WindowState = System.Windows.WindowState.Maximized;
+                        reportView.Title = "Historial recetas del paciente";
+                        reportView.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron resultados", "UNIPOL", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    Limpiar();
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
         private void Limpiar()
         {
             this.Articulos = new ObservableCollection<ArticulosReceta>();
@@ -111,6 +142,7 @@ namespace UNIPOL.Medicos
             this.medicamentoDescripcion = "";
             this.medicamentoCantidad = 0;
             this.medicamentoObservacion = "";
+            this.HistorialActivo = false;
     }
     }
 }

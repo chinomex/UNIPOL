@@ -12,7 +12,7 @@ namespace UNIPOL.EN
         public string InspeccionGeneral { get; set; }
         public string LenguajeCorporal { get; set; }
         public string Resp { get; set; }
-        public decimal TA { get; set; }
+        public string TA { get; set; }
         public decimal FR { get; set; }
         public decimal FC { get; set; }
         public decimal Peso { get; set; }

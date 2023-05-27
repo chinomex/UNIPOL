@@ -25,6 +25,7 @@ namespace UNIPOL.EN
         public int Aborto { get; set; }
         public int IVSA { get; set; }
         public int IdMPF { get; set; }
+        public DateTime FUN { get; set; }
         public string MPF { get; set; }
         public string UltimoPapanicolaoUltrasonido { get; set; }
         public string OtraObservacion { get; set; }

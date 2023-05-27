@@ -32,7 +32,8 @@
         <xs:element name="TA" type="xs:integer"/>
         <xs:element name="FC" type="xs:integer"/>
         <xs:element name="FR" type="xs:integer"/>
-        <xs:element name="TEM" type="xs:decimal"/>        
+        <xs:element name="TEM" type="xs:decimal"/>
+        <xs:element name="NotaEvolucion" type="xs:string"/>
         <xs:element name="Tipo" type="xs:integer"/>
         <xs:element name="Universidad" type="xs:string"/>
         <xs:element name="Cedula" type="xs:string"/>
@@ -56,8 +57,12 @@
       <xs:sequence>
         <xs:element name="IdHistoria" type="xs:integer"/>
         <xs:element name="CodPaciente" type="xs:integer"/>
-        <xs:element name="Modalidad" type="xs:string"/>
         <xs:element name="Nombre" type="xs:string"/>
+        
+        <xs:element name="CodUsuario" type="xs:integer"/>
+        <xs:element name="Medico" type="xs:string"/>
+        
+        <xs:element name="Modalidad" type="xs:string"/>
         <xs:element name="FechaNacimiento" type="xs:dateTime"/>
         <xs:element name="EdadCompleta" type="xs:string"/>
         <xs:element name="Fecha" type="xs:dateTime"/>
@@ -97,6 +102,7 @@
         <xs:element name="IVSA" type="xs:integer"/>
         <xs:element name="IdMPF" type="xs:integer"/>
         <xs:element name="MPF" type="xs:string"/>
+        <xs:element name="FUN" type="xs:dateTime"/>
         <xs:element name="UltimoPapanicolaoUltrasonido" type="xs:string"/>
         <xs:element name="OtraObservacion" type="xs:string"/>
         <xs:element name="PadecimientoActual" type="xs:string"/>
@@ -161,7 +167,7 @@
         <xs:element name="InspeccionGeneral" type="xs:string"/>
         <xs:element name="LenguajeCorporal" type="xs:string"/>
         <xs:element name="Resp" type="xs:string"/>
-        <xs:element name="TA" type="xs:decimal"/>
+        <xs:element name="TA" type="xs:string"/>
         <xs:element name="FR" type="xs:decimal"/>
         <xs:element name="FC" type="xs:decimal"/>
         <xs:element name="Peso" type="xs:decimal"/>

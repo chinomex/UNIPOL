@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:UNIPOL.Medicos"
         mc:Ignorable="d"
         Title="Alta de pacientes" 
-        Height="400" 
+        Height="580" 
         Width="450"
         
         WindowStartupLocation="CenterScreen"
@@ -15,8 +15,7 @@
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
         
-        Loaded="Window_Loaded"
-        >
+        Loaded="Window_Loaded">
     <Grid>
         <StackPanel Orientation="Vertical"
                     Margin="20,10,20,5">
@@ -43,13 +42,25 @@
                      MaxLength="500"
                      KeyUp="txtNombre_KeyUp"/>
 
+            <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                      materialDesign:HintAssist.Hint="Sexo"
+                      VerticalAlignment="Bottom"
+                      FontSize="16"
+                      Margin="0,15,0,0"
+                      SelectedValue="Codigo"
+                      DisplayMemberPath="Descripcion"
+                      x:Name="cmbSexo"
+                      KeyUp="cmbSexo_KeyUp"
+                      SelectionChanged="cmbSexo_SelectionChanged">
+            </ComboBox>
+
 
             <TextBox materialDesign:HintAssist.Hint="Domicilio"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      VerticalAlignment="Center"
                      x:Name="txtDomicilio"
                      Padding="0,5,0,5"
-                     Margin="0,8,0,0"
+                     Margin="0,5,0,0"
                      FontSize="16"
                      MaxLength="1000"
                      KeyUp="txtDomicilio_KeyUp"/>
@@ -91,6 +102,27 @@
                      FontSize="16"
                      MaxLength="250"
                      KeyUp="txtCorreo_KeyUp"/>
+
+            <TextBox materialDesign:HintAssist.Hint="RFC"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Center"
+                     x:Name="txtRFC"
+                     Padding="0,5,0,5"
+                     Margin="0,8,0,0"
+                     FontSize="16"
+                     MaxLength="15"
+                     KeyUp="txtRFC_KeyUp"/>
+
+            <TextBox materialDesign:HintAssist.Hint="Alergias"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Center" 
+                     x:Name="txtAlergias"
+                     Text="{Binding medicamentoObservacion, UpdateSourceTrigger=PropertyChanged}"
+                     Padding="0,5,0,5"
+                     Margin="0,8,0,8"
+                     MaxLength="500"
+                     FontSize="16"
+                     KeyUp="txtAlergias_KeyUp"/>
 
 
             <StackPanel Orientation="Horizontal"

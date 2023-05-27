@@ -31,5 +31,7 @@ namespace UNIPOL.EN
         public int FC { get; set; }
         public int FR { get; set; }
         public decimal TEM { get; set; }
+        public string NotaEvolucion { get; set; }
+
     }
 }

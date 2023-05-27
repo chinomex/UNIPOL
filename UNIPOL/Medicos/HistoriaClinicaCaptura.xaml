@@ -67,7 +67,7 @@
                                          Padding="0,5,0,5"
                                          Width="740"
                                          FontSize="16"
-                                         Text="{Binding pacienteNombre, UpdateSourceTrigger=PropertyChanged}"
+                                         Text="{Binding datosPaciente.Nombre, UpdateSourceTrigger=PropertyChanged}"
                                          IsEnabled="False"/>
                                 <Button Content="{materialDesign:PackIcon AccountSearch}"
                                     VerticalAlignment="Bottom"
@@ -89,7 +89,7 @@
                                        Foreground="#9f9f9f"></TextBlock>
                             <TextBlock Grid.Row="1"
                                        Grid.Column="1"
-                                       Text="{Binding pacienteEdad, UpdateSourceTrigger=PropertyChanged}"
+                                       Text="{Binding datosPaciente.EdadCompleta, UpdateSourceTrigger=PropertyChanged}"
                                        VerticalAlignment="Bottom"
                                        HorizontalAlignment="Left"
                                        FontSize="16"
@@ -104,7 +104,7 @@
                                        TextWrapping="Wrap"></TextBlock>
                             <TextBlock Grid.Row="1"
                                        Grid.Column="3"
-                                       Text="{Binding pacienteFechaNacimiento, UpdateSourceTrigger=PropertyChanged}"
+                                       Text="{Binding datosPaciente.FechaNacimiento, UpdateSourceTrigger=PropertyChanged, StringFormat='dd/MM/yyy'}"
                                        VerticalAlignment="Bottom"
                                        HorizontalAlignment="Left"
                                        FontSize="16"
@@ -119,7 +119,7 @@
                                        Foreground="#9f9f9f"></TextBlock>
                             <TextBlock Grid.Row="1"
                                        Grid.Column="5"
-                                       Text="{Binding pacienteTelefono, UpdateSourceTrigger=PropertyChanged}"
+                                       Text="{Binding datosPaciente.Telefono, UpdateSourceTrigger=PropertyChanged}"
                                        VerticalAlignment="Bottom"
                                        HorizontalAlignment="Left"
                                        FontSize="16"
@@ -177,7 +177,15 @@
                                        FontSize="16"
                                        Margin="5"
                                        Foreground="#9f9f9f"></TextBlock>
-                            <ComboBox Grid.Row="3"
+                            <TextBlock Grid.Row="3"
+                                       Grid.Column="4"
+                                       Grid.ColumnSpan="2"
+                                       Text="{Binding datosPaciente.Genero, UpdateSourceTrigger=PropertyChanged}"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       FontSize="16"
+                                       Margin="10,0,0,5"></TextBlock>                            
+                            <!--<ComboBox Grid.Row="3"
                                       Grid.Column="4"
                                       Grid.ColumnSpan="2"
                                       VerticalAlignment="Bottom"
@@ -187,7 +195,7 @@
                                       SelectedItem="{Binding GeneroSeleccionado, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedValue="Codigo"
                                       DisplayMemberPath="Descripcion">
-                            </ComboBox>
+                            </ComboBox>-->
 
 
 
@@ -361,7 +369,7 @@
 
 
                                 <TextBlock Grid.Row="2"
-                                           Text="Antecedentes Personales Patológicos"
+                                           Text="Antecedentes Personales No Patológicos"
                                            FontSize="14"
                                            TextAlignment="Center"
                                            Foreground="#000"
@@ -550,6 +558,16 @@
                                            Background="Silver"></TextBlock>
                                 <StackPanel Grid.Row="7"
                                             Orientation="Vertical">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Setter Property="IsEnabled" Value="True"></Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding datosPaciente.IdGenero, UpdateSourceTrigger=PropertyChanged}" Value="1">
+                                                    <Setter Property="IsEnabled" Value="False"></Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="100"></ColumnDefinition>
@@ -720,6 +738,26 @@
                                                   SelectedValue="CodSexo"
                                                   DisplayMemberPath="Descripcion">
                                         </ComboBox>
+
+
+                                        <TextBlock Grid.Row="2"
+                                                   Grid.Column="2"
+                                                   Text="FUN"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Right"
+                                                   TextAlignment="Right"
+                                                   TextWrapping="WrapWithOverflow"
+                                                   Foreground="#9f9f9f"
+                                                   Margin="5,5,5,7"></TextBlock>
+                                        <DatePicker Grid.Row="2"
+                                                    Grid.Column="3" 
+                                                    Width="190" 
+                                                    xml:lang="es-MX"
+                                                    FontSize="16"
+                                                    x:Name="dpFUN"
+                                                    materialDesign:TextFieldAssist.HasClearButton="True"
+                                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
+                                                    HorizontalAlignment="Right"/>
 
 
                                         <Border BorderBrush="#9f9f9f"
@@ -1433,8 +1471,8 @@
                                          MaxLength="100"
                                          x:Name="txtInspeccionGeneral"/>
 
-                                
-                                
+
+
                                 <TextBlock Grid.Row="1"
                                            Grid.Column="0"
                                            Text="Lenguaje corporal"
@@ -1517,7 +1555,7 @@
                                     <TextBlock Text="FR"
                                                FontSize="16"
                                                Margin="5"
-                                               Foreground="#9f9f9f"></TextBlock>                                    
+                                               Foreground="#9f9f9f"></TextBlock>
                                 </StackPanel>
 
                                 <TextBox Grid.Row="2" 
@@ -1627,8 +1665,8 @@
                                            Margin="10,0,0,0"
                                            Foreground="#A7A7A7"
                                            x:Name="lblIMCInfo"></TextBlock>
-                                
-                                
+
+
 
 
                                 <TextBlock Grid.Row="5"
@@ -1709,7 +1747,7 @@
                                          MaxLength="100"
                                          x:Name="txtVision"/>
 
-                                
+
                                 <TextBlock Grid.Row="9"
                                            Grid.Column="0"
                                            Text="Nariz"

@@ -37,9 +37,9 @@ namespace UNIPOL.Medicos
             buscador.ShowDialog();
             if (buscador.itemBusqueda != null && buscador.itemBusqueda.seleccionado)
             {
-                _vm.pacienteCodigo = buscador.itemBusqueda.Codigo;
-                _vm.pacienteNombre = buscador.itemBusqueda.Descripcion;
-                _vm.ConsultaPaciente();
+                //_vm.pacienteCodigo = buscador.itemBusqueda.Codigo;
+                //_vm.pacienteNombre = buscador.itemBusqueda.Descripcion;
+                _vm.ConsultaPaciente(buscador.itemBusqueda.Codigo);
             }
         }
 
@@ -70,7 +70,7 @@ namespace UNIPOL.Medicos
         {
             try
             {
-                if(_vm.pacienteCodigo == 0)
+                if(_vm.datosPaciente.CodPaciente == 0)
                 {
                     MessageBox.Show("Favor de seleccionar un paciente");
                     btnBuscarPaciente.Focus();
@@ -81,11 +81,11 @@ namespace UNIPOL.Medicos
                 var historia = new HC();
 
                 var hc = new HistoriaClinica();
-                hc.CodPaciente = _vm.pacienteCodigo;
+                hc.CodPaciente = _vm.datosPaciente.CodPaciente;
                 hc.CodUsuario = Globales.usuarioActivo.IdUsuario;
                 hc.Modalidad = txtModalidad.Text.Trim();
                 hc.IdEstatoCivil = _vm.EstadoCivilSeleccionado != null ? _vm.EstadoCivilSeleccionado.Codigo : 0;
-                hc.IdGenero = _vm.GeneroSeleccionado != null ? _vm.GeneroSeleccionado.Codigo : 0;
+                hc.IdGenero = _vm.datosPaciente != null ? _vm.datosPaciente.IdGenero : 0;
                 hc.SenasParticulares = txtSParticulares.Text.Trim();
                 hc.Escolaridad = txtEscolaridad.Text.Trim();
                 hc.Originario = txtOriginario.Text.Trim();
@@ -111,6 +111,7 @@ namespace UNIPOL.Medicos
                 hca.Aborto = !string.IsNullOrEmpty(txtAborto.Text.Trim()) ? int.Parse(txtAborto.Text.Trim()) : 0;
                 hca.IVSA = !string.IsNullOrEmpty(txtIVSA.Text.Trim()) ? int.Parse(txtIVSA.Text.Trim()) : 0;
                 hca.IdMPF = _vm.MPFSeleccionado != null ? _vm.MPFSeleccionado.Codigo : 0;
+                hca.FUN = dpFUN.SelectedDate != null ? dpFUN.SelectedDate.Value : new DateTime(1900, 01, 01);
                 hca.UltimoPapanicolaoUltrasonido = txtUltimoPapanicolao.Text.Trim();
                 hca.OtraObservacion = txtOtraObservacion.Text.Trim();
                 hca.PadecimientoActual = txtPadecimientoActual.Text.Trim();
@@ -147,7 +148,7 @@ namespace UNIPOL.Medicos
                 hcd.InspeccionGeneral = txtInspeccionGeneral.Text.Trim();
                 hcd.LenguajeCorporal = txtLenguajeCorporal.Text.Trim();
                 hcd.Resp = txtResp.Text.Trim();
-                hcd.TA = !string.IsNullOrEmpty(txtTA.Text.Trim()) ? decimal.Parse(txtTA.Text.Trim()) : 0.0m;
+                hcd.TA = !string.IsNullOrEmpty(txtTA.Text.Trim()) ? txtTA.Text.Trim() : "";
                 hcd.FR = !string.IsNullOrEmpty(txtFR.Text.Trim()) ? decimal.Parse(txtFR.Text.Trim()) : 0.0m;
                 hcd.FC = !string.IsNullOrEmpty(txtFC.Text.Trim()) ? decimal.Parse(txtFC.Text.Trim()) : 0.0m;
                 hcd.Peso = !string.IsNullOrEmpty(txtPeso.Text.Trim()) ? decimal.Parse(txtPeso.Text.Trim()) : 0.0m;
@@ -252,9 +253,33 @@ namespace UNIPOL.Medicos
             return respuesta;
         }
 
+        public bool FormatoTA(KeyEventArgs e)
+        {
+            bool respuesta = true;
+
+            if (e.Key == Key.Right
+                || e.Key == Key.Left
+                || e.Key == Key.LeftShift
+                || e.Key == Key.RightShift
+                || e.Key == Key.Back
+                || e.Key == Key.Delete
+                || (e.Key >= Key.D0 && e.Key <= Key.D9)
+                || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9
+                || e.Key == Key.Tab
+                || e.Key == Key.Divide 
+                )
+            {
+                respuesta = false;
+            }
+            else
+            {
+                respuesta = true;
+            }
+
+            return respuesta;
+        }
+
         #endregion
-
-
 
         #region DatosCadete
 
@@ -299,7 +324,7 @@ namespace UNIPOL.Medicos
 
         private void txtTA_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            e.Handled = ValidaNumero(false, txtTA.Text, e);
+            e.Handled = FormatoTA(e);
         }
         private void txtFR_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -351,7 +376,7 @@ namespace UNIPOL.Medicos
                             if (imc < 18.5)
                             {
                                 imcInfo = "BAJO PESO";
-                                color = "#ffbf00";
+                                color = "#ffc000";
                             }
                             else if (imc >= 18.5 && imc <= 24.9)
                             {
@@ -373,16 +398,21 @@ namespace UNIPOL.Medicos
                                 imcInfo = "OBESIDAD GRADO 2";
                                 color = "#ff3300";
                             }
-                            else if(imc >= 40.0 && imc <= 49.9)
+                            else if (imc >= 40.0)
                             {
                                 imcInfo = "OBESIDAD GRADO 3";
                                 color = "#fe0002";
                             }
-                            else if (imc >= 50)
-                            {
-                                imcInfo = "OBESIDAD GRADO 3";
-                                color = "#fe0002";
-                            }
+                            //else if(imc >= 40.0 && imc <= 49.9)
+                            //{
+                            //    imcInfo = "OBESIDAD GRADO 3";
+                            //    color = "#fe0002";
+                            //}
+                            //else if (imc >= 50)
+                            //{
+                            //    imcInfo = "OBESIDAD GRADO 3";
+                            //    color = "#fe0002";
+                            //}
                         }
                     }
                 }
